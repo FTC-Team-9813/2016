@@ -1,6 +1,7 @@
 
 
 package org.firstinspires.ftc.Cobalt;
+// I thought code.e was a better name than Cobalt
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
