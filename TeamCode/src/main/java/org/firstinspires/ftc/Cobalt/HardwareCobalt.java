@@ -1,8 +1,9 @@
 package org.firstinspires.ftc.Cobalt;
 
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 /**
@@ -22,13 +23,16 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 public class HardwareCobalt
 {
     /* Public OpMode members. */
-    public DcMotor  leftMotor   = null;
-    public DcMotor  rightMotor  = null;
+    public DcMotor leftFrontMotor = null;
+    public DcMotor rightFrontMotor = null;
+    public DcMotor rightRearMotor = null;
+    public DcMotor leftRearMotor = null;
 
 
-    public static final double MID_SERVO       =  0.5 ;
-    public static final double ARM_UP_POWER    =  0.45 ;
-    public static final double ARM_DOWN_POWER  = -0.45 ;
+
+    public ColorSensor colorSensor = null;
+
+
 
     /* local OpMode members. */
     HardwareMap hwMap           =  null;
@@ -45,21 +49,27 @@ public class HardwareCobalt
         hwMap = ahwMap;
 
         // Define and Initialize Motors
-        leftMotor   = hwMap.dcMotor.get("left_drive");
-        rightMotor  = hwMap.dcMotor.get("right_drive");
+        leftFrontMotor = hwMap.dcMotor.get("left_front_drive");
+        leftRearMotor = hwMap.dcMotor.get("left_rear_drive");
+        rightFrontMotor = hwMap.dcMotor.get("right_front_drive");
+        rightRearMotor = hwMap.dcMotor.get("right_rear_drive");
 
-        leftMotor.setDirection(DcMotor.Direction.FORWARD); // Set to REVERSE if using AndyMark motors
-        rightMotor.setDirection(DcMotor.Direction.REVERSE);// Set to FORWARD if using AndyMark motors
 
+        leftFrontMotor.setDirection(DcMotor.Direction.FORWARD);
+        leftRearMotor.setDirection(DcMotor.Direction.FORWARD);
+        rightFrontMotor.setDirection(DcMotor.Direction.REVERSE);
+        rightRearMotor.setDirection(DcMotor.Direction.REVERSE);
         // Set all motors to zero power
-        leftMotor.setPower(0);
-        rightMotor.setPower(0);
+        leftFrontMotor.setPower(0);
+        leftRearMotor.setPower(0);
+        rightFrontMotor.setPower(0);
+        rightRearMotor.setPower(0);
 
 
         // Set all motors to run without encoders.
         // May want to use RUN_USING_ENCODERS if encoders are installed.
-        leftMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        rightMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        leftFrontMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        rightFrontMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
 
 
