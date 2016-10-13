@@ -125,7 +125,7 @@ public class SensorAdafruitRGB extends LinearOpMode {
       // check the status of the x button on gamepad.
       bCurrState = gamepad1.x;
 
-      // check for button-press state transitions.
+      // check for button-press state transitions.nhy
       if ((bCurrState == true) && (bCurrState != bPrevState))  {
 
         // button is transitioning to a pressed state. Toggle the LED.
