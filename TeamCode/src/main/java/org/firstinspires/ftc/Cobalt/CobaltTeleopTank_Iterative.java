@@ -71,7 +71,7 @@ public class CobaltTeleopTank_Iterative extends OpMode{
         robot.init(hardwareMap);
 
         // Send telemetry message to signify robot waiting;
-        telemetry.addData("Say", "Hello Driver");    //
+        telemetry.addData("Say", "Hello Driver I am your overlord");    //
         updateTelemetry(telemetry);
     }
 

@@ -59,6 +59,7 @@ public class HardwareCobalt
         leftRearMotor.setDirection(DcMotor.Direction.FORWARD);
         rightFrontMotor.setDirection(DcMotor.Direction.REVERSE);
         rightRearMotor.setDirection(DcMotor.Direction.REVERSE);
+
         // Set all motors to zero power
         leftFrontMotor.setPower(0);
         leftRearMotor.setPower(0);
