@@ -1,9 +1,8 @@
 package org.firstinspires.ftc.Cobalt;
 
-import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.TouchSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 /**
@@ -22,16 +21,22 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  */
 public class HardwareCobalt
 {
-    /* Public OpMode members. */
-    public DcMotor leftFrontMotor = null;
-    public DcMotor rightFrontMotor = null;
-    public DcMotor rightRearMotor = null;
-    public DcMotor leftRearMotor = null;
+    //motors
+    public static DcMotor leftFrontMotor = null;
+    public static DcMotor rightFrontMotor = null;
+    public static DcMotor rightRearMotor = null;
+    public static DcMotor leftRearMotor = null;
+
+    // trigger
+    public static DcMotor triggerMotor = null;
+
+    //touch sensor
+    public static TouchSensor triggerTouchSensor = null;
+
+    public static FireMech fireMech= new FireMech(triggerMotor, triggerTouchSensor);
 
 
 
-
-    public ColorSensor colorSensor = null;
 
 
 
@@ -54,6 +59,10 @@ public class HardwareCobalt
         leftRearMotor = hwMap.dcMotor.get("left_rear_drive");
         rightFrontMotor = hwMap.dcMotor.get("right_front_drive");
         rightRearMotor = hwMap.dcMotor.get("right_rear_drive");
+        //trigger
+        triggerMotor = hwMap.dcMotor.get("trigger_motot");
+        //touch sensor
+        triggerTouchSensor = hwMap.touchSensor.get("touch_sensor");
 
 
         leftFrontMotor.setDirection(DcMotor.Direction.FORWARD);
@@ -61,17 +70,31 @@ public class HardwareCobalt
         rightFrontMotor.setDirection(DcMotor.Direction.REVERSE);
         rightRearMotor.setDirection(DcMotor.Direction.REVERSE);
 
+        triggerMotor.setDirection(DcMotor.Direction.FORWARD);
+
         // Set all motors to zero power
         leftFrontMotor.setPower(0);
         leftRearMotor.setPower(0);
         rightFrontMotor.setPower(0);
         rightRearMotor.setPower(0);
 
+        //trigger motor
+        triggerMotor.setPower(0);
+        //touch sensor
+        triggerTouchSensor.isPressed();
 
-        // Set all motors to run without encoders.
-        // May want to use RUN_USING_ENCODERS if encoders are installed.
-        leftFrontMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        rightFrontMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        //motors us encoders
+        leftFrontMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        leftRearMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightFrontMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightRearMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        //trigger motor use encoder
+        triggerMotor.setMode((DcMotor.RunMode.RUN_USING_ENCODER));
+        //touch sensor
+
+
+
+
 
 
 
