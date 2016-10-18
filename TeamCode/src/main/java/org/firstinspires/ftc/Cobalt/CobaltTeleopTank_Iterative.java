@@ -109,7 +109,7 @@ public class CobaltTeleopTank_Iterative extends OpMode{
 
         if(gamepad1.right_bumper == true){
 
-        HardwareCobalt.fireMech
+      //  HardwareCobalt.fireMech
 
         }
 
