@@ -50,7 +50,7 @@ import com.qualcomm.robotcore.hardware.DigitalChannelController;
  * cable for the sensor is connected to an I2C port on the
  * Core Device Interface Module.
  *
- * It also assuems that the LED pin of the sensor is connected
+ * It also assumes that the LED pin of the sensor is connected
  * to the digital signal pin of a digital port on the
  * Core Device Interface Module.
  *
@@ -71,7 +71,7 @@ import com.qualcomm.robotcore.hardware.DigitalChannelController;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 @Autonomous(name = "Sensor: AdafruitRGB", group = "Sensor")
-@Disabled                            // Comment this out to add to the opmode list
+//@Disabled                            // Comment this out to add to the opmode list
 public class SensorAdafruitRGB extends LinearOpMode {
 
   ColorSensor sensorRGB;
