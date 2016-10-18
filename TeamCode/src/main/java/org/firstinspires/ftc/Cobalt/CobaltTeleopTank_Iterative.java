@@ -96,6 +96,8 @@ public class CobaltTeleopTank_Iterative extends OpMode{
     public void loop() {
         double left;
         double right;
+        boolean touchSensorPressed = false;
+
 
         // Run wheels in tank mode (note: The joystick goes negative when pushed forwards, so negate it)
         left = -gamepad1.left_stick_y;
@@ -105,15 +107,23 @@ public class CobaltTeleopTank_Iterative extends OpMode{
         robot.rightFrontMotor.setPower(right);
         robot.rightRearMotor.setPower(right);
 
+        if(gamepad1.right_bumper == true){
+
+        HardwareCobalt.fireMech
+
+        }
+
+
+
+
+
+
+
+    }
+        @Override
+        public void stop(){
+        }
     }
 
-    /*
-     * Code to run ONCE after the driver hits STOP
-     */
-    @Override
-    public void stop() {
-    }
-
-}
 
 //We are trying to code sensors to identify white line so that we can find beacons!
