@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.Cobalt;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -27,13 +28,17 @@ public class HardwareCobalt
     public static DcMotor rightRearMotor = null;
     public static DcMotor leftRearMotor = null;
 
-    // trigger
+    // catapult trigger
     public static DcMotor triggerMotor = null;
 
     //touch sensor
     public static TouchSensor triggerTouchSensor = null;
+    //pitching motors
+    public static DcMotor firingMotor = null;
+    public static DcMotor loadingMotor = null;
 
-    public static FireMech fireMech= new FireMech(triggerMotor, triggerTouchSensor);
+    public static CatapultFireMech catapultFireMech = new CatapultFireMech(triggerMotor, triggerTouchSensor);
+    public static PitchingFireMech pitchFireMech = new PitchingFireMech(firingMotor, loadingMotor);
 
 
 
@@ -59,18 +64,24 @@ public class HardwareCobalt
         leftRearMotor = hwMap.dcMotor.get("left_rear_drive");
         rightFrontMotor = hwMap.dcMotor.get("right_front_drive");
         rightRearMotor = hwMap.dcMotor.get("right_rear_drive");
-        //trigger
-        triggerMotor = hwMap.dcMotor.get("trigger_motot");
+        //catapult trigger motor
+        triggerMotor = hwMap.dcMotor.get("trigger_motor");
         //touch sensor
         triggerTouchSensor = hwMap.touchSensor.get("touch_sensor");
+        //itching motors
+        firingMotor = hwMap.dcMotor.get("firing_motor");
+        loadingMotor = hwMap.dcMotor.get("loading_motor");
 
 
         leftFrontMotor.setDirection(DcMotor.Direction.FORWARD);
         leftRearMotor.setDirection(DcMotor.Direction.FORWARD);
         rightFrontMotor.setDirection(DcMotor.Direction.REVERSE);
         rightRearMotor.setDirection(DcMotor.Direction.REVERSE);
-
+// catapult motor
         triggerMotor.setDirection(DcMotor.Direction.FORWARD);
+        //pitching motors
+        loadingMotor.setDirection(DcMotor.Direction.FORWARD);
+        firingMotor.setDirection(DcMotor.Direction.FORWARD);
 
         // Set all motors to zero power
         leftFrontMotor.setPower(0);
@@ -78,8 +89,10 @@ public class HardwareCobalt
         rightFrontMotor.setPower(0);
         rightRearMotor.setPower(0);
 
-        //trigger motor
+        //catapult trigger motor
         triggerMotor.setPower(0);
+        //pitching motors
+
         //touch sensor
         triggerTouchSensor.isPressed();
 

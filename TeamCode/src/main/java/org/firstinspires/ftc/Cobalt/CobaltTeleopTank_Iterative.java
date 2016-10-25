@@ -56,7 +56,7 @@ public class CobaltTeleopTank_Iterative extends OpMode{
 
     /* Declare OpMode members. */
     HardwareCobalt robot       = new HardwareCobalt(); // use the class created to define a Pushbot's hardware
-    int control = 0;                                                  // could also use HardwarePushbotMatrix class.
+    public enum Control{FireMech}                                               // could also use HardwarePushbotMatrix class.
 
 
 
@@ -94,12 +94,14 @@ public class CobaltTeleopTank_Iterative extends OpMode{
      */
     @Override
     public void loop() {
+
+
         double left;
         double right;
         boolean touchSensorPressed = false;
 
 
-        // Run wheels in tank mode (note: The joystick goes negative when pushed forwards, so negate it)
+        // Run wheels in tank mode
         left = -gamepad1.left_stick_y;
         right = -gamepad1.right_stick_y;
         robot.leftFrontMotor.setPower(left);
@@ -107,33 +109,16 @@ public class CobaltTeleopTank_Iterative extends OpMode{
         robot.rightFrontMotor.setPower(right);
         robot.rightRearMotor.setPower(right);
 
-        if(gamepad1.right_bumper == true){
+        if(gamepad1.right_bumper == true) {
+
+            CatapultFireMech.fire();
         }
-
-        while (true) {
-            if(gamepad1.right_bumper == true){
-                control =1 ;
-            }
-
-
-            switch(control)
-            {
-
-                case 1:
-
-
-
-
-
-            }
+        else{
+            CatapultFireMech.stopFire();
         }
-
-
-
-
-
-
     }
+
+
         @Override
         public void stop(){
         }
