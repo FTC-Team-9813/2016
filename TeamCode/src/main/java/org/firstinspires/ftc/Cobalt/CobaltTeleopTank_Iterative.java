@@ -56,7 +56,7 @@ public class CobaltTeleopTank_Iterative extends OpMode{
 
     /* Declare OpMode members. */
     HardwareCobalt robot       = new HardwareCobalt(); // use the class created to define a Pushbot's hardware
-                                                         // could also use HardwarePushbotMatrix class.
+    int control = 0;                                                  // could also use HardwarePushbotMatrix class.
 
 
 
@@ -108,11 +108,25 @@ public class CobaltTeleopTank_Iterative extends OpMode{
         robot.rightRearMotor.setPower(right);
 
         if(gamepad1.right_bumper == true){
-
-      //  HardwareCobalt.fireMech
-
         }
 
+        while (true) {
+            if(gamepad1.right_bumper == true){
+                control =1 ;
+            }
+
+
+            switch(control)
+            {
+
+                case 1:
+
+
+
+
+
+            }
+        }
 
 
 
