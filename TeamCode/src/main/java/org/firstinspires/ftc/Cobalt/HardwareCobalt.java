@@ -83,7 +83,7 @@ public class HardwareCobalt
         //touch sensor
         triggerTouchSensor.isPressed();
 
-        //motors us encoders
+        //motors us encoders!
         leftFrontMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         leftRearMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightFrontMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
