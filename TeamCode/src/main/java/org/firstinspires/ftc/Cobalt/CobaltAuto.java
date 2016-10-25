@@ -2,6 +2,7 @@ package org.firstinspires.ftc.Cobalt;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
+import com.qualcomm.robotcore.hardware.DcMotor;
 
 /**
  * Created by Kilroy Programming on 10/18/2016.
@@ -43,14 +44,20 @@ public class CobaltAuto extends OpMode
      * Code to run ONCE when the driver hits PLAY
      */
     @Override
-    public void start() {
+    public void start()
+    {
+        robot.leftFrontMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.leftRearMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.rightFrontMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.rightRearMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
     }
 
     /*
      * Code to run REPEATEDLY after the driver hits PLAY but before they hit STOP
      */
     @Override
-    public void loop() {
+    public void loop()
+    {
 //driving? I hope?
 
         robot.leftFrontMotor.setPower(0);
@@ -65,5 +72,5 @@ public class CobaltAuto extends OpMode
     @Override
     public void stop() {
     }
-
+// Motor us encoders!
 }
