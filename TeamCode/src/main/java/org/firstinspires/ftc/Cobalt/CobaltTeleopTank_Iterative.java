@@ -56,7 +56,7 @@ public class CobaltTeleopTank_Iterative extends OpMode{
 
     /* Declare OpMode members. */
     HardwareCobalt robot       = new HardwareCobalt(); // use the class created to define a Pushbot's hardware
-    public enum Control{FireMech}                                               // could also use HardwarePushbotMatrix class.
+                                                 // could also use HardwarePushbotMatrix class.
 
 
 
@@ -98,7 +98,7 @@ public class CobaltTeleopTank_Iterative extends OpMode{
 
         double left;
         double right;
-        boolean touchSensorPressed = false;
+
 
 
         // Run wheels in tank mode
@@ -109,13 +109,11 @@ public class CobaltTeleopTank_Iterative extends OpMode{
         robot.rightFrontMotor.setPower(right);
         robot.rightRearMotor.setPower(right);
 
-        if(gamepad1.right_bumper == true) {
+        while(gamepad1.right_bumper == true) {
 
             CatapultFireMech.fire();
         }
-        else{
-            CatapultFireMech.stopFire();
-        }
+
     }
 
 

@@ -11,13 +11,13 @@ import com.qualcomm.robotcore.hardware.TouchSensor;
 public class CatapultFireMech {
     static final double motorPower = 1;
     static  DcMotor trigger;
-    static TouchSensor sensor;
 
 
-    public CatapultFireMech(DcMotor triggerMotor, TouchSensor  triggerTouchSensor) {
+
+    public CatapultFireMech(DcMotor triggerMotor) {
 
         this.trigger = triggerMotor;
-        this.sensor = triggerTouchSensor;
+
 
     }
     public static boolean fire() {
@@ -26,10 +26,5 @@ public class CatapultFireMech {
 
     return(true);
 }
-    public static boolean stopFire(){
 
-        trigger.setPower(0);
-
-    return(true);
-    }
 }

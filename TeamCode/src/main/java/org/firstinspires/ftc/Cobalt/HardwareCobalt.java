@@ -31,14 +31,14 @@ public class HardwareCobalt
     // catapult trigger
     public static DcMotor triggerMotor = null;
 
-    //touch sensor
-    public static TouchSensor triggerTouchSensor = null;
+
+
     //pitching motors
     public static DcMotor firingMotor = null;
     public static DcMotor loadingMotor = null;
 
-    public static CatapultFireMech catapultFireMech = new CatapultFireMech(triggerMotor, triggerTouchSensor);
-    public static PitchingFireMech pitchFireMech = new PitchingFireMech(firingMotor, loadingMotor);
+    public static CatapultFireMech catapultFireMech = new CatapultFireMech(triggerMotor);
+    public static PitchingFireMech pitchFireMech = new PitchingFireMech(firingMotor);
 
 
 
@@ -66,8 +66,8 @@ public class HardwareCobalt
         rightRearMotor = hwMap.dcMotor.get("right_rear_drive");
         //catapult trigger motor
         triggerMotor = hwMap.dcMotor.get("trigger_motor");
-        //touch sensor
-        triggerTouchSensor = hwMap.touchSensor.get("touch_sensor");
+
+
         //itching motors
         firingMotor = hwMap.dcMotor.get("firing_motor");
         loadingMotor = hwMap.dcMotor.get("loading_motor");
@@ -93,8 +93,8 @@ public class HardwareCobalt
         triggerMotor.setPower(0);
         //pitching motors
 
-        //touch sensor
-        triggerTouchSensor.isPressed();
+
+
 
         //motors us encoders!
         leftFrontMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -104,6 +104,7 @@ public class HardwareCobalt
         //trigger motor use encoder
         triggerMotor.setMode((DcMotor.RunMode.RUN_USING_ENCODER));
         //touch sensor
+
 
 
 

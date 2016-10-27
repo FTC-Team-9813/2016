@@ -8,12 +8,12 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 
 public class PitchingFireMech {
     private DcMotor firing;
-    private DcMotor loading;
 
-    public PitchingFireMech(DcMotor firingMotor, DcMotor loadingMotor){
+
+    public PitchingFireMech(DcMotor firingMotor){
 
         this.firing = firingMotor;
-        this.loading = loadingMotor;
+
 
     }
 
