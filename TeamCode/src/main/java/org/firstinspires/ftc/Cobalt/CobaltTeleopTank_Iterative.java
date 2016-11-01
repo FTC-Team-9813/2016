@@ -71,7 +71,7 @@ public class CobaltTeleopTank_Iterative extends OpMode{
         robot.init(hardwareMap);
 
         // Send telemetry message to signify robot waiting;
-        telemetry.addData("Say", "Motors are moting...      robots are roboting...      winners shall be winnering, cobalt is here.");    //
+        telemetry.addData("Say", "If you are losing win better and if you are winning win better");    //
         updateTelemetry(telemetry);
     }
 
@@ -109,10 +109,26 @@ public class CobaltTeleopTank_Iterative extends OpMode{
         robot.rightFrontMotor.setPower(right);
         robot.rightRearMotor.setPower(right);
 
-        while(gamepad1.right_bumper == true) {
 
-            CatapultFireMech.fire();
+        //CATAPULT FIRE  (if not in use comment out)
+        if(gamepad2.right_bumper == true)
+        {
+           robot.triggerMotor.setPower(1.0);
         }
+        else if(gamepad2.left_bumper == true)
+        {
+            robot.triggerMotor.setPower(-1.0);
+        }
+        else
+        {
+            robot.triggerMotor.setPower(0.0);
+        }
+
+        //PITCHING MACHINE FIRING   (if not in use comment out)
+
+
+
+
 
     }
 

@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.Cobalt;
 
+import android.widget.Switch;
+
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -8,11 +10,12 @@ import com.qualcomm.robotcore.hardware.DcMotor;
  * Created by Kilroy Programming on 10/18/2016.
  */
 @Autonomous(name="CobaltAuto", group="Cobalt")
+//@Disabled
 public class CobaltAuto extends OpMode
 {
     /* Declare OpMode members. */
     HardwareCobalt robot       = new HardwareCobalt(); // use the class created to define a Pushbot's hardware
-    // could also use HardwarePushbotMatrix class.
+
 
 
 
@@ -27,7 +30,7 @@ public class CobaltAuto extends OpMode
         robot.init(hardwareMap);
 
         // Send telemetry message to signify robot waiting;
-        telemetry.addData("Say", "Motors are moting...      robots are roboting...      winners shall be winnering, cobalt is here.");    //
+        telemetry.addData("Say", "Yell at the robot to win harder");    //
         updateTelemetry(telemetry);
     }
 
@@ -58,12 +61,48 @@ public class CobaltAuto extends OpMode
     @Override
     public void loop()
     {
-//driving? I hope?
+       controlState AutoOp = controlState.STATE_ONE;
+        //don't think we need this because its already declared in harware class but kept it just in case
+        /*robot.leftRearMotor.setPower(0.0);
+        robot.leftFrontMotor.setPower(0.0);
+        robot.rightRearMotor.setPower(0.0);
+        robot.rightFrontMotor.setPower(0.0);*/
 
-        robot.leftFrontMotor.setPower(0);
-        robot.leftRearMotor.setPower(0);
-        robot.rightFrontMotor.setPower(0);
-        robot.rightRearMotor.setPower(0);
+
+
+
+//will this work? probably not
+        /* RR = rightRear
+           RF = rihhtFront
+           LR = leftRear
+           LF = leftFront
+         */
+
+        int setTargetPositionRR = 0;
+        int setTargetPositionFR = 0;
+        int setTargetPositionLR = 0;
+        int setTargetPositionLF = 0;
+
+        robot.rightRearMotor.setTargetPosition(setTargetPositionRR);
+        robot.rightFrontMotor.setTargetPosition(setTargetPositionRR);
+        robot.leftRearMotor.setTargetPosition(setTargetPositionRR);
+        robot.leftFrontMotor.setTargetPosition(setTargetPositionRR);
+
+        int getTargetPositionRR = robot.rightRearMotor.getTargetPosition();
+        int getTargetPositionFR = robot.rightFrontMotor.getTargetPosition();
+        int getTargetPositionLR = robot.leftRearMotor.getTargetPosition();
+        int getTargetPositionLF = robot.leftFrontMotor.getTargetPosition();
+
+       
+
+
+
+        if(getTargetPositionLR != setTargetPositionLR){
+            robot.leftRearMotor.setPower(1.0);
+        }else {
+            robot.leftRearMotor.setPower(0.0);
+            getTargetPositionLR = robot.leftRearMotor.getTargetPosition();
+        }
     }
 
     /*
@@ -73,4 +112,9 @@ public class CobaltAuto extends OpMode
     public void stop() {
     }
 // Motor us encoders!
+    public enum controlState
+    {
+        STATE_ONE,STATE_TWO;
+    }
 }
+

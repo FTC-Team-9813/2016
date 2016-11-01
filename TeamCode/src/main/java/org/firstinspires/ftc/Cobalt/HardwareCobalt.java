@@ -35,8 +35,8 @@ public class HardwareCobalt
 
     //pitching motors
     public static DcMotor firingMotor = null;
-    public static DcMotor loadingMotor = null;
 
+    //NOT REALLY USING THESE RIGHT NOW BUT TOO LAZY TOO DELETE...     I NEED TO STOP DOING THIS ON CAPS
     public static CatapultFireMech catapultFireMech = new CatapultFireMech(triggerMotor);
     public static PitchingFireMech pitchFireMech = new PitchingFireMech(firingMotor);
 
@@ -65,12 +65,12 @@ public class HardwareCobalt
         rightFrontMotor = hwMap.dcMotor.get("right_front_drive");
         rightRearMotor = hwMap.dcMotor.get("right_rear_drive");
         //catapult trigger motor
-        triggerMotor = hwMap.dcMotor.get("trigger_motor");
+        triggerMotor = hwMap.dcMotor.get("trigger_fire_motor");
 
 
-        //itching motors
-        firingMotor = hwMap.dcMotor.get("firing_motor");
-        loadingMotor = hwMap.dcMotor.get("loading_motor");
+        //pitching motors
+        //firingMotor = hwMap.dcMotor.get("firing_motor");
+        //loadingMotor = hwMap.dcMotor.get("loading_motor");
 
 
         leftFrontMotor.setDirection(DcMotor.Direction.FORWARD);
@@ -80,8 +80,8 @@ public class HardwareCobalt
 // catapult motor
         triggerMotor.setDirection(DcMotor.Direction.FORWARD);
         //pitching motors
-        loadingMotor.setDirection(DcMotor.Direction.FORWARD);
-        firingMotor.setDirection(DcMotor.Direction.FORWARD);
+        //loadingMotor.setDirection(DcMotor.Direction.FORWARD);
+        //firingMotor.setDirection(DcMotor.Direction.FORWARD);
 
         // Set all motors to zero power
         leftFrontMotor.setPower(0);
@@ -102,7 +102,7 @@ public class HardwareCobalt
         rightFrontMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightRearMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         //trigger motor use encoder
-        triggerMotor.setMode((DcMotor.RunMode.RUN_USING_ENCODER));
+        triggerMotor.setMode((DcMotor.RunMode.RUN_WITHOUT_ENCODER));
         //touch sensor
 
 

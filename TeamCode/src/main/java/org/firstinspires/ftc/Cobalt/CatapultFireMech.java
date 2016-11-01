@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.TouchSensor;
  */
 
 public class CatapultFireMech {
-    static final double motorPower = 1;
+    static final double motorPower = 1.0;
     static  DcMotor trigger;
 
 
