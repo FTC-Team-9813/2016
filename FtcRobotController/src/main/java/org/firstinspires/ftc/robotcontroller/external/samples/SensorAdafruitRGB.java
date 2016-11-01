@@ -40,9 +40,9 @@ import com.qualcomm.ftcrobotcontroller.R;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.ColorSensor;
-import com.qualcomm.robotcore.hardware.DeviceInterfaceModule;
-import com.qualcomm.robotcore.hardware.DigitalChannelController;
+import com.qualcomm.robotcore.hardware.ColorSensor;   // needed
+import com.qualcomm.robotcore.hardware.DeviceInterfaceModule; // needed
+import com.qualcomm.robotcore.hardware.DigitalChannelController; // needed
 
 /*
  *
@@ -146,7 +146,7 @@ public class SensorAdafruitRGB extends LinearOpMode {
       telemetry.addData("Red  ", sensorRGB.red());
       telemetry.addData("Green", sensorRGB.green());
       telemetry.addData("Blue ", sensorRGB.blue());
-      telemetry.addData("Hue", hsvValues[0]);
+      telemetry.addData("Hue", hsvValues[0]); //not needed
 
       // change the background color to match the color detected by the RGB sensor.
       // pass a reference to the hue, saturation, and value array as an argument

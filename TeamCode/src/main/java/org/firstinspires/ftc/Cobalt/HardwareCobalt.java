@@ -1,7 +1,8 @@
 package org.firstinspires.ftc.Cobalt;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.DeviceInterfaceModule;
+import com.qualcomm.robotcore.hardware.DigitalChannelController;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.TouchSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
@@ -36,11 +37,15 @@ public class HardwareCobalt
     //pitching motors
     public static DcMotor firingMotor = null;
     public static DcMotor loadingMotor = null;
+    //color sensors (or related to color sensors)
+    public static DeviceInterfaceModule cdim = null;
+    public static DeviceInterfaceModule deviceInterface = null;
+    public static DigitalChannelController bottomLedLight = null;
 
     public static CatapultFireMech catapultFireMech = new CatapultFireMech(triggerMotor, triggerTouchSensor);
     public static PitchingFireMech pitchFireMech = new PitchingFireMech(firingMotor, loadingMotor);
 
-
+    public static final int GROUND_LED_PORT =5;
 
 
 
@@ -71,6 +76,10 @@ public class HardwareCobalt
         //itching motors
         firingMotor = hwMap.dcMotor.get("firing_motor");
         loadingMotor = hwMap.dcMotor.get("loading_motor");
+        //Color Sensors
+        cdim = hwMap.deviceInterfaceModule.get("cdim");
+        deviceInterface = hwMap.deviceInterfaceModule.get("core_device_interface");
+        bottomLedLight = hwMap.deviceInterfaceModule.get("LED_light");
 
 
         leftFrontMotor.setDirection(DcMotor.Direction.FORWARD);
@@ -103,7 +112,6 @@ public class HardwareCobalt
         rightRearMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         //trigger motor use encoder
         triggerMotor.setMode((DcMotor.RunMode.RUN_USING_ENCODER));
-        //touch sensor
 
 
 

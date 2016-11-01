@@ -3,6 +3,7 @@ package org.firstinspires.ftc.Cobalt;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DigitalChannelController;
 
 /**
  * Created by Kilroy Programming on 10/18/2016.
@@ -13,8 +14,7 @@ public class CobaltAuto extends OpMode
     /* Declare OpMode members. */
     HardwareCobalt robot       = new HardwareCobalt(); // use the class created to define a Pushbot's hardware
     // could also use HardwarePushbotMatrix class.
-
-
+    //color sensors
 
     /*
      * Code to run ONCE when the driver hits INIT
@@ -50,6 +50,9 @@ public class CobaltAuto extends OpMode
         robot.leftRearMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.rightFrontMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.rightRearMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        HardwareCobalt.cdim.setDigitalChannelMode(HardwareCobalt.GROUND_LED_PORT,DigitalChannelController.Mode.OUTPUT);
+
+
     }
 
     /*

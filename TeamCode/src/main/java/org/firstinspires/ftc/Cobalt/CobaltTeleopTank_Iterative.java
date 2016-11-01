@@ -34,6 +34,7 @@ package org.firstinspires.ftc.Cobalt;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DigitalChannelController;
 
 /**
  * This file provides basic Telop driving for a Pushbot robot.
@@ -87,6 +88,9 @@ public class CobaltTeleopTank_Iterative extends OpMode{
      */
     @Override
     public void start() {
+
+        //color sensors
+        HardwareCobalt.cdim.setDigitalChannelMode(HardwareCobalt.GROUND_LED_PORT,DigitalChannelController.Mode.OUTPUT);
     }
 
     /*
