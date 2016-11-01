@@ -93,7 +93,7 @@ public class CobaltAuto extends OpMode
         int getTargetPositionLR = robot.leftRearMotor.getTargetPosition();
         int getTargetPositionLF = robot.leftFrontMotor.getTargetPosition();
 
-       
+
 
 
 
