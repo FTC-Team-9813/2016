@@ -52,11 +52,12 @@ public class CobaltAuto extends OpMode
     @Override
     public void start()
     {
-        robot.leftFrontMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        robot.leftRearMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        robot.rightFrontMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        robot.rightRearMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.leftFrontMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.leftRearMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.rightFrontMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.rightRearMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         HardwareCobalt.cdim.setDigitalChannelMode(HardwareCobalt.GROUND_LED_PORT,DigitalChannelController.Mode.OUTPUT);
+        HardwareCobalt.cdim.setDigitalChannelState(HardwareCobalt.GROUND_LED_PORT,true);
 
 
 
@@ -69,11 +70,18 @@ public class CobaltAuto extends OpMode
     @Override
     public void loop()
     {
+        telemetry.addData("Say", "RGB Values " +HardwareCobalt.groundRGBSensor.red() * 255 / 800 +
+                " "+HardwareCobalt.groundRGBSensor.green() * 255 / 800 +" "+HardwareCobalt.groundRGBSensor.blue() * 255 / 800 +"\n");    //
+        updateTelemetry(telemetry);
+       controlState AutoOp = controlState.STATE_ONE;
+        //don't think we need this because its already declared in hardware class but kept it just in case
+        /*robot.leftRearMotor.setPower(0.0);
+        robot.leftFrontMotor.setPower(0.0);
+        robot.rightRearMotor.setPower(0.0);
+        robot.rightFrontMotor.setPower(0.0);*/
 
-        robot.rightRearMotor.setPower(1.0);
-        robot.rightFrontMotor.setPower(1.0);
 
-        controlState AutoOp = controlState.STATE_ONE;
+
 
 //will this work? probably not
         // RR = rightRear
@@ -102,26 +110,25 @@ public class CobaltAuto extends OpMode
         int getCurrentPositionLR = robot.leftRearMotor.getCurrentPosition();
         int getCurrentPositionLF = robot.leftFrontMotor.getCurrentPosition();
 
-
-
-
-
-
-
-
-
-
-                  while (getCurrentPositionRR < 360 & getCurrentPositionFR < 360 & getCurrentPositionLR < 360 & getCurrentPositionLF < 360) {
-                     robot.leftRearMotor.setPower(1.0);
-                     robot.leftFrontMotor.setPower(1.0);
-                     robot.rightRearMotor.setPower(1.0);
-                     robot.rightFrontMotor.setPower(1.0);
-
-                       getCurrentPositionRR = robot.rightRearMotor.getCurrentPosition();
-                       getCurrentPositionFR = robot.rightFrontMotor.getCurrentPosition();
-                       getCurrentPositionLR = robot.leftRearMotor.getCurrentPosition();
-                       getCurrentPositionLF = robot.leftFrontMotor.getCurrentPosition();
+        switch(AutoOp){
+            case STATE_ONE:
+                setTargetPositionRR = 360;
+                setTargetPositionFR = 360;
+                setTargetPositionLR = 360;
+                setTargetPositionLF = 360;
+                
+                 if (getTargetPositionRR != setTargetPositionRR & getTargetPositionFR != setTargetPositionFR & getTargetPositionLR != setTargetPositionLR & getTargetPositionLF != setTargetPositionLF) {
+                     robot.leftRearMotor.setPower(1);
+                     robot.leftFrontMotor.setPower(1);
+                     robot.rightRearMotor.setPower(1);
+                     robot.rightFrontMotor.setPower(1);
                  }
+                AutoOp = controlState.STATE_TWO;
+                break;
+
+            case STATE_TWO:
+                break;
+        }
 
 
 
@@ -135,8 +142,9 @@ public class CobaltAuto extends OpMode
      * Code to run ONCE after the driver hits STOP
      */
     @Override
-    public void stop() {
-
+    public void stop()
+    {
+        HardwareCobalt.cdim.setDigitalChannelState(HardwareCobalt.GROUND_LED_PORT,false);
     }
 // Motor us encoders!
 

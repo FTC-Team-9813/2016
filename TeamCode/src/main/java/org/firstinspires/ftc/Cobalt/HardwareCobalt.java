@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.Cobalt;
 
+import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DeviceInterfaceModule;
 import com.qualcomm.robotcore.hardware.DigitalChannelController;
@@ -47,7 +48,7 @@ public class HardwareCobalt
     //public static PitchingFireMech pitchFireMech = new PitchingFireMech(firingMotor);
 
     public static final int GROUND_LED_PORT =5;
-
+    public static ColorSensor groundRGBSensor;
 
 
 
@@ -71,14 +72,14 @@ public class HardwareCobalt
         rightFrontMotor = hwMap.dcMotor.get("right_front_drive");
         rightRearMotor = hwMap.dcMotor.get("right_rear_drive");
         //itching motors
-//        firingMotor = hwMap.dcMotor.get("firing_motor");
-//        loadingMotor = hwMap.dcMotor.get("loading_motor");
+        //firingMotor = hwMap.dcMotor.get("firing_motor");
+        //loadingMotor = hwMap.dcMotor.get("loading_motor");
         //Color Sensors
         cdim = hwMap.deviceInterfaceModule.get("cdim");
         //deviceInterface = hwMap.deviceInterfaceModule.get("core_device_interface");
         //bottomLedLight = hwMap.deviceInterfaceModule.get("LED_light");
         triggerMotor = hwMap.dcMotor.get("trigger_fire_motor");
-
+        groundRGBSensor = hwMap.colorSensor.get("colorsensor");
 
         //pitching motors
         //firingMotor = hwMap.dcMotor.get("firing_motor");
