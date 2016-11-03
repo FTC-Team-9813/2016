@@ -16,7 +16,10 @@ public class CobaltAuto extends OpMode
     /* Declare OpMode members. */
     HardwareCobalt robot       = new HardwareCobalt(); // use the class created to define a Pushbot's hardware
 
-
+    public enum controlState
+    {
+        STATE_ONE, STATE_TWO
+    }
 
 
     /*
@@ -97,7 +100,13 @@ public class CobaltAuto extends OpMode
         int getTargetPositionLF = robot.leftFrontMotor.getTargetPosition();
 
 
+        switch(AutoOp){
+            case STATE_ONE:
+                
 
+                break;
+
+        }
 
 
         if(getTargetPositionLR != setTargetPositionLR){
@@ -115,9 +124,6 @@ public class CobaltAuto extends OpMode
     public void stop() {
     }
 // Motor us encoders!
-    public enum controlState
-    {
-        STATE_ONE,STATE_TWO;
-    }
+
 }
 
