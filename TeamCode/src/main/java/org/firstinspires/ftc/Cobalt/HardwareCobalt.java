@@ -35,16 +35,16 @@ public class HardwareCobalt
 
 
     //pitching motors
-    public static DcMotor firingMotor = null;
-    public static DcMotor loadingMotor = null;
+//    public static DcMotor firingMotor = null;
+//    public static DcMotor loadingMotor = null;
     //color sensors (or related to color sensors)
     public static DeviceInterfaceModule cdim = null;
-    public static DeviceInterfaceModule deviceInterface = null;
+    //public static DeviceInterfaceModule deviceInterface = null;
     public static DigitalChannelController bottomLedLight = null;
 
     //NOT REALLY USING THESE RIGHT NOW BUT TOO LAZY TOO DELETE...     I NEED TO STOP DOING THIS ON CAPS
     public static CatapultFireMech catapultFireMech = new CatapultFireMech(triggerMotor);
-    public static PitchingFireMech pitchFireMech = new PitchingFireMech(firingMotor);
+    //public static PitchingFireMech pitchFireMech = new PitchingFireMech(firingMotor);
 
     public static final int GROUND_LED_PORT =5;
 
@@ -71,12 +71,12 @@ public class HardwareCobalt
         rightFrontMotor = hwMap.dcMotor.get("right_front_drive");
         rightRearMotor = hwMap.dcMotor.get("right_rear_drive");
         //itching motors
-        firingMotor = hwMap.dcMotor.get("firing_motor");
-        loadingMotor = hwMap.dcMotor.get("loading_motor");
+//        firingMotor = hwMap.dcMotor.get("firing_motor");
+//        loadingMotor = hwMap.dcMotor.get("loading_motor");
         //Color Sensors
         cdim = hwMap.deviceInterfaceModule.get("cdim");
-        deviceInterface = hwMap.deviceInterfaceModule.get("core_device_interface");
-        bottomLedLight = hwMap.deviceInterfaceModule.get("LED_light");
+        //deviceInterface = hwMap.deviceInterfaceModule.get("core_device_interface");
+        //bottomLedLight = hwMap.deviceInterfaceModule.get("LED_light");
         triggerMotor = hwMap.dcMotor.get("trigger_fire_motor");
 
 

@@ -52,11 +52,13 @@ public class CobaltAuto extends OpMode
     @Override
     public void start()
     {
-        robot.leftFrontMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        robot.leftRearMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        robot.rightFrontMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        robot.rightRearMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.leftFrontMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.leftRearMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.rightFrontMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        robot.rightRearMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         HardwareCobalt.cdim.setDigitalChannelMode(HardwareCobalt.GROUND_LED_PORT,DigitalChannelController.Mode.OUTPUT);
+
+
 
 
     }
@@ -67,69 +69,74 @@ public class CobaltAuto extends OpMode
     @Override
     public void loop()
     {
-       controlState AutoOp = controlState.STATE_ONE;
-        //don't think we need this because its already declared in harware class but kept it just in case
-        /*robot.leftRearMotor.setPower(0.0);
-        robot.leftFrontMotor.setPower(0.0);
-        robot.rightRearMotor.setPower(0.0);
-        robot.rightFrontMotor.setPower(0.0);*/
 
+        robot.rightRearMotor.setPower(1.0);
+        robot.rightFrontMotor.setPower(1.0);
 
-
+        controlState AutoOp = controlState.STATE_ONE;
 
 //will this work? probably not
-        /* RR = rightRear
-           RF = rihhtFront
-           LR = leftRear
-           LF = leftFront
-         */
+        // RR = rightRear
+          // RF = rightFront
+          // LR = leftRear
+          // LF = leftFront
 
-        int setTargetPositionRR = 0;
-        int setTargetPositionFR = 0;
-        int setTargetPositionLR = 0;
-        int setTargetPositionLF = 0;
+
+        int setTargetPositionRR = 360;
+        int setTargetPositionFR = 360;
+        int setTargetPositionLR = 360;
+        int setTargetPositionLF = 360;
 
         robot.rightRearMotor.setTargetPosition(setTargetPositionRR);
-        robot.rightFrontMotor.setTargetPosition(setTargetPositionRR);
-        robot.leftRearMotor.setTargetPosition(setTargetPositionRR);
-        robot.leftFrontMotor.setTargetPosition(setTargetPositionRR);
+        robot.rightFrontMotor.setTargetPosition(setTargetPositionFR);
+        robot.leftRearMotor.setTargetPosition(setTargetPositionLR);
+        robot.leftFrontMotor.setTargetPosition(setTargetPositionLF);
 
         int getTargetPositionRR = robot.rightRearMotor.getTargetPosition();
         int getTargetPositionFR = robot.rightFrontMotor.getTargetPosition();
         int getTargetPositionLR = robot.leftRearMotor.getTargetPosition();
         int getTargetPositionLF = robot.leftFrontMotor.getTargetPosition();
 
-        AutoOp = controlState.STATE_ONE;
+        int getCurrentPositionRR = robot.rightRearMotor.getCurrentPosition();
+        int getCurrentPositionFR = robot.rightFrontMotor.getCurrentPosition();
+        int getCurrentPositionLR = robot.leftRearMotor.getCurrentPosition();
+        int getCurrentPositionLF = robot.leftFrontMotor.getCurrentPosition();
 
-        switch(AutoOp){
-            case STATE_ONE:
-                setTargetPositionRR = 360;
-                setTargetPositionFR = 360;
-                setTargetPositionLR = 360;
-                setTargetPositionLF = 360;
-                
-                 if (getTargetPositionRR != setTargetPositionRR & getTargetPositionFR != setTargetPositionFR & getTargetPositionLR != setTargetPositionLR & getTargetPositionLF != setTargetPositionLF) {
-                     robot.leftRearMotor.setPower(1);
-                     robot.leftFrontMotor.setPower(1);
-                     robot.rightRearMotor.setPower(1);
-                     robot.rightFrontMotor.setPower(1);
+
+
+
+
+
+
+
+
+
+                  while (getCurrentPositionRR < 360 & getCurrentPositionFR < 360 & getCurrentPositionLR < 360 & getCurrentPositionLF < 360) {
+                     robot.leftRearMotor.setPower(1.0);
+                     robot.leftFrontMotor.setPower(1.0);
+                     robot.rightRearMotor.setPower(1.0);
+                     robot.rightFrontMotor.setPower(1.0);
+
+                       getCurrentPositionRR = robot.rightRearMotor.getCurrentPosition();
+                       getCurrentPositionFR = robot.rightFrontMotor.getCurrentPosition();
+                       getCurrentPositionLR = robot.leftRearMotor.getCurrentPosition();
+                       getCurrentPositionLF = robot.leftFrontMotor.getCurrentPosition();
                  }
-                AutoOp = controlState.STATE_TWO;
-                break;
 
-            case STATE_TWO:
-                break;
+
+
         }
 
 
 
-    }
+
 
     /*
      * Code to run ONCE after the driver hits STOP
      */
     @Override
     public void stop() {
+
     }
 // Motor us encoders!
 
