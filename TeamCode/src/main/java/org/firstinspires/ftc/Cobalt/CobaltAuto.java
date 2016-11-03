@@ -16,7 +16,10 @@ public class CobaltAuto extends OpMode
     /* Declare OpMode members. */
     HardwareCobalt robot       = new HardwareCobalt(); // use the class created to define a Pushbot's hardware
 
-
+    public enum controlState
+    {
+        STATE_ONE, STATE_TWO
+    }
 
 
     /*
@@ -99,16 +102,30 @@ public class CobaltAuto extends OpMode
         int getTargetPositionLR = robot.leftRearMotor.getTargetPosition();
         int getTargetPositionLF = robot.leftFrontMotor.getTargetPosition();
 
+        AutoOp = controlState.STATE_ONE;
 
+        switch(AutoOp){
+            case STATE_ONE:
+                setTargetPositionRR = 360;
+                setTargetPositionFR = 360;
+                setTargetPositionLR = 360;
+                setTargetPositionLF = 360;
+                
+                 if (getTargetPositionRR != setTargetPositionRR & getTargetPositionFR != setTargetPositionFR & getTargetPositionLR != setTargetPositionLR & getTargetPositionLF != setTargetPositionLF) {
+                     robot.leftRearMotor.setPower(1);
+                     robot.leftFrontMotor.setPower(1);
+                     robot.rightRearMotor.setPower(1);
+                     robot.rightFrontMotor.setPower(1);
+                 }
+                AutoOp = controlState.STATE_TWO;
+                break;
 
-
-
-        if(getTargetPositionLR != setTargetPositionLR){
-            robot.leftRearMotor.setPower(1.0);
-        }else {
-            robot.leftRearMotor.setPower(0.0);
-            getTargetPositionLR = robot.leftRearMotor.getTargetPosition();
+            case STATE_TWO:
+                break;
         }
+
+
+
     }
 
     /*
@@ -120,9 +137,6 @@ public class CobaltAuto extends OpMode
         HardwareCobalt.cdim.setDigitalChannelState(HardwareCobalt.GROUND_LED_PORT,false);
     }
 // Motor us encoders!
-    public enum controlState
-    {
-        STATE_ONE,STATE_TWO;
-    }
+
 }
 
