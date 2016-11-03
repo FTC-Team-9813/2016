@@ -30,8 +30,6 @@ public class CobaltAuto extends OpMode
         robot.init(hardwareMap);
 
         // Send telemetry message to signify robot waiting;
-        telemetry.addData("Say", "Yell at the robot to win harder");    //
-        updateTelemetry(telemetry);
     }
 
     /*
@@ -53,7 +51,9 @@ public class CobaltAuto extends OpMode
         robot.leftRearMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.rightFrontMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.rightRearMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        //Turn on LED on color sensor
         HardwareCobalt.cdim.setDigitalChannelMode(HardwareCobalt.GROUND_LED_PORT,DigitalChannelController.Mode.OUTPUT);
+        HardwareCobalt.cdim.setDigitalChannelState(HardwareCobalt.GROUND_LED_PORT,true);
 
 
     }
@@ -64,8 +64,11 @@ public class CobaltAuto extends OpMode
     @Override
     public void loop()
     {
+        telemetry.addData("Say", "RGB Values " +HardwareCobalt.groundRGBSensor.red() * 255 / 800 +
+                " "+HardwareCobalt.groundRGBSensor.green() * 255 / 800 +" "+HardwareCobalt.groundRGBSensor.blue() * 255 / 800 +"\n");    //
+        updateTelemetry(telemetry);
        controlState AutoOp = controlState.STATE_ONE;
-        //don't think we need this because its already declared in harware class but kept it just in case
+        //don't think we need this because its already declared in hardware class but kept it just in case
         /*robot.leftRearMotor.setPower(0.0);
         robot.leftFrontMotor.setPower(0.0);
         robot.rightRearMotor.setPower(0.0);
@@ -112,7 +115,9 @@ public class CobaltAuto extends OpMode
      * Code to run ONCE after the driver hits STOP
      */
     @Override
-    public void stop() {
+    public void stop()
+    {
+        HardwareCobalt.cdim.setDigitalChannelState(HardwareCobalt.GROUND_LED_PORT,false);
     }
 // Motor us encoders!
     public enum controlState
