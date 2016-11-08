@@ -74,11 +74,7 @@ public class CobaltAuto extends OpMode
                 " "+HardwareCobalt.groundRGBSensor.green() * 255 / 800 +" "+HardwareCobalt.groundRGBSensor.blue() * 255 / 800 +"\n");    //
         updateTelemetry(telemetry);
        controlState AutoOp = controlState.STATE_ONE;
-        //don't think we need this because its already declared in hardware class but kept it just in case
-        /*robot.leftRearMotor.setPower(0.0);
-        robot.leftFrontMotor.setPower(0.0);
-        robot.rightRearMotor.setPower(0.0);
-        robot.rightFrontMotor.setPower(0.0);*/
+
 
 
 
@@ -122,6 +118,7 @@ public class CobaltAuto extends OpMode
                      robot.leftFrontMotor.setPower(1);
                      robot.rightRearMotor.setPower(1);
                      robot.rightFrontMotor.setPower(1);
+                     // Sets all wheels (RR, FR, LR, LF) to 360 degrees
                  }
                 AutoOp = controlState.STATE_TWO;
                 break;

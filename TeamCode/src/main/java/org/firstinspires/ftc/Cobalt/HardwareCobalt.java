@@ -50,7 +50,7 @@ public class HardwareCobalt
     public static final int GROUND_LED_PORT =5;
     public static ColorSensor groundRGBSensor;
 
-
+public static CobaltTransmission robotDrive = null;
 
     /* local OpMode members. */
     HardwareMap hwMap           =  null;
@@ -71,7 +71,7 @@ public class HardwareCobalt
         leftRearMotor = hwMap.dcMotor.get("left_rear_drive");
         rightFrontMotor = hwMap.dcMotor.get("right_front_drive");
         rightRearMotor = hwMap.dcMotor.get("right_rear_drive");
-        //itching motors
+        //pitching motors
         //firingMotor = hwMap.dcMotor.get("firing_motor");
         //loadingMotor = hwMap.dcMotor.get("loading_motor");
         //Color Sensors
@@ -80,6 +80,7 @@ public class HardwareCobalt
         //bottomLedLight = hwMap.deviceInterfaceModule.get("LED_light");
         triggerMotor = hwMap.dcMotor.get("trigger_fire_motor");
         groundRGBSensor = hwMap.colorSensor.get("colorsensor");
+        robotDrive = new CobaltTransmission(rightRearMotor, rightFrontMotor, leftRearMotor, leftFrontMotor);
 
         //pitching motors
         //firingMotor = hwMap.dcMotor.get("firing_motor");
