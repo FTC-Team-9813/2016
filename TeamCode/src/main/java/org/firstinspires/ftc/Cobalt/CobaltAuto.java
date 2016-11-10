@@ -15,7 +15,9 @@ public class CobaltAuto extends OpMode
 {
     /* Declare OpMode members. */
     HardwareCobalt robot       = new HardwareCobalt(); // use the class created to define a Pushbot's hardware
-
+//private final double GroundGreenSensor = new HardwareCobalt.groundRGBSensor.green();
+//private final double GroundRedSensor = new HardwareCobalt.groundRGBSensor.red();
+//private final double GroundBlueSensor = new HardwareCobalt.groundRGBSensor.blue();
     public enum controlState
     {
         STATE_ONE, STATE_TWO
@@ -59,9 +61,6 @@ public class CobaltAuto extends OpMode
         HardwareCobalt.cdim.setDigitalChannelMode(HardwareCobalt.GROUND_LED_PORT,DigitalChannelController.Mode.OUTPUT);
         HardwareCobalt.cdim.setDigitalChannelState(HardwareCobalt.GROUND_LED_PORT,true);
 
-
-
-
     }
 
     /*
@@ -73,6 +72,18 @@ public class CobaltAuto extends OpMode
         telemetry.addData("Say", "RGB Values " +HardwareCobalt.groundRGBSensor.red() * 255 / 800 +
                 " "+HardwareCobalt.groundRGBSensor.green() * 255 / 800 +" "+HardwareCobalt.groundRGBSensor.blue() * 255 / 800 +"\n");    //
         updateTelemetry(telemetry);
+        if (HardwareCobalt.groundRGBSensor.red() == 255&& HardwareCobalt.groundRGBSensor.green() == 255&& HardwareCobalt.groundRGBSensor.blue() == 255)
+        {
+            robot.leftRearMotor.setPower(1);
+            robot.leftFrontMotor.setPower(1);
+            robot.rightRearMotor.setPower(1);
+            robot.rightFrontMotor.setPower(1);
+        }
+        if(HardwareCobalt.groundRGBSensor.red() != 255  && HardwareCobalt.groundRGBSensor.green() != 255 && HardwareCobalt.groundRGBSensor.blue() != 255)
+        {
+            //Code that says ie beacon
+        }
+        //HardwareCobalt
        controlState AutoOp = controlState.STATE_ONE;
         //don't think we need this because its already declared in hardware class but kept it just in case
         /*robot.leftRearMotor.setPower(0.0);
