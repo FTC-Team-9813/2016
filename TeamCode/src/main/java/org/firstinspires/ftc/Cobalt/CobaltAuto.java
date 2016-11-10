@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.Cobalt;
 
+import android.util.Xml;
 import android.widget.Switch;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
@@ -15,9 +16,7 @@ public class CobaltAuto extends OpMode
 {
     /* Declare OpMode members. */
     HardwareCobalt robot       = new HardwareCobalt(); // use the class created to define a Pushbot's hardware
-//private final double GroundGreenSensor = new HardwareCobalt.groundRGBSensor.green();
-//private final double GroundRedSensor = new HardwareCobalt.groundRGBSensor.red();
-//private final double GroundBlueSensor = new HardwareCobalt.groundRGBSensor.blue();
+
     public enum controlState
     {
         STATE_ONE, STATE_TWO
@@ -45,7 +44,7 @@ public class CobaltAuto extends OpMode
     @Override
     public void init_loop()
     {
-
+        AutoOp = controlState.STATE_ONE;
     }
 
     /*
@@ -60,6 +59,9 @@ public class CobaltAuto extends OpMode
         robot.rightRearMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         HardwareCobalt.cdim.setDigitalChannelMode(HardwareCobalt.GROUND_LED_PORT,DigitalChannelController.Mode.OUTPUT);
         HardwareCobalt.cdim.setDigitalChannelState(HardwareCobalt.GROUND_LED_PORT,true);
+
+
+
 
     }
 
@@ -124,28 +126,42 @@ public class CobaltAuto extends OpMode
 
         switch(AutoOp){
             case STATE_ONE:
-                setTargetPositionRR = 360;
-                setTargetPositionFR = 360;
-                setTargetPositionLR = 360;
-                setTargetPositionLF = 360;
-                
-                 if (getTargetPositionRR != setTargetPositionRR & getTargetPositionFR != setTargetPositionFR & getTargetPositionLR != setTargetPositionLR & getTargetPositionLF != setTargetPositionLF) {
-                     robot.leftRearMotor.setPower(1);
-                     robot.leftFrontMotor.setPower(1);
-                     robot.rightRearMotor.setPower(1);
-                     robot.rightFrontMotor.setPower(1);
-                     // Sets all wheels (RR, FR, LR, LF) to 360 degrees
-                 }
+                setTargetPositionRR = 2800;
+                setTargetPositionFR = 2800;
+                setTargetPositionLR = 2800;
+                setTargetPositionLF = 2800;
+
+                if (getTargetPositionRR <= setTargetPositionRR - 10 && getTargetPositionRR <= setTargetPositionRR + 10 && getTargetPositionFR <= setTargetPositionFR - 10 && getTargetPositionRR <= setTargetPositionRR + 10 && getTargetPositionLR <= setTargetPositionLR - 10 && getTargetPositionLR <= setTargetPositionLR + 10 && getTargetPositionLF <= setTargetPositionLF - 10 && getTargetPositionLF <= setTargetPositionLF + 10) {
+                    robot.leftRearMotor.setPower(1.0);
+                    robot.leftFrontMotor.setPower(1.0);
+                    robot.rightRearMotor.setPower(1.0);
+                    robot.rightFrontMotor.setPower(1.0);
+                    // Sets all wheels (RR, FR, LR, LF) to maybe turn 360 degrees
+
+
+                }else{
+                    robot.leftRearMotor.setPower(0);
+                robot.leftFrontMotor.setPower(0);
+                robot.rightRearMotor.setPower(0);
+                robot.rightFrontMotor.setPower(0);
+                    AutoOp = controlState.STATE_TWO;
+                }
                 AutoOp = controlState.STATE_TWO;
                 break;
 
             case STATE_TWO:
-                break;
+
+                setTargetPositionRR = 0;
+                setTargetPositionFR = 0;
+                setTargetPositionLR = 0;
+                setTargetPositionLF = 0;
+
+break;
+
         }
 
 
-
-        }
+    }
 
 
 
@@ -159,6 +175,9 @@ public class CobaltAuto extends OpMode
     {
         HardwareCobalt.cdim.setDigitalChannelState(HardwareCobalt.GROUND_LED_PORT,false);
     }
+
+    controlState AutoOp = controlState.STATE_ONE;
+
 // Motor us encoders!
 
 }
