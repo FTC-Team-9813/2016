@@ -78,8 +78,11 @@ public static CobaltTransmission robotDrive = null;
         cdim = hwMap.deviceInterfaceModule.get("cdim");
         //deviceInterface = hwMap.deviceInterfaceModule.get("core_device_interface");
         //bottomLedLight = hwMap.deviceInterfaceModule.get("LED_light");
-        triggerMotor = hwMap.dcMotor.get("trigger_fire_motor");
+      //  triggerMotor = hwMap.dcMotor.get("trigger_fire_motor");
         groundRGBSensor = hwMap.colorSensor.get("colorsensor");
+
+
+        //tranmission
         robotDrive = new CobaltTransmission(rightRearMotor, rightFrontMotor, leftRearMotor, leftFrontMotor);
 
         //pitching motors
@@ -92,7 +95,7 @@ public static CobaltTransmission robotDrive = null;
         rightFrontMotor.setDirection(DcMotor.Direction.REVERSE);
         rightRearMotor.setDirection(DcMotor.Direction.REVERSE);
 // catapult motor
-        triggerMotor.setDirection(DcMotor.Direction.FORWARD);
+       // triggerMotor.setDirection(DcMotor.Direction.FORWARD);
         //pitching motors
         //loadingMotor.setDirection(DcMotor.Direction.FORWARD);
         //firingMotor.setDirection(DcMotor.Direction.FORWARD);
@@ -104,7 +107,7 @@ public static CobaltTransmission robotDrive = null;
         rightRearMotor.setPower(0);
 
         //catapult trigger motor
-        triggerMotor.setPower(0);
+      //  triggerMotor.setPower(0);
         //pitching motors
 
 
@@ -116,7 +119,7 @@ public static CobaltTransmission robotDrive = null;
         rightFrontMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightRearMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         //trigger motor use encoder
-        triggerMotor.setMode((DcMotor.RunMode.RUN_USING_ENCODER));
+       // triggerMotor.setMode((DcMotor.RunMode.RUN_USING_ENCODER));
         //touch sensor
 
 
