@@ -81,8 +81,8 @@ public class SensorMRIrSeeker extends LinearOpMode {
         // Display loss of signal
         telemetry.addData("Seeker", "Signal Lost");
       }
-
       telemetry.update();
+
       idle(); // Always call idle() at the bottom of your while(opModeIsActive()) loop
     }
   }
