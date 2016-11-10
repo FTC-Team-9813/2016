@@ -7,7 +7,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DigitalChannelController;
-
+import com.qualcomm.robotcore.hardware.IrSeekerSensor;
 /**
  * Created by Kilroy Programming on 10/18/2016.
  */
@@ -34,7 +34,7 @@ public class CobaltAuto extends OpMode
         robot.init(hardwareMap);
 
         // Send telemetry message to signify robot waiting;
-        telemetry.addData("Say", "Yell at the robot to win harder");    //
+        telemetry.addData("Say", "Yell at the robot to win harder");
         updateTelemetry(telemetry);
     }
 
@@ -62,7 +62,7 @@ public class CobaltAuto extends OpMode
         HardwareCobalt.cdim.setDigitalChannelMode(HardwareCobalt.GROUND_LED_PORT,DigitalChannelController.Mode.OUTPUT);
         HardwareCobalt.cdim.setDigitalChannelState(HardwareCobalt.GROUND_LED_PORT,true);
 
-
+      
 
 
 
@@ -78,6 +78,24 @@ public class CobaltAuto extends OpMode
         telemetry.addData("Say", "RGB Values " +HardwareCobalt.groundRGBSensor.red() * 255 / 800 +
                 " "+HardwareCobalt.groundRGBSensor.green() * 255 / 800 +" "+HardwareCobalt.groundRGBSensor.blue() * 255 / 800 +"\n");    //
         updateTelemetry(telemetry);
+        if (HardwareCobalt.groundRGBSensor.red() == 255&& HardwareCobalt.groundRGBSensor.green() == 255&& HardwareCobalt.groundRGBSensor.blue() == 255)
+        {
+            robot.leftRearMotor.setPower(1);
+            robot.leftFrontMotor.setPower(1);
+            robot.rightRearMotor.setPower(1);
+            robot.rightFrontMotor.setPower(1);
+
+            telemetry.addData("Say", "There is a white line!");
+        }
+        if(HardwareCobalt.groundRGBSensor.red() != 255  && HardwareCobalt.groundRGBSensor.green() != 255 && HardwareCobalt.groundRGBSensor.blue() != 255)
+        {
+            //Code that says ir beacon sensor
+            telemetry.addData("Angle",    HardwareCobalt.irSeeker.getAngle());
+            telemetry.addData("Strength", HardwareCobalt.irSeeker.getStrength());
+
+        }
+        //HardwareCobalt
+       controlState AutoOp = controlState.STATE_ONE;
 
 
 
@@ -110,7 +128,7 @@ public class CobaltAuto extends OpMode
         int getCurrentPositionLR = robot.leftRearMotor.getCurrentPosition();
         int getCurrentPositionLF = robot.leftFrontMotor.getCurrentPosition();
 
-        switch(AutoOp) {
+        switch(AutoOp){
             case STATE_ONE:
                 setTargetPositionRR = 2800;
                 setTargetPositionFR = 2800;
@@ -134,6 +152,7 @@ public class CobaltAuto extends OpMode
                 }
                 AutoOp = controlState.STATE_TWO;
                 break;
+
             case STATE_TWO:
 
                 setTargetPositionRR = 0;

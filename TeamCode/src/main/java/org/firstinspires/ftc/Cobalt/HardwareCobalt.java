@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DeviceInterfaceModule;
 import com.qualcomm.robotcore.hardware.DigitalChannelController;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.TouchSensor;
+import com.qualcomm.robotcore.hardware.IrSeekerSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 /**
@@ -49,6 +49,7 @@ public class HardwareCobalt
 
     public static final int GROUND_LED_PORT =5;
     public static ColorSensor groundRGBSensor;
+    public static IrSeekerSensor irSeeker;
 
 public static CobaltTransmission robotDrive = null;
 
@@ -84,6 +85,8 @@ public static CobaltTransmission robotDrive = null;
 
         //tranmission
         robotDrive = new CobaltTransmission(rightRearMotor, rightFrontMotor, leftRearMotor, leftFrontMotor);
+        //the ir sensor
+        irSeeker = hwMap.irSeekerSensor.get("irseekersensor");
 
         //pitching motors
         //firingMotor = hwMap.dcMotor.get("firing_motor");
