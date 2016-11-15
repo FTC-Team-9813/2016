@@ -74,23 +74,31 @@ public class CobaltAuto extends OpMode
         telemetry.addData("Say", "RGB Values " +HardwareCobalt.groundRGBSensor.red() * 255 / 800 +
                 " "+HardwareCobalt.groundRGBSensor.green() * 255 / 800 +" "+HardwareCobalt.groundRGBSensor.blue() * 255 / 800 +"\n");    //
         updateTelemetry(telemetry);
+        telemetry.addData("Angle", HardwareCobalt.irSeeker.getAngle());
+        telemetry.addData("Strength", HardwareCobalt.irSeeker.getStrength());
         if (HardwareCobalt.groundRGBSensor.red() == 255&& HardwareCobalt.groundRGBSensor.green() == 255&& HardwareCobalt.groundRGBSensor.blue() == 255)
         {
-            robot.leftRearMotor.setPower(1);
-            robot.leftFrontMotor.setPower(1);
-            robot.rightRearMotor.setPower(1);
-            robot.rightFrontMotor.setPower(1);
-
+             do {
+                  HardwareCobalt.leftFrontMotor.setPower(1);
+                 HardwareCobalt.leftRearMotor.setPower(1);
+                 HardwareCobalt.rightFrontMotor.setPower(-1);
+                 HardwareCobalt.rightRearMotor.setPower(-1);
+             }while (HardwareCobalt.irSeeker.getAngle() > 5);
+            do {
+                HardwareCobalt.leftFrontMotor.setPower(-1);
+                HardwareCobalt.leftRearMotor.setPower(-1);
+                HardwareCobalt.rightFrontMotor.setPower(1);
+                HardwareCobalt.rightRearMotor.setPower(1);
+            }while (HardwareCobalt.irSeeker.getAngle() < -5);
+            do {
+                HardwareCobalt.leftFrontMotor.setPower(1);
+                HardwareCobalt.leftRearMotor.setPower(1);
+                HardwareCobalt.rightFrontMotor.setPower(1);
+                HardwareCobalt.rightRearMotor.setPower(1);
+            }while (HardwareCobalt.irSeeker.getStrength() > 5); //five is just an example
             telemetry.addData("Say", "There is a white line!");
         }
-        if(HardwareCobalt.groundRGBSensor.red() != 255  && HardwareCobalt.groundRGBSensor.green() != 255 && HardwareCobalt.groundRGBSensor.blue() != 255)
-        {
-            //Code that says ir beacon sensor
-            telemetry.addData("Angle",    HardwareCobalt.irSeeker.getAngle());
-            telemetry.addData("Strength", HardwareCobalt.irSeeker.getStrength());
 
-        }
-        //HardwareCobalt
        controlState AutoOp = controlState.STATE_ONE;
 
 
@@ -137,8 +145,6 @@ public class CobaltAuto extends OpMode
                     robot.rightRearMotor.setPower(1.0);
                     robot.rightFrontMotor.setPower(1.0);
                     // Sets all wheels (RR, FR, LR, LF) to maybe turn 360 degrees
-
-
                 }else{
                     robot.leftRearMotor.setPower(0);
                 robot.leftFrontMotor.setPower(0);
@@ -155,18 +161,9 @@ public class CobaltAuto extends OpMode
                 setTargetPositionFR = 0;
                 setTargetPositionLR = 0;
                 setTargetPositionLF = 0;
-
 break;
-
         }
-
-
     }
-
-
-
-
-
     /*
      * Code to run ONCE after the driver hits STOP
      */
@@ -178,7 +175,6 @@ break;
 
     controlState AutoOp = controlState.STATE_ONE;
 
-// Motor us encoders!
 
 }
 

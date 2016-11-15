@@ -87,7 +87,6 @@ public static CobaltTransmission robotDrive = null;
         robotDrive = new CobaltTransmission(rightRearMotor, rightFrontMotor, leftRearMotor, leftFrontMotor);
         //the ir sensor
         irSeeker = hwMap.irSeekerSensor.get("irseekersensor");
-
         //pitching motors
         //firingMotor = hwMap.dcMotor.get("firing_motor");
         //loadingMotor = hwMap.dcMotor.get("loading_motor");
