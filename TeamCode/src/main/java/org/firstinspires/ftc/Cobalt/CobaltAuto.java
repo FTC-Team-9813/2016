@@ -100,14 +100,9 @@ public class CobaltAuto extends OpMode
             }while (HardwareCobalt.irSeeker.getStrength() > 5); //five is just an example
             telemetry.addData("Say", "There is a white line!");
         }
-
+        //HardwareCobalt
        controlState AutoOp = controlState.STATE_ONE;
-
-
-
-
-
-//will this work? probably not
+        //will this work? probably not
         // RR = rightRear
           // RF = rightFront
           // LR = leftRear
@@ -137,10 +132,8 @@ public class CobaltAuto extends OpMode
             case STATE_ONE:
 
               break;
-
             case STATE_TWO:
                 break;
-
         }
 
     }
@@ -156,6 +149,7 @@ public class CobaltAuto extends OpMode
 
     controlState AutoOp = controlState.STATE_ONE;
 
+// Motor us encoders!
 
 }
 
