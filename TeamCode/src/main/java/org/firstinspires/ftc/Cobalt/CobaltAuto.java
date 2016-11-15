@@ -19,7 +19,7 @@ public class CobaltAuto extends OpMode
 
     public enum controlState
     {
-        STATE_ONE, STATE_TWO
+        STATE_ONE, STATE_TWO, STATE_THREE, STATE_FOUR
     }
 
 
@@ -126,12 +126,14 @@ public class CobaltAuto extends OpMode
 
         switch(AutoOp){
             case STATE_ONE:
+
                 setTargetPositionRR = 2800;
                 setTargetPositionFR = 2800;
                 setTargetPositionLR = 2800;
                 setTargetPositionLF = 2800;
 
                 if (getTargetPositionRR <= setTargetPositionRR - 10 && getTargetPositionRR <= setTargetPositionRR + 10 && getTargetPositionFR <= setTargetPositionFR - 10 && getTargetPositionRR <= setTargetPositionRR + 10 && getTargetPositionLR <= setTargetPositionLR - 10 && getTargetPositionLR <= setTargetPositionLR + 10 && getTargetPositionLF <= setTargetPositionLF - 10 && getTargetPositionLF <= setTargetPositionLF + 10) {
+
                     robot.leftRearMotor.setPower(1.0);
                     robot.leftFrontMotor.setPower(1.0);
                     robot.rightRearMotor.setPower(1.0);
@@ -140,10 +142,12 @@ public class CobaltAuto extends OpMode
 
 
                 }else{
+
                     robot.leftRearMotor.setPower(0);
-                robot.leftFrontMotor.setPower(0);
-                robot.rightRearMotor.setPower(0);
-                robot.rightFrontMotor.setPower(0);
+                    robot.leftFrontMotor.setPower(0);
+                    robot.rightRearMotor.setPower(0);
+                    robot.rightFrontMotor.setPower(0);
+
                     AutoOp = controlState.STATE_TWO;
                 }
                 AutoOp = controlState.STATE_TWO;
@@ -155,9 +159,13 @@ public class CobaltAuto extends OpMode
                 setTargetPositionFR = 0;
                 setTargetPositionLR = 0;
                 setTargetPositionLF = 0;
-
-break;
-
+                AutoOp = controlState.STATE_THREE;
+                break;
+            case STATE_THREE:
+                AutoOp = controlState.STATE_FOUR;
+                break;
+            case STATE_FOUR:
+            break;
         }
 
 
