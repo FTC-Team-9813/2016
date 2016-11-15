@@ -42,7 +42,8 @@ public class HardwareCobalt
     public static DeviceInterfaceModule cdim = null;
     //public static DeviceInterfaceModule deviceInterface = null;
     public static DigitalChannelController bottomLedLight = null;
-
+//transmission
+    CobaltTransmission robotDrive  = new CobaltTransmission(leftFrontMotor, leftRearMotor, rightRearMotor, rightFrontMotor);
     //NOT REALLY USING THESE RIGHT NOW BUT TOO LAZY TOO DELETE...     I NEED TO STOP DOING THIS ON CAPS
     public static CatapultFireMech catapultFireMech = new CatapultFireMech(triggerMotor);
     //public static PitchingFireMech pitchFireMech = new PitchingFireMech(firingMotor);
@@ -51,7 +52,7 @@ public class HardwareCobalt
     public static ColorSensor groundRGBSensor;
     public static IrSeekerSensor irSeeker;
 
-public static CobaltTransmission robotDrive = null;
+
 
     /* local OpMode members. */
     HardwareMap hwMap           =  null;
@@ -83,8 +84,7 @@ public static CobaltTransmission robotDrive = null;
         groundRGBSensor = hwMap.colorSensor.get("colorsensor");
 
 
-        //tranmission
-        robotDrive = new CobaltTransmission(rightRearMotor, rightFrontMotor, leftRearMotor, leftFrontMotor);
+
         //the ir sensor
         irSeeker = hwMap.irSeekerSensor.get("irseekersensor");
         //pitching motors

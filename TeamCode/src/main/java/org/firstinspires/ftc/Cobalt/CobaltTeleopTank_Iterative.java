@@ -117,18 +117,18 @@ public class CobaltTeleopTank_Iterative extends OpMode{
         //CATAPULT FIRE  (if not in use comment out)
         if(gamepad2.right_bumper == true)
         {
-           //robot.triggerMotor.setPower(1.0);
+           robot.triggerMotor.setPower(1.0);
         }
         else if(gamepad2.left_bumper == true)
         {
-           // robot.triggerMotor.setPower(-1.0);
+           robot.triggerMotor.setPower(-1.0);
         }
         else
         {
-            //robot.triggerMotor.setPower(0.0);
+            robot.triggerMotor.setPower(0.0);
         }
 
-        //PITCHING MACHINE FIRING   (if not in use comment out)
+
 
 
 

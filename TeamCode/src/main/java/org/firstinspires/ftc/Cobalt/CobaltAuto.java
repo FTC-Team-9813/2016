@@ -14,6 +14,8 @@ import com.qualcomm.robotcore.hardware.IrSeekerSensor;
 @Autonomous(name="CobaltAuto", group="Cobalt")
 public class CobaltAuto extends OpMode
 {
+    CobaltTransmission cobaltTransmission;
+
     /* Declare OpMode members. */
     HardwareCobalt robot       = new HardwareCobalt(); // use the class created to define a Pushbot's hardware
 
@@ -111,7 +113,6 @@ public class CobaltAuto extends OpMode
           // LR = leftRear
           // LF = leftFront
 
-
         int setTargetPositionRR = 360;
         int setTargetPositionFR = 360;
         int setTargetPositionLR = 360;
@@ -134,36 +135,16 @@ public class CobaltAuto extends OpMode
 
         switch(AutoOp){
             case STATE_ONE:
-                setTargetPositionRR = 2800;
-                setTargetPositionFR = 2800;
-                setTargetPositionLR = 2800;
-                setTargetPositionLF = 2800;
 
-                if (getTargetPositionRR <= setTargetPositionRR - 10 && getTargetPositionRR <= setTargetPositionRR + 10 && getTargetPositionFR <= setTargetPositionFR - 10 && getTargetPositionRR <= setTargetPositionRR + 10 && getTargetPositionLR <= setTargetPositionLR - 10 && getTargetPositionLR <= setTargetPositionLR + 10 && getTargetPositionLF <= setTargetPositionLF - 10 && getTargetPositionLF <= setTargetPositionLF + 10) {
-                    robot.leftRearMotor.setPower(1.0);
-                    robot.leftFrontMotor.setPower(1.0);
-                    robot.rightRearMotor.setPower(1.0);
-                    robot.rightFrontMotor.setPower(1.0);
-                    // Sets all wheels (RR, FR, LR, LF) to maybe turn 360 degrees
-                }else{
-                    robot.leftRearMotor.setPower(0);
-                robot.leftFrontMotor.setPower(0);
-                robot.rightRearMotor.setPower(0);
-                robot.rightFrontMotor.setPower(0);
-                    AutoOp = controlState.STATE_TWO;
-                }
-                AutoOp = controlState.STATE_TWO;
-                break;
+              break;
 
             case STATE_TWO:
+                break;
 
-                setTargetPositionRR = 0;
-                setTargetPositionFR = 0;
-                setTargetPositionLR = 0;
-                setTargetPositionLF = 0;
-break;
         }
+
     }
+
     /*
      * Code to run ONCE after the driver hits STOP
      */
