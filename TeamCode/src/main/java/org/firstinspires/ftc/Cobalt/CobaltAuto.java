@@ -22,7 +22,6 @@ public class CobaltAuto extends OpMode
         STATE_ONE, STATE_TWO
     }
 
-
     /*
      * Code to run ONCE when the driver hits INIT
      */
@@ -61,12 +60,6 @@ public class CobaltAuto extends OpMode
         robot.rightRearMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         HardwareCobalt.cdim.setDigitalChannelMode(HardwareCobalt.GROUND_LED_PORT,DigitalChannelController.Mode.OUTPUT);
         HardwareCobalt.cdim.setDigitalChannelState(HardwareCobalt.GROUND_LED_PORT,true);
-
-      
-
-
-
-
     }
 
     /*
@@ -96,10 +89,6 @@ public class CobaltAuto extends OpMode
         }
         //HardwareCobalt
        controlState AutoOp = controlState.STATE_ONE;
-
-
-
-
 
 //will this work? probably not
         // RR = rightRear
@@ -161,16 +150,8 @@ public class CobaltAuto extends OpMode
                 setTargetPositionLF = 0;
 
 break;
-
         }
-
-
     }
-
-
-
-
-
     /*
      * Code to run ONCE after the driver hits STOP
      */
