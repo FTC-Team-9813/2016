@@ -39,7 +39,7 @@ public class CobaltTransmission {
         rightFront.setTargetPosition((int)ticks);
 
 
-        if(distance != distanceRun){
+        if(distance+10 <= distanceRun && distance-10 >= distanceRun){
             leftFront.setPower(1.0);
             rightFront.setPower(1.0);
             leftRear.setPower(1.0);
