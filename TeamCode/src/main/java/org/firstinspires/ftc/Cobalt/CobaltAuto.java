@@ -73,41 +73,55 @@ public class CobaltAuto extends OpMode
     @Override
     public void loop()
     {
-        telemetry.addData("Say", "RGB Values " +HardwareCobalt.groundRGBSensor.red() * 255 / 800 +
+        telemetry.addData("Say", "Bottom RGB Values " +HardwareCobalt.groundRGBSensor.red() * 255 / 800 +
                 " "+HardwareCobalt.groundRGBSensor.green() * 255 / 800 +" "+HardwareCobalt.groundRGBSensor.blue() * 255 / 800 +"\n");    //
         updateTelemetry(telemetry);
         telemetry.addData("Angle", HardwareCobalt.irSeeker.getAngle());
         telemetry.addData("Strength", HardwareCobalt.irSeeker.getStrength());
         if (HardwareCobalt.groundRGBSensor.red() == 255&& HardwareCobalt.groundRGBSensor.green() == 255&& HardwareCobalt.groundRGBSensor.blue() == 255)
         {
-             do {
-                  HardwareCobalt.leftFrontMotor.setPower(1);
-                 HardwareCobalt.leftRearMotor.setPower(1);
-                 HardwareCobalt.rightFrontMotor.setPower(-1);
-                 HardwareCobalt.rightRearMotor.setPower(-1);
-             }while (HardwareCobalt.irSeeker.getAngle() > 5);
-            do {
+            telemetry.addData("Say", "There is a white line!");
+            if(HardwareCobalt.irSeeker.getAngle() > 5);
+            {
+                HardwareCobalt.leftFrontMotor.setPower(1);
+                HardwareCobalt.leftRearMotor.setPower(1);
+                HardwareCobalt.rightFrontMotor.setPower(-1);
+                HardwareCobalt.rightRearMotor.setPower(-1);
+            }
+            if(HardwareCobalt.irSeeker.getAngle() < -5);
+            {
                 HardwareCobalt.leftFrontMotor.setPower(-1);
                 HardwareCobalt.leftRearMotor.setPower(-1);
                 HardwareCobalt.rightFrontMotor.setPower(1);
                 HardwareCobalt.rightRearMotor.setPower(1);
-            }while (HardwareCobalt.irSeeker.getAngle() < -5);
-            do {
+            }
+            if (HardwareCobalt.irSeeker.getStrength() > 5); //five is just an example
+            {
                 HardwareCobalt.leftFrontMotor.setPower(1);
                 HardwareCobalt.leftRearMotor.setPower(1);
                 HardwareCobalt.rightFrontMotor.setPower(1);
                 HardwareCobalt.rightRearMotor.setPower(1);
-            }while (HardwareCobalt.irSeeker.getStrength() > 5); //five is just an example
-            telemetry.addData("Say", "There is a white line!");
+            }
+            //This is for red team
+           // if(HardwareCobalt.irSeeker.getStrength() > 5)
+            //{
+               // HardwareCobalt.triggerMotor.setPower(1);//move right
+               // if (HardwareCobalt.frontRGBSensor.red() == 255 && HardwareCobalt.frontRGBSensor.green() == 0 && HardwareCobalt.frontRGBSensor.blue() == 0)
+               // {
+
+               // }
+               // if(HardwareCobalt.triggerMotor == /*Degrees turned 15?*/)
+                  //  HardwareCobalt.triggerMotor.setPower(-1); // Move left
+            }
         }
         //HardwareCobalt
-       controlState AutoOp = controlState.STATE_ONE;
-        //will this work? probably not
-        // RR = rightRear
-          // RF = rightFront
-          // LR = leftRear
-          // LF = leftFront
+        //This is some code for pushing the button on the beacon!
+        telemetry.addData("Say", " Front RGB Values " +HardwareCobalt.frontRGBSensor.red() +
+                " "+HardwareCobalt.frontRGBSensor.green() +" "+HardwareCobalt.frontRGBSensor.blue() +"\n");
 
+            //If motor, when 1, turns to right
+        //*255/800 If not work, try (*255/4095)
+       controlState AutoOp = controlState.STATE_ONE;
         int setTargetPositionRR = 360;
         int setTargetPositionFR = 360;
         int setTargetPositionLR = 360;

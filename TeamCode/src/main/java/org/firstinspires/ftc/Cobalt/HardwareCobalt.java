@@ -8,6 +8,8 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IrSeekerSensor;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import static android.R.attr.duration;
+
 /**
  * This is NOT an opmode.
  *
@@ -32,7 +34,7 @@ public class HardwareCobalt
 
     // catapult trigger
     public static DcMotor triggerMotor = null;
-
+public static DcMotor armMotor = null;
 
 
     //pitching motors
@@ -50,8 +52,10 @@ public class HardwareCobalt
 
     public static final int GROUND_LED_PORT =5;
     public static ColorSensor groundRGBSensor;
+    public static ColorSensor frontRGBSensor;
     public static IrSeekerSensor irSeeker;
 
+//duration!
 
 
     /* local OpMode members. */
@@ -73,6 +77,7 @@ public class HardwareCobalt
         leftRearMotor = hwMap.dcMotor.get("left_rear_drive");
         rightFrontMotor = hwMap.dcMotor.get("right_front_drive");
         rightRearMotor = hwMap.dcMotor.get("right_rear_drive");
+        triggerMotor = hwMap.dcMotor.get("trigger_motor");
         //pitching motors
         //firingMotor = hwMap.dcMotor.get("firing_motor");
         //loadingMotor = hwMap.dcMotor.get("loading_motor");
@@ -82,8 +87,8 @@ public class HardwareCobalt
         //bottomLedLight = hwMap.deviceInterfaceModule.get("LED_light");
       //  triggerMotor = hwMap.dcMotor.get("trigger_fire_motor");
         groundRGBSensor = hwMap.colorSensor.get("colorsensor");
-
-
+        frontRGBSensor = hwMap.colorSensor.get("colorsensor");
+        //duration!
 
         //the ir sensor
         irSeeker = hwMap.irSeekerSensor.get("irseekersensor");
