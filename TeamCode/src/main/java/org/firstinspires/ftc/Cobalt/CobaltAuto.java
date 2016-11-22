@@ -145,8 +145,16 @@ public class CobaltAuto extends OpMode
         switch(AutoOp){
             case STATE_ONE:
 
+                cobaltTransmission.driveStraightDistance(10);
+
+                if(cobaltTransmission.equals(true)){
+
+                    AutoOp = controlState.STATE_TWO;
+
+                }
               break;
             case STATE_TWO:
+                cobaltTransmission.turnByDegrees(90);
                 break;
         }
 
