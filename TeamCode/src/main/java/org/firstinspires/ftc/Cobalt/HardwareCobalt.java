@@ -33,8 +33,8 @@ public class HardwareCobalt
     public static DcMotor leftRearMotor = null;
 
     // catapult trigger
-    public static DcMotor triggerMotor = null;
-public static DcMotor armMotor = null;
+   // public static DcMotor triggerMotor = null;
+
 
 
     //pitching motors
@@ -47,8 +47,8 @@ public static DcMotor armMotor = null;
 //transmission
     CobaltTransmission robotDrive  = new CobaltTransmission(leftFrontMotor, leftRearMotor, rightRearMotor, rightFrontMotor);
     //NOT REALLY USING THESE RIGHT NOW BUT TOO LAZY TOO DELETE...     I NEED TO STOP DOING THIS ON CAPS
-    public static CatapultFireMech catapultFireMech = new CatapultFireMech(triggerMotor);
-    //public static PitchingFireMech pitchFireMech = new PitchingFireMech(firingMotor);
+   // public static CatapultFireMech catapultFireMech = new CatapultFireMech(triggerMotor);
+
 
     public static final int GROUND_LED_PORT =5;
     public static ColorSensor groundRGBSensor;
@@ -77,10 +77,9 @@ public static DcMotor armMotor = null;
         leftRearMotor = hwMap.dcMotor.get("left_rear_drive");
         rightFrontMotor = hwMap.dcMotor.get("right_front_drive");
         rightRearMotor = hwMap.dcMotor.get("right_rear_drive");
-        triggerMotor = hwMap.dcMotor.get("trigger_motor");
-        //pitching motors
-        //firingMotor = hwMap.dcMotor.get("firing_motor");
-        //loadingMotor = hwMap.dcMotor.get("loading_motor");
+
+     //   triggerMotor = hwMap.dcMotor.get("trigger_motor");
+
         //Color Sensors
         cdim = hwMap.deviceInterfaceModule.get("cdim");
         //deviceInterface = hwMap.deviceInterfaceModule.get("core_device_interface");
