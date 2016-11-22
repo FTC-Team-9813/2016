@@ -37,14 +37,13 @@ public class CobaltTransmission {
                 double distanceRun = rightRear.getCurrentPosition();
                 double remainingDistance = distance - distanceRun;
                 double ticks = distance / DISTANCE_PER_TICK;
-
-
                 leftFront.setTargetPosition((int) ticks);
                 leftRear.setTargetPosition((int) ticks);
                 rightRear.setTargetPosition((int) ticks);
                 rightFront.setTargetPosition((int) ticks);
 
-                if (remainingDistance > 0) {
+                if (remainingDistance > 0)
+                {
                     leftFront.setPower(1.0);
                     rightFront.setPower(1.0);
                     leftRear.setPower(1.0);
@@ -111,8 +110,8 @@ public class CobaltTransmission {
         return true;
     }
 
-   private DcMotor rightRear = null;
-    private DcMotor rightFront = null;
-    private DcMotor leftRear = null;
-    private DcMotor leftFront = null;
+   private DcMotor rightRear;
+    private DcMotor rightFront;
+    private DcMotor leftRear;
+    private DcMotor leftFront;
 }

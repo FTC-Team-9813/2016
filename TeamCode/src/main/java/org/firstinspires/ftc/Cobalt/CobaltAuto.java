@@ -61,10 +61,6 @@ public class CobaltAuto extends OpMode
         robot.rightRearMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         HardwareCobalt.cdim.setDigitalChannelMode(HardwareCobalt.GROUND_LED_PORT,DigitalChannelController.Mode.OUTPUT);
         HardwareCobalt.cdim.setDigitalChannelState(HardwareCobalt.GROUND_LED_PORT,true);
-
-
-
-
     }
 
     /*
@@ -80,24 +76,27 @@ public class CobaltAuto extends OpMode
         telemetry.addData("Strength", HardwareCobalt.irSeeker.getStrength());
         if (HardwareCobalt.groundRGBSensor.red() == 255&& HardwareCobalt.groundRGBSensor.green() == 255&& HardwareCobalt.groundRGBSensor.blue() == 255)
         {
-             do {
+             if (HardwareCobalt.irSeeker.getAngle() > 5);
+            {
                   HardwareCobalt.leftFrontMotor.setPower(1);
                  HardwareCobalt.leftRearMotor.setPower(1);
                  HardwareCobalt.rightFrontMotor.setPower(-1);
                  HardwareCobalt.rightRearMotor.setPower(-1);
-             }while (HardwareCobalt.irSeeker.getAngle() > 5);
-            do {
+             }
+            if(HardwareCobalt.irSeeker.getAngle() < -5);
+            {
                 HardwareCobalt.leftFrontMotor.setPower(-1);
                 HardwareCobalt.leftRearMotor.setPower(-1);
                 HardwareCobalt.rightFrontMotor.setPower(1);
                 HardwareCobalt.rightRearMotor.setPower(1);
-            }while (HardwareCobalt.irSeeker.getAngle() < -5);
-            do {
+            }
+            if(HardwareCobalt.irSeeker.getStrength() > 5); //five is just an example
+            {
                 HardwareCobalt.leftFrontMotor.setPower(1);
                 HardwareCobalt.leftRearMotor.setPower(1);
                 HardwareCobalt.rightFrontMotor.setPower(1);
                 HardwareCobalt.rightRearMotor.setPower(1);
-            }while (HardwareCobalt.irSeeker.getStrength() > 5); //five is just an example
+            }
             telemetry.addData("Say", "There is a white line!");
         }
         //HardwareCobalt
@@ -143,7 +142,6 @@ public class CobaltAuto extends OpMode
                 cobaltTransmission.turnByDegrees(90);
                 break;
         }
-
     }
 
     /*
@@ -157,7 +155,6 @@ public class CobaltAuto extends OpMode
 
     controlState AutoOp = controlState.STATE_ONE;
 
-// Motor us encoders!
 
 }
 
