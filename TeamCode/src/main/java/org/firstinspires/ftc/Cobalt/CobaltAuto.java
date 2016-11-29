@@ -14,7 +14,7 @@ import com.qualcomm.robotcore.hardware.IrSeekerSensor;
 @Autonomous(name="CobaltAuto", group="Cobalt")
 public class CobaltAuto extends OpMode
 {
-    CobaltTransmission cobaltTransmission;
+    //CobaltTransmission cobaltTransmission = HardwareCobalt.robotDrive;
 
     /* Declare OpMode members. */
     HardwareCobalt robot = new HardwareCobalt(); // use the class created to define a Pushbot's hardware
@@ -55,10 +55,10 @@ public class CobaltAuto extends OpMode
     @Override
     public void start()
     {
-        robot.leftFrontMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        robot.leftRearMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        robot.rightFrontMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        robot.rightRearMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        //robot.leftFrontMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        //robot.leftRearMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        //robot.rightFrontMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        //robot.rightRearMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         HardwareCobalt.cdim.setDigitalChannelMode(HardwareCobalt.GROUND_LED_PORT,DigitalChannelController.Mode.OUTPUT);
         HardwareCobalt.cdim.setDigitalChannelState(HardwareCobalt.GROUND_LED_PORT,true);
     }
@@ -69,11 +69,14 @@ public class CobaltAuto extends OpMode
     @Override
     public void loop()
     {
-        telemetry.addData("Say", "RGB Values " +HardwareCobalt.groundRGBSensor.red() * 255 / 800 +
-                " "+HardwareCobalt.groundRGBSensor.green() * 255 / 800 +" "+HardwareCobalt.groundRGBSensor.blue() * 255 / 800 +"\n");    //
+        telemetry.addData("Say", "RGB Values " +HardwareCobalt.groundRGBSensor.red() * 255.0 / 65535.0 + //this gets 0.0... HELP US
+                " "+HardwareCobalt.groundRGBSensor.green() * 255.0 / 65535.0 +" "+HardwareCobalt.groundRGBSensor.blue() * 255.0 / 65535.0 +"\n");    //
         updateTelemetry(telemetry);
         telemetry.addData("Angle", HardwareCobalt.irSeeker.getAngle());
         telemetry.addData("Strength", HardwareCobalt.irSeeker.getStrength());
+        telemetry.addData("Say",  "Angle Values" +HardwareCobalt.irSeeker.getAngle());
+        telemetry.addData("Say",  "Strength Values" +HardwareCobalt.irSeeker.getStrength());
+        updateTelemetry(telemetry);
         if (HardwareCobalt.groundRGBSensor.red() == 255&& HardwareCobalt.groundRGBSensor.green() == 255&& HardwareCobalt.groundRGBSensor.blue() == 255)
         {
              if (HardwareCobalt.irSeeker.getAngle() > 5);
@@ -109,11 +112,10 @@ public class CobaltAuto extends OpMode
             // }
             // if(HardwareCobalt.triggerMotor == /*Degrees turned 15?*/)
             //  HardwareCobalt.triggerMotor.setPower(-1); // Move left
-        }
         //HardwareCobalt
         //This is some code for pushing the button on the beacon!
-        telemetry.addData("Say", " Front RGB Values " + HardwareCobalt.frontRGBSensor.red() +
-                " " + HardwareCobalt.frontRGBSensor.green() + " " + HardwareCobalt.frontRGBSensor.blue() + "\n");
+        //telemetry.addData("Say", " Front RGB Values " + HardwareCobalt.frontRGBSensor.red() +
+          //      " " + HardwareCobalt.frontRGBSensor.green() + " " + HardwareCobalt.frontRGBSensor.blue() + "\n");
 
 
         //If motor, when 1, turns to right
@@ -141,19 +143,18 @@ public class CobaltAuto extends OpMode
         switch (AutoOp)
 
         {
-            case STATE_ONE:
+           // case STATE_ONE:
 
-                cobaltTransmission.driveStraightDistance(10);
+                //cobaltTransmission.driveStraightDistance(10);
 
-                if(cobaltTransmission.equals(true)){
-
-                    AutoOp = controlState.STATE_TWO;
-
-                }
-                break;
-            case STATE_TWO:
-                robot.robotDrive.turnByDegrees(90);
-                break;
+                //if(cobaltTransmission.equals(true))
+               // {
+                   // AutoOp = controlState.STATE_TWO;
+                //}
+              //  break;
+           // case STATE_TWO:
+             //   robot.robotDrive.turnByDegrees(90);
+             //   break;
         }
     }
 

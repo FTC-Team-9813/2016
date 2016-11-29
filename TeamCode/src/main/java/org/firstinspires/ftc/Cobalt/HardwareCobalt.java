@@ -27,8 +27,8 @@ import static android.R.attr.duration;
 public class HardwareCobalt
 {
     //motors
-    public static DcMotor leftFrontMotor;
-    public static DcMotor rightFrontMotor;
+    public static DcMotor leftFrontMotor = null;
+    public static DcMotor rightFrontMotor= null;
     public static DcMotor rightRearMotor;
     public static DcMotor leftRearMotor;
 
@@ -41,11 +41,11 @@ public class HardwareCobalt
 //    public static DcMotor firingMotor = null;
 //    public static DcMotor loadingMotor = null;
     //color sensors (or related to color sensors)
-    public static DeviceInterfaceModule cdim;//null
+    public static DeviceInterfaceModule cdim = null;//null
     //public static DeviceInterfaceModule deviceInterface = null;
-    public static DigitalChannelController bottomLedLight;//null
+    public static DigitalChannelController bottomLedLight = null;//null
 //transmission
-    CobaltTransmission robotDrive  = new CobaltTransmission(leftFrontMotor, leftRearMotor, rightRearMotor, rightFrontMotor);
+    public static CobaltTransmission robotDrive  = new CobaltTransmission(leftFrontMotor, leftRearMotor, rightRearMotor, rightFrontMotor);
     //NOT REALLY USING THESE RIGHT NOW BUT TOO LAZY TOO DELETE...     I NEED TO STOP DOING THIS ON CAPS
    // public static CatapultFireMech catapultFireMech = new CatapultFireMech(triggerMotor);
 
@@ -123,16 +123,10 @@ public class HardwareCobalt
         leftFrontMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         leftRearMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightFrontMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-        rightRearMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+       rightRearMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         //trigger motor use encoder
        // triggerMotor.setMode((DcMotor.RunMode.RUN_USING_ENCODER));
         //touch sensor
-
-
-
-
-
-
 
     }
 

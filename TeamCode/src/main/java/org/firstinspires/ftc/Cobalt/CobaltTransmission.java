@@ -28,10 +28,10 @@ public class CobaltTransmission {
         this.leftRear = leftRearMotor;
         this.leftFront = leftFrontMotor;
 
-        rightRear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        rightFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        leftRear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        leftFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        //rightRear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        //rightFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        //leftRear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        //leftFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
     }
     public boolean driveStraightDistance (double distance){
