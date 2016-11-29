@@ -99,23 +99,19 @@ public class CobaltTeleopTank_Iterative extends OpMode{
     @Override
     public void loop() {
 
-
         double left;
         double right;
 
 
 
-        // Run wheels in tank mode
-        left = -gamepad1.left_stick_y;
-        right = -gamepad1.right_stick_y;
-        robot.leftFrontMotor.setPower(left);
-        robot.leftRearMotor.setPower(left);
-        robot.rightFrontMotor.setPower(right);
-        robot.rightRearMotor.setPower(right);
 
+        robot.leftFrontMotor.setPower(-gamepad1.left_stick_y);
+        robot.leftRearMotor.setPower(-gamepad1.left_stick_y);
+        robot.rightFrontMotor.setPower(-gamepad1.right_stick_y);
+        robot.rightRearMotor.setPower(-gamepad1.right_stick_y);
 
         //CATAPULT FIRE  (if not in use comment out)
-        if(gamepad2.right_bumper == true)
+     /*   if(gamepad2.right_bumper == true)
         {
            robot.triggerMotor.setPower(1.0);
         }
@@ -126,13 +122,7 @@ public class CobaltTeleopTank_Iterative extends OpMode{
         else
         {
             robot.triggerMotor.setPower(0.0);
-        }
-
-
-
-
-
-
+        }*/
 
     }
 
@@ -140,6 +130,7 @@ public class CobaltTeleopTank_Iterative extends OpMode{
         @Override
         public void stop(){
         }
+
     }
 
 

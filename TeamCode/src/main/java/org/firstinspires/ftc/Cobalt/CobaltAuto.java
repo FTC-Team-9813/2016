@@ -17,7 +17,7 @@ public class CobaltAuto extends OpMode
     CobaltTransmission cobaltTransmission;
 
     /* Declare OpMode members. */
-    HardwareCobalt robot       = new HardwareCobalt(); // use the class created to define a Pushbot's hardware
+    HardwareCobalt robot = new HardwareCobalt(); // use the class created to define a Pushbot's hardware
 
     public enum controlState
     {
@@ -98,16 +98,27 @@ public class CobaltAuto extends OpMode
                 HardwareCobalt.rightRearMotor.setPower(1);
             }
             telemetry.addData("Say", "There is a white line!");
+            }
+            //This is for red team
+            // if(HardwareCobalt.irSeeker.getStrength() > 5)
+            //{
+            // HardwareCobalt.triggerMotor.setPower(1);//move right
+            // if (HardwareCobalt.frontRGBSensor.red() == 255 && HardwareCobalt.frontRGBSensor.green() == 0 && HardwareCobalt.frontRGBSensor.blue() == 0)
+            // {
+
+            // }
+            // if(HardwareCobalt.triggerMotor == /*Degrees turned 15?*/)
+            //  HardwareCobalt.triggerMotor.setPower(-1); // Move left
         }
         //HardwareCobalt
-       controlState AutoOp = controlState.STATE_ONE;
-        //will this work? probably not
-        // RR = rightRear
-          // RF = rightFront
-          // LR = leftRear
-          // LF = leftFront
+        //This is some code for pushing the button on the beacon!
+        telemetry.addData("Say", " Front RGB Values " + HardwareCobalt.frontRGBSensor.red() +
+                " " + HardwareCobalt.frontRGBSensor.green() + " " + HardwareCobalt.frontRGBSensor.blue() + "\n");
 
-        int setTargetPositionRR = 360;
+
+        //If motor, when 1, turns to right
+        //*255/800 If not work, try (*255/4095)
+      /*  int setTargetPositionRR = 360;
         int setTargetPositionFR = 360;
         int setTargetPositionLR = 360;
         int setTargetPositionLF = 360;
@@ -125,9 +136,11 @@ public class CobaltAuto extends OpMode
         int getCurrentPositionRR = robot.rightRearMotor.getCurrentPosition();
         int getCurrentPositionFR = robot.rightFrontMotor.getCurrentPosition();
         int getCurrentPositionLR = robot.leftRearMotor.getCurrentPosition();
-        int getCurrentPositionLF = robot.leftFrontMotor.getCurrentPosition();
+        int getCurrentPositionLF = robot.leftFrontMotor.getCurrentPosition();*/
 
-        switch(AutoOp){
+        switch (AutoOp)
+
+        {
             case STATE_ONE:
 
                 cobaltTransmission.driveStraightDistance(10);
@@ -137,9 +150,9 @@ public class CobaltAuto extends OpMode
                     AutoOp = controlState.STATE_TWO;
 
                 }
-              break;
+                break;
             case STATE_TWO:
-                cobaltTransmission.turnByDegrees(90);
+                robot.robotDrive.turnByDegrees(90);
                 break;
         }
     }
@@ -157,4 +170,5 @@ public class CobaltAuto extends OpMode
 
 
 }
+
 

@@ -13,23 +13,32 @@ public class CobaltTransmission {
     }
     private final double DISTANCE_PER_TICK = 0.009;
 
+    static DcMotor rightFront;
+    static DcMotor rightRear;
+    static DcMotor leftRear ;
+    static DcMotor leftFront ;
 
-    public CobaltTransmission(DcMotor RR ,DcMotor RF, DcMotor LR, DcMotor LF){
-         this.rightRear = RR;
-        this.rightFront = RF;
-        this.leftRear = LR;
-        this.leftFront = LF;
 
+    public CobaltTransmission(DcMotor rightRearMotor ,DcMotor rightFrontMotor, DcMotor leftFrontMotor, DcMotor leftRearMotor){
+
+
+
+        this.rightRear = rightRearMotor;
+        this.rightFront = rightFrontMotor;
+        this.leftRear = leftRearMotor;
+        this.leftFront = leftFrontMotor;
+
+        rightRear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        rightFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        leftRear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        leftFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
     }
     public boolean driveStraightDistance (double distance){
 
         Control State = Control.STATE_ONE;
 
-        rightRear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        rightFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        leftRear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        leftFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
 
         switch(State) {
             case STATE_ONE:
@@ -57,10 +66,7 @@ public class CobaltTransmission {
 
         Control State = Control.STATE_ONE;
 
-        rightRear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        rightFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        leftRear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        leftFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+
 //(math.pi/180)*degrees*4inches
 
         //to turn to the left set the target degrees negative
@@ -110,8 +116,5 @@ public class CobaltTransmission {
         return true;
     }
 
-   private DcMotor rightRear;
-    private DcMotor rightFront;
-    private DcMotor leftRear;
-    private DcMotor leftFront;
+
 }
