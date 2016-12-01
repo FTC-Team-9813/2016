@@ -35,11 +35,6 @@ public class HardwareCobalt
     // catapult trigger
    // public static DcMotor triggerMotor = null;
 
-
-
-    //pitching motors
-//    public static DcMotor firingMotor = null;
-//    public static DcMotor loadingMotor = null;
     //color sensors (or related to color sensors)
     public static DeviceInterfaceModule cdim = null;//null
     //public static DeviceInterfaceModule deviceInterface = null;
@@ -92,7 +87,9 @@ public class HardwareCobalt
         //the ir sensor
         irSeeker = hwMap.irSeekerSensor.get("irseekersensor");
         //pitching motors
-        
+        robotDrive = new CobaltTransmission(leftFrontMotor, leftRearMotor, rightRearMotor, rightFrontMotor);
+
+
 
 
 
