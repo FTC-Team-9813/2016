@@ -6,6 +6,8 @@ import com.qualcomm.robotcore.hardware.DeviceInterfaceModule;
 import com.qualcomm.robotcore.hardware.DigitalChannelController;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IrSeekerSensor;
+import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.hardware.ServoController;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import static android.R.attr.duration;
@@ -48,6 +50,10 @@ public class HardwareCobalt
     public static CobaltTransmission robotDrive  = new CobaltTransmission(leftFrontMotor, leftRearMotor, rightRearMotor, rightFrontMotor);
     //NOT REALLY USING THESE RIGHT NOW BUT TOO LAZY TOO DELETE...     I NEED TO STOP DOING THIS ON CAPS
    // public static CatapultFireMech catapultFireMech = new CatapultFireMech(triggerMotor);
+
+    public static ServoController frontAssemblyController;
+    public static Servo flipperController;
+    public static Servo shooterController;
 
 
     public static final int GROUND_LED_PORT =5;
@@ -92,9 +98,10 @@ public class HardwareCobalt
         //the ir sensor
         irSeeker = hwMap.irSeekerSensor.get("irseekersensor");
         //pitching motors
-        
 
-
+        frontAssemblyController = hwMap.servoController.get("frontAssemblyController");
+        flipperController = hwMap.servo.get("flipperServo");
+        shooterController = hwMap.servo.get("shooterServo");
 
         leftFrontMotor.setDirection(DcMotor.Direction.FORWARD);
         leftRearMotor.setDirection(DcMotor.Direction.FORWARD);
