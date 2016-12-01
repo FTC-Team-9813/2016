@@ -108,7 +108,7 @@ public class CobaltTransmission {
                          rightFront.setPower(1.0);
                          rightRear.setPower(1.0);
                          leftFront.setPower(1.0);
-                            leftRear.setPower(1.0);
+                         leftRear.setPower(1.0);
                   }
 
             break;
