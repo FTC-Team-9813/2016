@@ -27,8 +27,8 @@ import static android.R.attr.duration;
 public class HardwareCobalt
 {
     //motors
-    public static DcMotor leftFrontMotor = null;
-    public static DcMotor rightFrontMotor= null;
+    public static DcMotor leftFrontMotor;
+    public static DcMotor rightFrontMotor;
     public static DcMotor rightRearMotor;
     public static DcMotor leftRearMotor;
 
@@ -92,8 +92,8 @@ public class HardwareCobalt
         //the ir sensor
         irSeeker = hwMap.irSeekerSensor.get("irseekersensor");
         //pitching motors
-        //firingMotor = hwMap.dcMotor.get("firing_motor");
-        //loadingMotor = hwMap.dcMotor.get("loading_motor");
+        
+
 
 
         leftFrontMotor.setDirection(DcMotor.Direction.FORWARD);
