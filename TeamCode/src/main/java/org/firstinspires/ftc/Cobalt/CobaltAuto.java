@@ -8,6 +8,9 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DigitalChannelController;
 import com.qualcomm.robotcore.hardware.IrSeekerSensor;
+
+import static org.firstinspires.ftc.Cobalt.CobaltAuto.controlState.STATE_ONE;
+
 /**
  * Created by Kilroy Programming on 10/18/2016.
  */
@@ -55,10 +58,10 @@ public class CobaltAuto extends OpMode
     @Override
     public void start()
     {
-        //robot.leftFrontMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        //robot.leftRearMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        //robot.rightFrontMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        //robot.rightRearMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.leftFrontMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.leftRearMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.rightFrontMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+        robot.rightRearMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         HardwareCobalt.cdim.setDigitalChannelMode(HardwareCobalt.GROUND_LED_PORT,DigitalChannelController.Mode.OUTPUT);
         HardwareCobalt.cdim.setDigitalChannelState(HardwareCobalt.GROUND_LED_PORT,true);
     }
@@ -102,6 +105,8 @@ public class CobaltAuto extends OpMode
             }
             telemetry.addData("Say", "There is a white line!");
             }
+        //IMPORTANT!!!!!!!!!!
+        //THURSDAY THE 1ST, MAKE A METHOD FOR STRENGTH TO DISTANCE, AND MAKE IT WORK.
             //This is for red team
             // if(HardwareCobalt.irSeeker.getStrength() > 5)
             //{
@@ -112,8 +117,11 @@ public class CobaltAuto extends OpMode
             // }
             // if(HardwareCobalt.triggerMotor == /*Degrees turned 15?*/)
             //  HardwareCobalt.triggerMotor.setPower(-1); // Move left
+        //}
         //HardwareCobalt
         //This is some code for pushing the button on the beacon!
+       // telemetry.addData("Say", " Front RGB Values " + HardwareCobalt.frontRGBSensor.red() +
+               // " " + HardwareCobalt.frontRGBSensor.green() + " " + HardwareCobalt.frontRGBSensor.blue() + "\n");
         //telemetry.addData("Say", " Front RGB Values " + HardwareCobalt.frontRGBSensor.red() +
           //      " " + HardwareCobalt.frontRGBSensor.green() + " " + HardwareCobalt.frontRGBSensor.blue() + "\n");
 
@@ -141,7 +149,6 @@ public class CobaltAuto extends OpMode
         int getCurrentPositionLF = robot.leftFrontMotor.getCurrentPosition();*/
 
         switch (AutoOp)
-
         {
            // case STATE_ONE:
 
@@ -167,9 +174,7 @@ public class CobaltAuto extends OpMode
         HardwareCobalt.cdim.setDigitalChannelState(HardwareCobalt.GROUND_LED_PORT,false);
     }
 
-    controlState AutoOp = controlState.STATE_ONE;
-
-
+    private controlState AutoOp = STATE_ONE;
 }
 
 
