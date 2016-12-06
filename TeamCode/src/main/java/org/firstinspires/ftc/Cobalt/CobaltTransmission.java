@@ -5,6 +5,8 @@ import android.util.Xml;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
+import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.RESET_ENCODERS;
+
 /**
  * Created by Kilroy Programming on 11/15/2016.
  */
@@ -19,6 +21,15 @@ public class CobaltTransmission {
         static DcMotor rightRear;
         static DcMotor leftRear;
         static DcMotor leftFront;
+
+    double distanceRun;
+    double remainingDistance;
+    double ticks;
+
+    double ticksRanRight;
+    double ticksRanLeft;
+    double remainingTicksRight;
+    double remainingTicksLeft;
 
 
         public CobaltTransmission(DcMotor rightRearMotor, DcMotor rightFrontMotor, DcMotor leftFrontMotor, DcMotor leftRearMotor) {
@@ -40,17 +51,24 @@ public class CobaltTransmission {
 
             Control State = Control.STATE_ONE;
 
-
             switch (State) {
                 case STATE_ONE:
 
-                    double distanceRun = rightRear.getCurrentPosition()*DISTANCE_PER_TICK;
-                    double remainingDistance = distance - distanceRun;
-                    double ticks = distance / DISTANCE_PER_TICK;
+                     distanceRun = rightRear.getCurrentPosition()*DISTANCE_PER_TICK;
+                     remainingDistance = distance - distanceRun;
+                    ticks = distance / DISTANCE_PER_TICK;
+
                     leftFront.setTargetPosition((int) ticks);
                     leftRear.setTargetPosition((int) ticks);
                     rightRear.setTargetPosition((int) ticks);
                     rightFront.setTargetPosition((int) ticks);
+
+
+
+                    State = Control.STATE_TWO;
+                    break;
+                case STATE_TWO:
+
 
                     if (remainingDistance > 0) {
                         leftFront.setPower(1.0);
@@ -63,12 +81,7 @@ public class CobaltTransmission {
                         leftRear.setPower(0);
                         rightRear.setPower(0);
                     }
-                    break;
-                case STATE_TWO:
-
-                   
-
-
+                    State = Control.STATE_ONE;
                     break;
             }
             return true;
@@ -89,16 +102,20 @@ public class CobaltTransmission {
 
             switch (State) {
                 case STATE_ONE:
-                    double ticksRanRight = rightFront.getCurrentPosition();
-                    double ticksRanLeft = leftFront.getCurrentPosition();
-                    double remainingTicksRight = RRticks - ticksRanRight;
-                    double remainingTicksLeft = LFticks - ticksRanLeft;
+                     ticksRanRight = rightFront.getCurrentPosition();
+                    ticksRanLeft = leftFront.getCurrentPosition();
+                     remainingTicksRight = RRticks - ticksRanRight;
+                     remainingTicksLeft = LFticks - ticksRanLeft;
 
 
                     leftFront.setTargetPosition((int) LFticks);
                     leftRear.setTargetPosition((int) LRticks);
                     rightRear.setTargetPosition((int) RRticks);
                     rightFront.setTargetPosition((int) RFticks);
+
+                   State = Control.STATE_TWO;
+                    break;
+                case STATE_TWO:
 
                     if (RRticks < 0 && RFticks < 0) {
                         rightRear.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -128,6 +145,7 @@ public class CobaltTransmission {
                         leftRear.setPower(0);
                     }
 
+                    State = Control.STATE_ONE;
                     break;
             }
             return true;

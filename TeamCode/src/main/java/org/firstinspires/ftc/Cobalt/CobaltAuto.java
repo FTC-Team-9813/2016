@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DigitalChannelController;
 
-import static org.firstinspires.ftc.Cobalt.CobaltAuto.controlState.MOVE_FORWARD10;
+
 
 /**
  * Created by Kilroy Programming on 10/18/2016.
@@ -20,7 +20,7 @@ public class CobaltAuto extends OpMode
 
     public enum controlState
     {
-        MOVE_FORWARD10, TURN_RIGHT90,DANCE_NOW
+        MOVE_FORWARD, TURN_RIGHT,DANCE_NOW
     }
 
 
@@ -45,7 +45,7 @@ public class CobaltAuto extends OpMode
     @Override
     public void init_loop()
     {
-        AutoOp = controlState.MOVE_FORWARD10;
+
     }
 
     /*
@@ -125,39 +125,28 @@ public class CobaltAuto extends OpMode
         //If motor, when 1, turns to right
         //*255/800 If not work, try (*255/4095)
         //WHAT DOES THIS MEAN
-      /*  int setTargetPositionRR = 360;
-        int setTargetPositionFR = 360;
-        int setTargetPositionLR = 360;
-        int setTargetPositionLF = 360;
-
-        robot.rightRearMotor.setTargetPosition(setTargetPositionRR);
-        robot.rightFrontMotor.setTargetPosition(setTargetPositionFR);
-        robot.leftRearMotor.setTargetPosition(setTargetPositionLR);
-        robot.leftFrontMotor.setTargetPosition(setTargetPositionLF);
-
-        int getTargetPositionRR = robot.rightRearMotor.getTargetPosition();
-        int getTargetPositionFR = robot.rightFrontMotor.getTargetPosition();
-        int getTargetPositionLR = robot.leftRearMotor.getTargetPosition();
-        int getTargetPositionLF = robot.leftFrontMotor.getTargetPosition();
-
-        int getCurrentPositionRR = robot.rightRearMotor.getCurrentPosition();
-        int getCurrentPositionFR = robot.rightFrontMotor.getCurrentPosition();
-        int getCurrentPositionLR = robot.leftRearMotor.getCurrentPosition();
-        int getCurrentPositionLF = robot.leftFrontMotor.getCurrentPosition();*/
+         controlState AutoOp = controlState.MOVE_FORWARD;
 
         switch (AutoOp)
         {
-            case MOVE_FORWARD10:
+            case MOVE_FORWARD:
 
                 robot.robotDrive.driveStraightDistance(10);
 
-                //    AutoOp = controlState.TURN_RIGHT90;
+                //    AutoOp = controlState.TURN_RIGHT;
+
 
                break;
-           case TURN_RIGHT90:
+           case TURN_RIGHT:
                robot.robotDrive.turnByDegrees(90);
                 break;
             case DANCE_NOW:
+                robot.robotDrive.equals(false);
+
+                
+                robot.robotDrive.driveStraightDistance(5);
+                robot.robotDrive.turnByDegrees(45);
+                robot.robotDrive.turnByDegrees(-90);
 
         }
     }
@@ -171,7 +160,7 @@ public class CobaltAuto extends OpMode
         HardwareCobalt.cdim.setDigitalChannelState(HardwareCobalt.GROUND_LED_PORT,false);
     }
 
-    private controlState AutoOp = MOVE_FORWARD10;
+
 }
 
 
