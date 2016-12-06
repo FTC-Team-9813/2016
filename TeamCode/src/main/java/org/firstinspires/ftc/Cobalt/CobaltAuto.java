@@ -131,22 +131,41 @@ public class CobaltAuto extends OpMode
         {
             case MOVE_FORWARD:
 
-                robot.robotDrive.driveStraightDistance(10);
-
-                //    AutoOp = controlState.TURN_RIGHT;
-
+                robot.robotDrive.equals(false);
+        if(robot.robotDrive.equals(false)){
+                robot.robotDrive.driveStraightDistance(10);}else{
+            AutoOp = controlState.TURN_RIGHT;
+        }
 
                break;
            case TURN_RIGHT:
-               robot.robotDrive.turnByDegrees(90);
+
+               robot.robotDrive.equals(false);
+               if(robot.robotDrive.equals(false)){
+               robot.robotDrive.turnByDegrees(90);}else{
+                   AutoOp = controlState.DANCE_NOW;
+               }
                 break;
             case DANCE_NOW:
+
                 robot.robotDrive.equals(false);
+
                 if(robot.robotDrive.equals(false)) {
                     robot.robotDrive.driveStraightDistance(5);
                 }
-                robot.robotDrive.turnByDegrees(45);
-                robot.robotDrive.turnByDegrees(-90);
+                if(robot.robotDrive.equals(true)){
+                    robot.robotDrive.equals(false);
+                }
+
+                if(robot.robotDrive.equals(false)) {
+                    robot.robotDrive.turnByDegrees(45);
+                }
+
+                if(robot.robotDrive.equals(true)){
+                    robot.robotDrive.equals(false);
+                }
+                if(robot.robotDrive.equals(false)){
+                robot.robotDrive.turnByDegrees(-90);}
 
         }
     }
