@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.Cobalt;
 
+import android.util.Xml;
+
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
@@ -9,7 +11,7 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 public class CobaltTransmission {
     public enum Control {
-        STATE_ONE
+        STATE_ONE, STATE_TWO
     }
         private final double DISTANCE_PER_TICK = 0.009;
 
@@ -27,10 +29,10 @@ public class CobaltTransmission {
             this.leftRear = leftRearMotor;
             this.leftFront = leftFrontMotor;
 
-            //rightRear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            //rightFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            //leftRear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-           // leftFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            rightRear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            rightFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            leftRear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+           leftFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
 
         }
 
@@ -42,7 +44,7 @@ public class CobaltTransmission {
             switch (State) {
                 case STATE_ONE:
 
-                    double distanceRun = rightRear.getCurrentPosition();
+                    double distanceRun = rightRear.getCurrentPosition()*DISTANCE_PER_TICK;
                     double remainingDistance = distance - distanceRun;
                     double ticks = distance / DISTANCE_PER_TICK;
                     leftFront.setTargetPosition((int) ticks);
@@ -55,7 +57,18 @@ public class CobaltTransmission {
                         rightFront.setPower(1.0);
                         leftRear.setPower(1.0);
                         rightRear.setPower(1.0);
+                    }else{
+                        leftFront.setPower(0);
+                        rightFront.setPower(0);
+                        leftRear.setPower(0);
+                        rightRear.setPower(0);
                     }
+                    break;
+                case STATE_TWO:
+
+                   
+
+
                     break;
             }
             return true;
@@ -108,6 +121,11 @@ public class CobaltTransmission {
                         rightRear.setPower(1.0);
                         leftFront.setPower(1.0);
                         leftRear.setPower(1.0);
+                    }else{
+                        rightFront.setPower(0);
+                        rightRear.setPower(0);
+                        leftFront.setPower(0);
+                        leftRear.setPower(0);
                     }
 
                     break;

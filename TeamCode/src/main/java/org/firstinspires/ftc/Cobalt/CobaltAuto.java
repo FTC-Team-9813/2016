@@ -1,15 +1,11 @@
 package org.firstinspires.ftc.Cobalt;
 
-import android.util.Xml;
-import android.widget.Switch;
-
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DigitalChannelController;
-import com.qualcomm.robotcore.hardware.IrSeekerSensor;
 
-import static org.firstinspires.ftc.Cobalt.CobaltAuto.controlState.STATE_ONE;
+import static org.firstinspires.ftc.Cobalt.CobaltAuto.controlState.MOVE_FORWARD10;
 
 /**
  * Created by Kilroy Programming on 10/18/2016.
@@ -17,14 +13,14 @@ import static org.firstinspires.ftc.Cobalt.CobaltAuto.controlState.STATE_ONE;
 @Autonomous(name="CobaltAuto", group="Cobalt")
 public class CobaltAuto extends OpMode
 {
-    //CobaltTransmission cobaltTransmission = HardwareCobalt.robotDrive;
+    CobaltTransmission cobaltTransmission = HardwareCobalt.robotDrive;
 
     /* Declare OpMode members. */
     HardwareCobalt robot = new HardwareCobalt(); // use the class created to define a Pushbot's hardware
 
     public enum controlState
     {
-        STATE_ONE, STATE_TWO
+        MOVE_FORWARD10, TURN_RIGHT90,DANCE_NOW
     }
 
 
@@ -49,7 +45,7 @@ public class CobaltAuto extends OpMode
     @Override
     public void init_loop()
     {
-        AutoOp = controlState.STATE_ONE;
+        AutoOp = controlState.MOVE_FORWARD10;
     }
 
     /*
@@ -128,6 +124,7 @@ public class CobaltAuto extends OpMode
 
         //If motor, when 1, turns to right
         //*255/800 If not work, try (*255/4095)
+        //WHAT DOES THIS MEAN
       /*  int setTargetPositionRR = 360;
         int setTargetPositionFR = 360;
         int setTargetPositionLR = 360;
@@ -150,18 +147,18 @@ public class CobaltAuto extends OpMode
 
         switch (AutoOp)
         {
-           // case STATE_ONE:
+            case MOVE_FORWARD10:
 
-                //cobaltTransmission.driveStraightDistance(10);
+                robot.robotDrive.driveStraightDistance(10);
 
-                //if(cobaltTransmission.equals(true))
-               // {
-                   // AutoOp = controlState.STATE_TWO;
-                //}
-              //  break;
-           // case STATE_TWO:
-             //   robot.robotDrive.turnByDegrees(90);
-             //   break;
+                //    AutoOp = controlState.TURN_RIGHT90;
+
+               break;
+           case TURN_RIGHT90:
+               robot.robotDrive.turnByDegrees(90);
+                break;
+            case DANCE_NOW:
+
         }
     }
 
@@ -174,7 +171,7 @@ public class CobaltAuto extends OpMode
         HardwareCobalt.cdim.setDigitalChannelState(HardwareCobalt.GROUND_LED_PORT,false);
     }
 
-    private controlState AutoOp = STATE_ONE;
+    private controlState AutoOp = MOVE_FORWARD10;
 }
 
 

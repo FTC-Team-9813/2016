@@ -6,8 +6,6 @@ import com.qualcomm.robotcore.hardware.DeviceInterfaceModule;
 import com.qualcomm.robotcore.hardware.DigitalChannelController;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IrSeekerSensor;
-import com.qualcomm.robotcore.hardware.Servo;
-import com.qualcomm.robotcore.hardware.ServoController;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import static android.R.attr.duration;
@@ -35,25 +33,16 @@ public class HardwareCobalt
     public static DcMotor leftRearMotor;
 
     // catapult trigger
-   // public static DcMotor triggerMotor = null;
+   // public static DcMotor triggerMotor;
 
-
-
-    //pitching motors
-//    public static DcMotor firingMotor = null;
-//    public static DcMotor loadingMotor = null;
     //color sensors (or related to color sensors)
     public static DeviceInterfaceModule cdim = null;//null
     //public static DeviceInterfaceModule deviceInterface = null;
     public static DigitalChannelController bottomLedLight = null;//null
 //transmission
-    public static CobaltTransmission robotDrive  = new CobaltTransmission(leftFrontMotor, leftRearMotor, rightRearMotor, rightFrontMotor);
+    public static CobaltTransmission robotDrive;
     //NOT REALLY USING THESE RIGHT NOW BUT TOO LAZY TOO DELETE...     I NEED TO STOP DOING THIS ON CAPS
-   // public static CatapultFireMech catapultFireMech = new CatapultFireMech(triggerMotor);
-
-    public static ServoController frontAssemblyController;
-    public static Servo flipperController;
-    public static Servo shooterController;
+   // public static CatapultFireMech catapultFireMech;
 
 
     public static final int GROUND_LED_PORT =5;
@@ -98,10 +87,13 @@ public class HardwareCobalt
         //the ir sensor
         irSeeker = hwMap.irSeekerSensor.get("irseekersensor");
         //pitching motors
+        robotDrive = new CobaltTransmission(leftFrontMotor, leftRearMotor, rightRearMotor, rightFrontMotor);
 
-        frontAssemblyController = hwMap.servoController.get("frontAssemblyController");
-        flipperController = hwMap.servo.get("flipperServo");
-        shooterController = hwMap.servo.get("shooterServo");
+        //catapultFireMech; = new CatapultFireMech(triggerMotor);
+
+
+
+
 
         leftFrontMotor.setDirection(DcMotor.Direction.FORWARD);
         leftRearMotor.setDirection(DcMotor.Direction.FORWARD);
@@ -109,9 +101,7 @@ public class HardwareCobalt
         rightRearMotor.setDirection(DcMotor.Direction.REVERSE);
 // catapult motor
        // triggerMotor.setDirection(DcMotor.Direction.FORWARD);
-        //pitching motors
-        //loadingMotor.setDirection(DcMotor.Direction.FORWARD);
-        //firingMotor.setDirection(DcMotor.Direction.FORWARD);
+
 
         // Set all motors to zero power
         leftFrontMotor.setPower(0);
@@ -121,10 +111,6 @@ public class HardwareCobalt
 
         //catapult trigger motor
       //  triggerMotor.setPower(0);
-        //pitching motors
-
-
-
 
         //motors us encoders!
         leftFrontMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
