@@ -33,16 +33,16 @@ public class HardwareCobalt
     public static DcMotor leftRearMotor;
 
     // catapult trigger
-   // public static DcMotor triggerMotor = null;
+   // public static DcMotor triggerMotor;
 
     //color sensors (or related to color sensors)
     public static DeviceInterfaceModule cdim = null;//null
     //public static DeviceInterfaceModule deviceInterface = null;
     public static DigitalChannelController bottomLedLight = null;//null
 //transmission
-    public static CobaltTransmission robotDrive  = new CobaltTransmission(leftFrontMotor, leftRearMotor, rightRearMotor, rightFrontMotor);
+    public static CobaltTransmission robotDrive;
     //NOT REALLY USING THESE RIGHT NOW BUT TOO LAZY TOO DELETE...     I NEED TO STOP DOING THIS ON CAPS
-   // public static CatapultFireMech catapultFireMech = new CatapultFireMech(triggerMotor);
+   // public static CatapultFireMech catapultFireMech;
 
 
     public static final int GROUND_LED_PORT =5;
@@ -89,6 +89,8 @@ public class HardwareCobalt
         //pitching motors
         robotDrive = new CobaltTransmission(leftFrontMotor, leftRearMotor, rightRearMotor, rightFrontMotor);
 
+        //catapultFireMech; = new CatapultFireMech(triggerMotor);
+
 
 
 
@@ -99,9 +101,7 @@ public class HardwareCobalt
         rightRearMotor.setDirection(DcMotor.Direction.REVERSE);
 // catapult motor
        // triggerMotor.setDirection(DcMotor.Direction.FORWARD);
-        //pitching motors
-        //loadingMotor.setDirection(DcMotor.Direction.FORWARD);
-        //firingMotor.setDirection(DcMotor.Direction.FORWARD);
+
 
         // Set all motors to zero power
         leftFrontMotor.setPower(0);
@@ -111,10 +111,6 @@ public class HardwareCobalt
 
         //catapult trigger motor
       //  triggerMotor.setPower(0);
-        //pitching motors
-
-
-
 
         //motors us encoders!
         leftFrontMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
