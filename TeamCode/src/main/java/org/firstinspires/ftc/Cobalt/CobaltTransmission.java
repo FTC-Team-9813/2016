@@ -5,7 +5,7 @@ import android.util.Xml;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-import static com.qualcomm.robotcore.hardware.DcMotor.RunMode.RESET_ENCODERS;
+
 
 /**
  * Created by Kilroy Programming on 11/15/2016.
@@ -62,6 +62,7 @@ public class CobaltTransmission {
                     leftRear.setTargetPosition((int) ticks);
                     rightRear.setTargetPosition((int) ticks);
                     rightFront.setTargetPosition((int) ticks);
+
 
 
 

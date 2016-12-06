@@ -71,6 +71,7 @@ public class CobaltTeleopTank_Iterative extends OpMode{
          * The init() method of the hardware class does all the work here
          */
         robot.init(hardwareMap);
+        robot.shooterController.equals(-1);
 
         // Send telemetry message to signify robot waiting;
         telemetry.addData("Say", "If you are losing win better and if you are winning win better");    //
@@ -91,7 +92,7 @@ public class CobaltTeleopTank_Iterative extends OpMode{
     public void start() {
 
         //color sensors
-        HardwareCobalt.cdim.setDigitalChannelMode(HardwareCobalt.GROUND_LED_PORT,DigitalChannelController.Mode.OUTPUT);
+        //HardwareCobalt.cdim.setDigitalChannelMode(HardwareCobalt.GROUND_LED_PORT,DigitalChannelController.Mode.OUTPUT);
     }
     boolean previous_state = false;
 
@@ -108,8 +109,8 @@ public class CobaltTeleopTank_Iterative extends OpMode{
         //does it work yet?
 
 
-        telemetry.addData("ColorValues", robot.groundRGBSensor.red() * (255.0 / 65535.0) + " " + robot.groundRGBSensor.green() * (255.0 / 65535.0) + " " + robot.groundRGBSensor.blue() * (255.0 / 65535.0));
-        telemetry.update();
+       // telemetry.addData("ColorValues", robot.groundRGBSensor.red() * (255.0 / 65535.0) + " " + robot.groundRGBSensor.green() * (255.0 / 65535.0) + " " + robot.groundRGBSensor.blue() * (255.0 / 65535.0));
+       // telemetry.update();
 
         robot.leftFrontMotor.setPower(-gamepad1.left_stick_y);
         robot.leftRearMotor.setPower(-gamepad1.left_stick_y);
@@ -125,7 +126,7 @@ public class CobaltTeleopTank_Iterative extends OpMode{
 
         if (flippersOpen == false)
         {
-            HardwareCobalt.flipperController.setPosition(0); // 0 or 1, we don't know
+            HardwareCobalt.flipperController.setPosition(0.5); // 0 or 1, we don't know
         }
         else
         {

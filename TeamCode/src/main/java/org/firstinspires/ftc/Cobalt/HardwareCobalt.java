@@ -43,7 +43,7 @@ public class HardwareCobalt
 //    public static DcMotor firingMotor = null;
 //    public static DcMotor loadingMotor = null;
     //color sensors (or related to color sensors)
-    public static DeviceInterfaceModule cdim = null;//null
+   // public static DeviceInterfaceModule cdim = null;//null
     //public static DeviceInterfaceModule deviceInterface = null;
     public static DigitalChannelController bottomLedLight = null;//null
 //transmission
@@ -57,9 +57,9 @@ public class HardwareCobalt
 
 
     public static final int GROUND_LED_PORT =5;
-    public static ColorSensor groundRGBSensor;
-    public static ColorSensor frontRGBSensor;
-    public static IrSeekerSensor irSeeker;
+   // public static ColorSensor groundRGBSensor;
+   // public static ColorSensor frontRGBSensor;
+  //  public static IrSeekerSensor irSeeker;
 
 //duration!
 
@@ -87,22 +87,23 @@ public class HardwareCobalt
      //   triggerMotor = hwMap.dcMotor.get("trigger_motor");
 
         //Color Sensors
-        cdim = hwMap.deviceInterfaceModule.get("cdim");
+       // cdim = hwMap.deviceInterfaceModule.get("cdim");
         //deviceInterface = hwMap.deviceInterfaceModule.get("core_device_interface");
         //bottomLedLight = hwMap.deviceInterfaceModule.get("LED_light");
       //  triggerMotor = hwMap.dcMotor.get("trigger_fire_motor");
-        groundRGBSensor = hwMap.colorSensor.get("colorsensor");
-        frontRGBSensor = hwMap.colorSensor.get("colorsensor");
+       // groundRGBSensor = hwMap.colorSensor.get("colorsensor");
+      //  frontRGBSensor = hwMap.colorSensor.get("colorsensor");
         //duration!
 
         //the ir sensor
-        irSeeker = hwMap.irSeekerSensor.get("irseekersensor");
+     //   irSeeker = hwMap.irSeekerSensor.get("irseekersensor");
         //pitching motors
         robotDrive = new CobaltTransmission(leftFrontMotor, leftRearMotor, rightRearMotor, rightFrontMotor);
 
-        frontAssemblyController = hwMap.servoController.get("frontAssemblyController");
+        //frontAssemblyController = hwMap.servoController.get("frontAssemblyController");
         flipperController = hwMap.servo.get("flipperServo");
         shooterController = hwMap.servo.get("shooterServo");
+
 
         leftFrontMotor.setDirection(DcMotor.Direction.FORWARD);
         leftRearMotor.setDirection(DcMotor.Direction.FORWARD);

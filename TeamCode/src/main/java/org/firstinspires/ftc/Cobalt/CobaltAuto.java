@@ -22,7 +22,9 @@ public class CobaltAuto extends OpMode
     {
         MOVE_FORWARD, TURN_RIGHT,DANCE_NOW
     }
-
+public enum dance{
+   DANCE_1,DANCE_2, DANCE_3
+}
 
     /*
      * Code to run ONCE when the driver hits INIT
@@ -58,8 +60,8 @@ public class CobaltAuto extends OpMode
         robot.leftRearMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.rightFrontMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.rightRearMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        HardwareCobalt.cdim.setDigitalChannelMode(HardwareCobalt.GROUND_LED_PORT,DigitalChannelController.Mode.OUTPUT);
-        HardwareCobalt.cdim.setDigitalChannelState(HardwareCobalt.GROUND_LED_PORT,true);
+      //  HardwareCobalt.cdim.setDigitalChannelMode(HardwareCobalt.GROUND_LED_PORT,DigitalChannelController.Mode.OUTPUT);
+       // HardwareCobalt.cdim.setDigitalChannelState(HardwareCobalt.GROUND_LED_PORT,true);
     }
 
     /*
@@ -68,7 +70,7 @@ public class CobaltAuto extends OpMode
     @Override
     public void loop()
     {
-        telemetry.addData("Say", "RGB Values " +HardwareCobalt.groundRGBSensor.red() * 255.0 / 65535.0 + //this gets 0.0... HELP US
+       /* telemetry.addData("Say", "RGB Values " +HardwareCobalt.groundRGBSensor.red() * 255.0 / 65535.0 + //this gets 0.0... HELP US
                 " "+HardwareCobalt.groundRGBSensor.green() * 255.0 / 65535.0 +" "+HardwareCobalt.groundRGBSensor.blue() * 255.0 / 65535.0 +"\n");    //
         updateTelemetry(telemetry);
         telemetry.addData("Angle", HardwareCobalt.irSeeker.getAngle());
@@ -100,7 +102,7 @@ public class CobaltAuto extends OpMode
                 HardwareCobalt.rightRearMotor.setPower(1);
             }
             telemetry.addData("Say", "There is a white line!");
-            }
+            }*/
         //IMPORTANT!!!!!!!!!!
         //THURSDAY THE 1ST, MAKE A METHOD FOR STRENGTH TO DISTANCE, AND MAKE IT WORK.
             //This is for red team
@@ -126,6 +128,11 @@ public class CobaltAuto extends OpMode
         //*255/800 If not work, try (*255/4095)
         //WHAT DOES THIS MEAN
          controlState AutoOp = controlState.MOVE_FORWARD;
+        dance Dance = dance.DANCE_1;
+                if(robot.robotDrive.equals(false)){
+                    Dance = dance.DANCE_1;
+
+    }
 
         switch (AutoOp)
         {
@@ -147,26 +154,36 @@ public class CobaltAuto extends OpMode
                }
                 break;
             case DANCE_NOW:
+                switch(Dance) {
 
-                robot.robotDrive.equals(false);
+                    case DANCE_1:
 
-                if(robot.robotDrive.equals(false)) {
-                    robot.robotDrive.driveStraightDistance(5);
+                        robot.robotDrive.driveStraightDistance(5);
+
+                        Dance = dance.DANCE_2;
+                        break;
+
+                    case DANCE_2:
+                        if (robot.robotDrive.equals(true)) {
+                        robot.robotDrive.equals(false);
+                    }
+
+                        robot.robotDrive.turnByDegrees(45);
+
+                        Dance = dance.DANCE_3;
+                        break;
+                    case DANCE_3:
+
+                        if (robot.robotDrive.equals(true)) {
+                        robot.robotDrive.equals(false);
+                    }
+
+                        robot.robotDrive.turnByDegrees(-90);
+
+                        Dance = dance.DANCE_1;
+                        break;
+
                 }
-                if(robot.robotDrive.equals(true)){
-                    robot.robotDrive.equals(false);
-                }
-
-                if(robot.robotDrive.equals(false)) {
-                    robot.robotDrive.turnByDegrees(45);
-                }
-
-                if(robot.robotDrive.equals(true)){
-                    robot.robotDrive.equals(false);
-                }
-                if(robot.robotDrive.equals(false)){
-                robot.robotDrive.turnByDegrees(-90);}
-
         }
     }
 
@@ -176,7 +193,7 @@ public class CobaltAuto extends OpMode
     @Override
     public void stop()
     {
-        HardwareCobalt.cdim.setDigitalChannelState(HardwareCobalt.GROUND_LED_PORT,false);
+        //HardwareCobalt.cdim.setDigitalChannelState(HardwareCobalt.GROUND_LED_PORT,false);
     }
 
 
