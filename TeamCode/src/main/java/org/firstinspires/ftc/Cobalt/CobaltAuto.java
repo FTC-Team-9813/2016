@@ -142,9 +142,9 @@ public class CobaltAuto extends OpMode
                 break;
             case DANCE_NOW:
                 robot.robotDrive.equals(false);
-
-                
-                robot.robotDrive.driveStraightDistance(5);
+                if(robot.robotDrive.equals(false)) {
+                    robot.robotDrive.driveStraightDistance(5);
+                }
                 robot.robotDrive.turnByDegrees(45);
                 robot.robotDrive.turnByDegrees(-90);
 
