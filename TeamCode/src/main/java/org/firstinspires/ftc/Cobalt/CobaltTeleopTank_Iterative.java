@@ -71,7 +71,7 @@ public class CobaltTeleopTank_Iterative extends OpMode{
          * The init() method of the hardware class does all the work here
          */
         robot.init(hardwareMap);
-        robot.shooterController.equals(-1);
+        robot.shooterController.equals(0);
 
         // Send telemetry message to signify robot waiting;
         telemetry.addData("Say", "If you are losing win better and if you are winning win better");    //
@@ -126,7 +126,7 @@ public class CobaltTeleopTank_Iterative extends OpMode{
 
         if (flippersOpen == false)
         {
-            HardwareCobalt.flipperController.setPosition(0.5); // 0 or 1, we don't know
+            HardwareCobalt.flipperController.setPosition(0); // 0 or 1, we don't know
         }
         else
         {
