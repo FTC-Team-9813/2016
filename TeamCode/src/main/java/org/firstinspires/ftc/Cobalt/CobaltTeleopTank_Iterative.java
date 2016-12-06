@@ -112,6 +112,18 @@ public class CobaltTeleopTank_Iterative extends OpMode{
         robot.rightFrontMotor.setPower(-gamepad1.right_stick_y);
         robot.rightRearMotor.setPower(-gamepad1.right_stick_y);
 
+        if(gamepad1.left_bumper)
+        {
+            robot.flipperController.setPosition(100);
+        }
+        else if(gamepad1.right_bumper)
+        {
+            robot.flipperController.setPosition(20);
+        }
+        else
+        {
+            robot.flipperController.setPosition(60);
+        }
         //CATAPULT FIRE  (if not in use comment out)
      /*   if(gamepad2.right_bumper == true)
         {
