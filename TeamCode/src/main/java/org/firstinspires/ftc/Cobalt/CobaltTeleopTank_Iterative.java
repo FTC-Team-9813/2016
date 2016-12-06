@@ -126,9 +126,9 @@ public class CobaltTeleopTank_Iterative extends OpMode{
         if (flippersOpen == false)
         {
             HardwareCobalt.flipperController.setPosition(0); // 0 or 1, we don't know
-        }
-        else
+        }else
         {
+
             HardwareCobalt.flipperController.setPosition(1);
         }
         /*if(gamepad1.left_bumper == true)
