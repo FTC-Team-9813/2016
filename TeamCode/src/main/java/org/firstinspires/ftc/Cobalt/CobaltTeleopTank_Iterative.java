@@ -35,6 +35,7 @@ package org.firstinspires.ftc.Cobalt;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DigitalChannelController;
+import com.qualcomm.robotcore.util.Hardware;
 
 /**
  * This file provides basic Telop driving for a Pushbot robot.
@@ -92,7 +93,9 @@ public class CobaltTeleopTank_Iterative extends OpMode{
         //color sensors
         HardwareCobalt.cdim.setDigitalChannelMode(HardwareCobalt.GROUND_LED_PORT,DigitalChannelController.Mode.OUTPUT);
     }
+    boolean previous_state = false;
 
+    boolean flippersOpen = true;
     /*
      * Code to run REPEATEDLY after the driver hits PLAY but before they hit STOP
      */
@@ -105,24 +108,40 @@ public class CobaltTeleopTank_Iterative extends OpMode{
         //does it work yet?
 
 
-
+        telemetry.addData("ColorValues", robot.groundRGBSensor.red() * (255.0 / 65535.0) + " " + robot.groundRGBSensor.green() * (255.0 / 65535.0) + " " + robot.groundRGBSensor.blue() * (255.0 / 65535.0));
+        telemetry.update();
 
         robot.leftFrontMotor.setPower(-gamepad1.left_stick_y);
         robot.leftRearMotor.setPower(-gamepad1.left_stick_y);
         robot.rightFrontMotor.setPower(-gamepad1.right_stick_y);
         robot.rightRearMotor.setPower(-gamepad1.right_stick_y);
 
-        if(gamepad1.left_bumper)
+
+        if (gamepad2.left_bumper == true && gamepad2.left_bumper != previous_state) ;
         {
-            robot.flipperController.setPosition(100);
+            flippersOpen = !flippersOpen;
         }
-        else if(gamepad1.right_bumper)
+        previous_state = gamepad2.left_bumper;
+
+        if (flippersOpen == false)
         {
-            robot.flipperController.setPosition(20);
+            HardwareCobalt.flipperController.setPosition(0); // 0 or 1, we don't know
         }
         else
         {
-            robot.flipperController.setPosition(60);
+            HardwareCobalt.flipperController.setPosition(1);
+        }
+        /*if(gamepad1.left_bumper == true)
+        {
+            robot.flipperController.setPosition(.8);
+        }
+        else if(gamepad1.right_bumper == true)
+        {
+            robot.flipperController.setPosition(.2);
+        }
+        else
+        {
+            robot.flipperController.setPosition(.5);
         }
         //CATAPULT FIRE  (if not in use comment out)
      /*   if(gamepad2.right_bumper == true)
