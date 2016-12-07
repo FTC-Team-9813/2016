@@ -104,6 +104,8 @@ public class HardwareCobalt
         flipperController = hwMap.servo.get("flipperServo");
         shooterController = hwMap.servo.get("shooterServo");
 
+        flipperController.setPosition(0.0);
+        flipperController.setPosition(0.0);
 
         leftFrontMotor.setDirection(DcMotor.Direction.FORWARD);
         leftRearMotor.setDirection(DcMotor.Direction.FORWARD);
@@ -126,11 +128,10 @@ public class HardwareCobalt
         leftFrontMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         leftRearMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightFrontMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-       rightRearMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        rightRearMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         //trigger motor use encoder
        // triggerMotor.setMode((DcMotor.RunMode.RUN_USING_ENCODER));
         //touch sensor
-
     }
 
     /***
