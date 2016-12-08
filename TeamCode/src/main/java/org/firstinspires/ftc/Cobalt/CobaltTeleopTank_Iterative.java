@@ -121,6 +121,9 @@ public class CobaltTeleopTank_Iterative extends OpMode{
         robot.rightRearMotor.setPower(-gamepad1.right_stick_y);
 
 
+
+
+
         if (gamepad2.left_bumper == true && gamepad2.left_bumper != previous_state)
         {
             flippersOpen = !flippersOpen;
