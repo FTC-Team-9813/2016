@@ -37,6 +37,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DigitalChannelController;
 import com.qualcomm.robotcore.util.Hardware;
 
+
 /**
  * This file provides basic Telop driving for a Pushbot robot.
  * The code is structured as an Iterative OpMode
@@ -71,7 +72,8 @@ public class CobaltTeleopTank_Iterative extends OpMode{
          * The init() method of the hardware class does all the work here
          */
         robot.init(hardwareMap);
-        robot.shooterController.equals(0);
+        robot.shooterController.setPosition(1); //1 is down, .5 is up
+        robot.flipperController.setPosition(0); // 0 is open, .3 is closed.
 
         // Send telemetry message to signify robot waiting;
         telemetry.addData("Say", "If you are losing win better and if you are winning win better");    //
@@ -97,17 +99,18 @@ public class CobaltTeleopTank_Iterative extends OpMode{
     boolean previous_state = false;
 
     boolean flippersOpen = true;
+
+    boolean testServoBool = true;
     /*
      * Code to run REPEATEDLY after the driver hits PLAY but before they hit STOP
      */
     @Override
     public void loop() {
 
-        double left;
-        double right;
+//        double left;
+//        double right;
 
         //does it work yet?
-
 
        // telemetry.addData("ColorValues", robot.groundRGBSensor.red() * (255.0 / 65535.0) + " " + robot.groundRGBSensor.green() * (255.0 / 65535.0) + " " + robot.groundRGBSensor.blue() * (255.0 / 65535.0));
        // telemetry.update();
@@ -118,7 +121,7 @@ public class CobaltTeleopTank_Iterative extends OpMode{
         robot.rightRearMotor.setPower(-gamepad1.right_stick_y);
 
 
-        if (gamepad2.left_bumper == true && gamepad2.left_bumper != previous_state) ;
+        if (gamepad2.left_bumper == true && gamepad2.left_bumper != previous_state)
         {
             flippersOpen = !flippersOpen;
         }
@@ -126,38 +129,24 @@ public class CobaltTeleopTank_Iterative extends OpMode{
 
         if (flippersOpen == false)
         {
-            HardwareCobalt.flipperController.setPosition(0); // 0 or 1, we don't know
+            HardwareCobalt.flipperController.setPosition(.3); // 0 or 1, we don't know
         }
         else
         {
-            HardwareCobalt.flipperController.setPosition(1);
+            HardwareCobalt.flipperController.setPosition(0);
         }
-        /*if(gamepad1.left_bumper == true)
-        {
-            robot.flipperController.setPosition(.8);
-        }
-        else if(gamepad1.right_bumper == true)
-        {
-            robot.flipperController.setPosition(.2);
-        }
-        else
-        {
-            robot.flipperController.setPosition(.5);
-        }
-        //CATAPULT FIRE  (if not in use comment out)
-     /*   if(gamepad2.right_bumper == true)
-        {
-           robot.triggerMotor.setPower(1.0);
-        }
-        else if(gamepad2.left_bumper == true)
-        {
-           robot.triggerMotor.setPower(-1.0);
-        }
-        else
-        {
-            robot.triggerMotor.setPower(0.0);
-        }*/
-
+//        if(gamepad2.dpad_right && gamepad2.dpad_right != testServoBool)
+//            robot.flipperController.setPosition(robot.flipperController.getPosition() + .05);
+//        else if(gamepad2.dpad_left&& gamepad2.dpad_left != testServoBool)
+//            robot.flipperController.setPosition(robot.flipperController.getPosition() - .05);
+//
+//        if(gamepad2.dpad_up&& gamepad2.dpad_up!= testServoBool)
+//            robot.shooterController.setPosition(robot.shooterController.getPosition() + .05);
+//        else if(gamepad2.dpad_down&& gamepad2.dpad_down != testServoBool)
+//            robot.shooterController.setPosition(robot.shooterController.getPosition() -.05);
+//        testServoBool = gamepad2.dpad_right || gamepad2.dpad_up || gamepad2.dpad_left || gamepad2.dpad_down;
+//        telemetry.addData("Servo Positions:", "Flipper: " + robot.flipperController.getPosition() + "\nShooter:" + robot.shooterController.getPosition());
+//        updateTelemetry(telemetry);
     }
 
 
