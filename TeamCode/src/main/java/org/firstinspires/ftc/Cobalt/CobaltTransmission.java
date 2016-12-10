@@ -63,13 +63,9 @@ public class CobaltTransmission {
                     rightRear.setTargetPosition((int) ticks);
                     rightFront.setTargetPosition((int) ticks);
 
-
-
-
                     State = Control.STATE_TWO;
                     break;
                 case STATE_TWO:
-
 
                     if (remainingDistance > 0) {
                         leftFront.setPower(1.0);
@@ -92,7 +88,6 @@ public class CobaltTransmission {
 
             Control State = Control.STATE_ONE;
 
-
 //(math.pi/180)*degrees*4inches
 
             //to turn to the left set the target degrees negative
@@ -107,7 +102,6 @@ public class CobaltTransmission {
                     ticksRanLeft = leftFront.getCurrentPosition();
                      remainingTicksRight = RRticks - ticksRanRight;
                      remainingTicksLeft = LFticks - ticksRanLeft;
-
 
                     leftFront.setTargetPosition((int) LFticks);
                     leftRear.setTargetPosition((int) LRticks);
@@ -151,6 +145,5 @@ public class CobaltTransmission {
             }
             return true;
         }
-
 
         }

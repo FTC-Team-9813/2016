@@ -60,9 +60,6 @@ public class CobaltTeleopTank_Iterative extends OpMode{
     /* Declare OpMode members. */
     HardwareCobalt robot       = new HardwareCobalt(); // use the class created to define a Pushbot's hardware
                                                  // could also use HardwarePushbotMatrix class.
-
-
-
     /*
      * Code to run ONCE when the driver hits INIT
      */
@@ -79,14 +76,12 @@ public class CobaltTeleopTank_Iterative extends OpMode{
         telemetry.addData("Say", "If you are losing win better and if you are winning win better");    //
         updateTelemetry(telemetry);
     }
-
     /*
      * Code to run REPEATEDLY after the driver hits INIT, but before they hit PLAY
      */
     @Override
     public void init_loop() {
     }
-
     /*
      * Code to run ONCE when the driver hits PLAY
      */
@@ -99,6 +94,9 @@ public class CobaltTeleopTank_Iterative extends OpMode{
     boolean previous_state = false;
 
     boolean flippersOpen = true;
+
+    boolean shooterOpen = true;
+    boolean previousShooter_state;
 
     boolean testServoBool = true;
     /*
@@ -121,8 +119,8 @@ public class CobaltTeleopTank_Iterative extends OpMode{
         robot.rightRearMotor.setPower(-gamepad1.right_stick_y);
 
 
-
-
+        robot.flipperController.setPosition(.3);
+        robot.shooterController.setPosition(1);
        //capture ball
         if (gamepad2.left_bumper == true && gamepad2.left_bumper != previous_state)
         {
@@ -132,36 +130,36 @@ public class CobaltTeleopTank_Iterative extends OpMode{
 
         if (flippersOpen == false)
         {
-
             robot.flipperController.setPosition(.3); // 0 or 1, we don't know
+            telemetry.addData("Say","capturing flippers are is closed");
         }
         else
         {
             //#Thuglife
             robot.flipperController.setPosition(0);
-
+            telemetry.addData("Say","capturing flippers are is open");
         }
 
+//shoot the ball
 
-       if (gamepad2.right_bumper == true && gamepad2.right_bumper != previous_state)
+       if (gamepad2.right_bumper == true && gamepad2.right_bumper != previousShooter_state)
         {
-            flippersOpen = !flippersOpen;
+            shooterOpen = !shooterOpen;
         }
-        previous_state = gamepad2.right_bumper;
+        previousShooter_state = gamepad2.right_bumper;
 
-        if (flippersOpen == false)
+        if (shooterOpen == false)
         {
-
-           robot.flipperController.setPosition(.3); // 0 is open, .3 is closed.
-            HardwareCobalt.shooterController.setPosition(1);//1 is down, .5 is up
+            robot.shooterController.setPosition(1);//1 is down, .5 is up
+            telemetry.addData("Say","shooter flipper is down");
         }
         else
         {
             //#Thuglife
-            robot.flipperController.setPosition(0);
+            telemetry.addData("Say", "shooter flipper is up");
             robot.shooterController.setPosition(.5);
         }
-
+        updateTelemetry(telemetry);
 //        if(gamepad2.dpad_right && gamepad2.dpad_right != testServoBool)
 //            robot.flipperController.setPosition(robot.flipperController.getPosition() + .05);
 //        else if(gamepad2.dpad_left&& gamepad2.dpad_left != testServoBool)
@@ -175,14 +173,9 @@ public class CobaltTeleopTank_Iterative extends OpMode{
 //        telemetry.addData("Servo Positions:", "Flipper: " + robot.flipperController.getPosition() + "\nShooter:" + robot.shooterController.getPosition());
 //        updateTelemetry(telemetry);
          }
-
-
         @Override
         public void stop(){
 
         }
 
    }
-
-
-

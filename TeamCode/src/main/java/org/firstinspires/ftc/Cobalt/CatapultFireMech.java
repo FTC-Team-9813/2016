@@ -12,12 +12,9 @@ public class CatapultFireMech {
     static final double motorPower = 1.0;
     static  DcMotor trigger;
 
-
-
     public CatapultFireMech(DcMotor triggerMotor) {
 
         this.trigger = triggerMotor;
-
 
     }
     public static boolean fire() {
