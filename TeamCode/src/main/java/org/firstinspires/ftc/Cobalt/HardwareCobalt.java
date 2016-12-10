@@ -114,7 +114,6 @@ public class HardwareCobalt
 // catapult motor
        // triggerMotor.setDirection(DcMotor.Direction.FORWARD);
 
-
         // Set all motors to zero power
         leftFrontMotor.setPower(0);
         leftRearMotor.setPower(0);

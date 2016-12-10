@@ -196,8 +196,6 @@ public enum dance{
     {
         //HardwareCobalt.cdim.setDigitalChannelState(HardwareCobalt.GROUND_LED_PORT,false);
     }
-
-
 }
 
 
