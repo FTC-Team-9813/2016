@@ -123,7 +123,7 @@ public class CobaltTeleopTank_Iterative extends OpMode{
 
 
 
-
+       //capture ball
         if (gamepad2.left_bumper == true && gamepad2.left_bumper != previous_state)
         {
             flippersOpen = !flippersOpen;
@@ -132,12 +132,36 @@ public class CobaltTeleopTank_Iterative extends OpMode{
 
         if (flippersOpen == false)
         {
-            HardwareCobalt.flipperController.setPosition(.3); // 0 or 1, we don't know
+
+            robot.flipperController.setPosition(.3); // 0 or 1, we don't know
         }
         else
         {
-            HardwareCobalt.flipperController.setPosition(0);
+            //#Thuglife
+            robot.flipperController.setPosition(0);
+
         }
+
+
+       if (gamepad2.right_bumper == true && gamepad2.right_bumper != previous_state)
+        {
+            flippersOpen = !flippersOpen;
+        }
+        previous_state = gamepad2.right_bumper;
+
+        if (flippersOpen == false)
+        {
+
+           robot.flipperController.setPosition(.3); // 0 is open, .3 is closed.
+            HardwareCobalt.shooterController.setPosition(1);//1 is down, .5 is up
+        }
+        else
+        {
+            //#Thuglife
+            robot.flipperController.setPosition(0);
+            robot.shooterController.setPosition(.5);
+        }
+
 //        if(gamepad2.dpad_right && gamepad2.dpad_right != testServoBool)
 //            robot.flipperController.setPosition(robot.flipperController.getPosition() + .05);
 //        else if(gamepad2.dpad_left&& gamepad2.dpad_left != testServoBool)
@@ -150,14 +174,15 @@ public class CobaltTeleopTank_Iterative extends OpMode{
 //        testServoBool = gamepad2.dpad_right || gamepad2.dpad_up || gamepad2.dpad_left || gamepad2.dpad_down;
 //        telemetry.addData("Servo Positions:", "Flipper: " + robot.flipperController.getPosition() + "\nShooter:" + robot.shooterController.getPosition());
 //        updateTelemetry(telemetry);
-    }
+         }
 
 
         @Override
         public void stop(){
+
         }
 
-    }
+   }
 
 
 
