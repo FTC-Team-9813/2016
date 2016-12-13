@@ -73,8 +73,9 @@ public class CobaltTeleopTank_Iterative extends OpMode{
         robot.flipperController.setPosition(0); // 0 is open, .3 is closed.
 
         // Send telemetry message to signify robot waiting;
-        telemetry.addData("Say", "If you are losing win better and if you are winning win better");    //
+        telemetry.addData("Say", "If you are losing win better and if you are winning win better");
         updateTelemetry(telemetry);
+
     }
     /*
      * Code to run REPEATEDLY after the driver hits INIT, but before they hit PLAY
@@ -85,6 +86,7 @@ public class CobaltTeleopTank_Iterative extends OpMode{
     /*
      * Code to run ONCE when the driver hits PLAY
      */
+
     @Override
     public void start() {
 
@@ -95,8 +97,8 @@ public class CobaltTeleopTank_Iterative extends OpMode{
 
     boolean flippersOpen = true;
 
-    boolean shooterOpen = true;
-    boolean previousShooter_state;
+    boolean shooterOpen = false;
+    boolean previousShooter_state = false;
 
     boolean testServoBool = true;
     /*
@@ -118,10 +120,11 @@ public class CobaltTeleopTank_Iterative extends OpMode{
         robot.rightFrontMotor.setPower(-gamepad1.right_stick_y);
         robot.rightRearMotor.setPower(-gamepad1.right_stick_y);
 
+//        robot.flipperController.setPosition(.3);
+//        robot.shooterController.setPosition(1);
 
-        robot.flipperController.setPosition(.3);
-        robot.shooterController.setPosition(1);
-       //capture ball
+
+        //capture ball
         if (gamepad2.left_bumper == true && gamepad2.left_bumper != previous_state)
         {
             flippersOpen = !flippersOpen;
@@ -131,13 +134,13 @@ public class CobaltTeleopTank_Iterative extends OpMode{
         if (flippersOpen == false)
         {
             robot.flipperController.setPosition(.3); // 0 or 1, we don't know
-            telemetry.addData("Say","capturing flippers are is closed");
+            telemetry.addData("Flipper Status","capturing flippers are is closed");
         }
         else
         {
             //#Thuglife
             robot.flipperController.setPosition(0);
-            telemetry.addData("Say","capturing flippers are is open");
+            telemetry.addData("Flipper Status","capturing flippers are is open");
         }
 
 //shoot the ball

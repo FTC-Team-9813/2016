@@ -105,7 +105,7 @@ public class HardwareCobalt
         shooterController = hwMap.servo.get("shooterServo");
 
         flipperController.setPosition(0.0);
-        flipperController.setPosition(0.0);
+        shooterController.setPosition(1);
 
         leftFrontMotor.setDirection(DcMotor.Direction.FORWARD);
         leftRearMotor.setDirection(DcMotor.Direction.FORWARD);
@@ -123,7 +123,7 @@ public class HardwareCobalt
         //catapult trigger motor
       //  triggerMotor.setPower(0);
 
-        //motors us encoders!
+        //motors use encoders!
         leftFrontMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         leftRearMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightFrontMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);

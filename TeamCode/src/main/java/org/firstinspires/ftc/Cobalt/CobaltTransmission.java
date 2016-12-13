@@ -1,9 +1,11 @@
 package org.firstinspires.ftc.Cobalt;
 
-import android.util.Xml;
-
+import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
+
+import org.firstinspires.ftc.robotcore.external.Telemetry;
+import org.firstinspires.ftc.robotcore.internal.TelemetryImpl;
 
 
 
@@ -12,8 +14,9 @@ import com.qualcomm.robotcore.hardware.DcMotorSimple;
  */
 
 public class CobaltTransmission {
+
     public enum Control {
-        STATE_ONE, STATE_TWO
+        SETUP, RUN,QUIT;
     }
         private final double DISTANCE_PER_TICK = 0.009;
 
@@ -35,27 +38,39 @@ public class CobaltTransmission {
         public CobaltTransmission(DcMotor rightRearMotor, DcMotor rightFrontMotor, DcMotor leftFrontMotor, DcMotor leftRearMotor) {
 
 
+
             this.rightRear = rightRearMotor;
             this.rightFront = rightFrontMotor;
             this.leftRear = leftRearMotor;
             this.leftFront = leftFrontMotor;
 
-            rightRear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            rightFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-            leftRear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-           leftFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+            rightRear.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            rightFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            leftRear.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+            leftFront.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+
+
+            leftRear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            rightRear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            leftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+            rightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+
 
         }
-
+        public Control driveStraightStatus = Control.SETUP;
         public boolean driveStraightDistance(double distance) {
 
-            Control State = Control.STATE_ONE;
 
-            switch (State) {
-                case STATE_ONE:
+            switch (driveStraightStatus) {
+                case SETUP:
+                    leftRear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                    rightRear.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                    leftFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+                    rightFront.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
 
-                     distanceRun = rightRear.getCurrentPosition()*DISTANCE_PER_TICK;
-                     remainingDistance = distance - distanceRun;
+
+                    distanceRun = rightRear.getCurrentPosition()*DISTANCE_PER_TICK;
+                    remainingDistance = distance - distanceRun;
                     ticks = distance / DISTANCE_PER_TICK;
 
                     leftFront.setTargetPosition((int) ticks);
@@ -63,22 +78,35 @@ public class CobaltTransmission {
                     rightRear.setTargetPosition((int) ticks);
                     rightFront.setTargetPosition((int) ticks);
 
-                    State = Control.STATE_TWO;
-                    break;
-                case STATE_TWO:
+                    rightFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    rightRear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    leftFront.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    leftRear.setMode(DcMotor.RunMode.RUN_TO_POSITION);
+                    driveStraightStatus = Control.RUN;
 
-                    if (remainingDistance > 0) {
-                        leftFront.setPower(1.0);
-                        rightFront.setPower(1.0);
-                        leftRear.setPower(1.0);
-                        rightRear.setPower(1.0);
-                    }else{
-                        leftFront.setPower(0);
-                        rightFront.setPower(0);
-                        leftRear.setPower(0);
-                        rightRear.setPower(0);
+
+                    break;
+                case RUN:
+                    leftFront.setPower(1.0);
+                    rightFront.setPower(1.0);
+                    leftRear.setPower(1.0);
+                    rightRear.setPower(1.0);
+
+
+                    if(!(rightRear.getCurrentPosition() > rightRear.getTargetPosition() -49 && rightRear.getCurrentPosition() < rightRear.getTargetPosition() + 49)) {
+                       driveStraightStatus = Control.RUN;
                     }
-                    State = Control.STATE_ONE;
+
+                    else{
+                        driveStraightStatus = Control.QUIT;
+                    }
+                    break;
+                case QUIT:
+                    leftFront.setPower(0);
+                    rightFront.setPower(0);
+                    leftRear.setPower(0);
+                    rightRear.setPower(0);
+                    driveStraightStatus = (Control.SETUP);
                     break;
             }
             return true;
@@ -86,7 +114,7 @@ public class CobaltTransmission {
 
         public boolean turnByDegrees(double degrees) {
 
-            Control State = Control.STATE_ONE;
+            Control State = Control.SETUP;
 
 //(math.pi/180)*degrees*4inches
 
@@ -97,7 +125,7 @@ public class CobaltTransmission {
             double LFticks = (Math.PI / 180) * degrees + 444;
 
             switch (State) {
-                case STATE_ONE:
+                case SETUP:
                      ticksRanRight = rightFront.getCurrentPosition();
                     ticksRanLeft = leftFront.getCurrentPosition();
                      remainingTicksRight = RRticks - ticksRanRight;
@@ -108,9 +136,9 @@ public class CobaltTransmission {
                     rightRear.setTargetPosition((int) RRticks);
                     rightFront.setTargetPosition((int) RFticks);
 
-                   State = Control.STATE_TWO;
+                   State = Control.RUN;
                     break;
-                case STATE_TWO:
+                case RUN:
 
                     if (RRticks < 0 && RFticks < 0) {
                         rightRear.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -140,7 +168,7 @@ public class CobaltTransmission {
                         leftRear.setPower(0);
                     }
 
-                    State = Control.STATE_ONE;
+                    State = Control.SETUP;
                     break;
             }
             return true;

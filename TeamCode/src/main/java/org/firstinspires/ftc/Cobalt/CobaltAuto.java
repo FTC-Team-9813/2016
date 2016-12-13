@@ -11,20 +11,19 @@ import com.qualcomm.robotcore.hardware.DigitalChannelController;
  * Created by Kilroy Programming on 10/18/2016.
  */
 @Autonomous(name="CobaltAuto", group="Cobalt")
-public class CobaltAuto extends OpMode
-{
+public class CobaltAuto extends OpMode {
     CobaltTransmission cobaltTransmission = HardwareCobalt.robotDrive;
 
     /* Declare OpMode members. */
     HardwareCobalt robot = new HardwareCobalt(); // use the class created to define a Pushbot's hardware
 
-    public enum controlState
-    {
-        MOVE_FORWARD, TURN_RIGHT,DANCE_NOW
+    public enum controlState {
+        MOVE_FORWARD, TURN_RIGHT, DANCE_NOW, STOP_NOW
     }
-public enum dance{
-   DANCE_1,DANCE_2, DANCE_3
-}
+
+    public enum dance {
+        DANCE_1, DANCE_2, DANCE_3
+    }
 
     /*
      * Code to run ONCE when the driver hits INIT
@@ -39,14 +38,14 @@ public enum dance{
         // Send telemetry message to signify robot waiting;
         telemetry.addData("Say", "Yell at the robot to win harder");
         updateTelemetry(telemetry);
+        this.resetStartTime();
     }
 
     /*
      * Code to run REPEATEDLY after the driver hits INIT, but before they hit PLAY
      */
     @Override
-    public void init_loop()
-    {
+    public void init_loop() {
 
     }
 
@@ -54,22 +53,21 @@ public enum dance{
      * Code to run ONCE when the driver hits PLAY
      */
     @Override
-    public void start()
-    {
+    public void start() {
         robot.leftFrontMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.leftRearMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.rightFrontMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.rightRearMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-      //  HardwareCobalt.cdim.setDigitalChannelMode(HardwareCobalt.GROUND_LED_PORT,DigitalChannelController.Mode.OUTPUT);
-       // HardwareCobalt.cdim.setDigitalChannelState(HardwareCobalt.GROUND_LED_PORT,true);
+        //  HardwareCobalt.cdim.setDigitalChannelMode(HardwareCobalt.GROUND_LED_PORT,DigitalChannelController.Mode.OUTPUT);
+        // HardwareCobalt.cdim.setDigitalChannelState(HardwareCobalt.GROUND_LED_PORT,true);
     }
 
     /*
      * Code to run REPEATEDLY after the driver hits PLAY but before they hit STOP
      */
     @Override
-    public void loop()
-    {
+    public void loop() {
+
        /* telemetry.addData("Say", "RGB Values " +HardwareCobalt.groundRGBSensor.red() * 255.0 / 65535.0 + //this gets 0.0... HELP US
                 " "+HardwareCobalt.groundRGBSensor.green() * 255.0 / 65535.0 +" "+HardwareCobalt.groundRGBSensor.blue() * 255.0 / 65535.0 +"\n");    //
         updateTelemetry(telemetry);
@@ -105,87 +103,78 @@ public enum dance{
             }*/
         //IMPORTANT!!!!!!!!!!
         //THURSDAY THE 1ST, MAKE A METHOD FOR STRENGTH TO DISTANCE, AND MAKE IT WORK.
-            //This is for red team
-            // if(HardwareCobalt.irSeeker.getStrength() > 5)
-            //{
-            // HardwareCobalt.triggerMotor.setPower(1);//move right
-            // if (HardwareCobalt.frontRGBSensor.red() == 255 && HardwareCobalt.frontRGBSensor.green() == 0 && HardwareCobalt.frontRGBSensor.blue() == 0)
-            // {
+        //This is for red team
+        // if(HardwareCobalt.irSeeker.getStrength() > 5)
+        //{
+        // HardwareCobalt.triggerMotor.setPower(1);//move right
+        // if (HardwareCobalt.frontRGBSensor.red() == 255 && HardwareCobalt.frontRGBSensor.green() == 0 && HardwareCobalt.frontRGBSensor.blue() == 0)
+        // {
 
-            // }
-            // if(HardwareCobalt.triggerMotor == /*Degrees turned 15?*/)
-            //  HardwareCobalt.triggerMotor.setPower(-1); // Move left
+        // }
+        // if(HardwareCobalt.triggerMotor == /*Degrees turned 15?*/)
+        //  HardwareCobalt.triggerMotor.setPower(-1); // Move left
         //}
         //HardwareCobalt
         //This is some code for pushing the button on the beacon!
-       // telemetry.addData("Say", " Front RGB Values " + HardwareCobalt.frontRGBSensor.red() +
-               // " " + HardwareCobalt.frontRGBSensor.green() + " " + HardwareCobalt.frontRGBSensor.blue() + "\n");
+        // telemetry.addData("Say", " Front RGB Values " + HardwareCobalt.frontRGBSensor.red() +
+        // " " + HardwareCobalt.frontRGBSensor.green() + " " + HardwareCobalt.frontRGBSensor.blue() + "\n");
         //telemetry.addData("Say", " Front RGB Values " + HardwareCobalt.frontRGBSensor.red() +
-          //      " " + HardwareCobalt.frontRGBSensor.green() + " " + HardwareCobalt.frontRGBSensor.blue() + "\n");
+        //      " " + HardwareCobalt.frontRGBSensor.green() + " " + HardwareCobalt.frontRGBSensor.blue() + "\n");
 
 
         //If motor, when 1, turns to right
         //*255/800 If not work, try (*255/4095)
         //WHAT DOES THIS MEAN
         telemetry.addData("Say", "Prepare for the sketch. That sketchy program or the sketchy life you may ask. The answer is both. #Thuglife");
-         controlState AutoOp = controlState.MOVE_FORWARD;
-        dance Dance = dance.DANCE_1;
-                if(robot.robotDrive.equals(false)){
-                    Dance = dance.DANCE_1;
+        controlState AutoOp = controlState.MOVE_FORWARD;
 
-    }
+        //  if(robot.robotDrive.equals(false)){
+        //      Dance = dance.DANCE_1;
 
-        switch (AutoOp)
-        {
+        //}
+
+
+        switch (AutoOp) {
             case MOVE_FORWARD:
+                robot.rightFrontMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                robot.rightRearMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                robot.leftFrontMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+                robot.leftRearMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-                robot.robotDrive.equals(false);
-        if(robot.robotDrive.equals(false)){
-                robot.robotDrive.driveStraightDistance(10);}else{
-            AutoOp = controlState.TURN_RIGHT;
-        }
+                telemetry.addData("Say", "now we play the waiting game");
 
-               break;
-           case TURN_RIGHT:
+                telemetry.addData("Say", this.getRuntime());
+                if(this.getRuntime()>=11 && this.getRuntime()< 16.5){
+                    robot.rightRearMotor.setPower(1);
+                    robot.rightFrontMotor.setPower(1);
+                    robot.leftFrontMotor.setPower(1);
+                    robot.leftRearMotor.setPower(1);
 
-               robot.robotDrive.equals(false);
-               if(robot.robotDrive.equals(false)){
-               robot.robotDrive.turnByDegrees(90);}else{
-                   AutoOp = controlState.DANCE_NOW;
-               }
+                }else{
+                    robot.rightRearMotor.setPower(0);
+                robot.rightFrontMotor.setPower(0);
+                robot.leftFrontMotor.setPower(0);
+                robot.leftRearMotor.setPower(0);}
+
+
+
+
+
+                // robot.robotDrive.driveStraightDistance(102);
+               //telemetry.addData("Say", robot.robotDrive.driveStraightStatus);
+                telemetry.addData("Say", "driving straight distance");
+
+
+
                 break;
-            case DANCE_NOW:
-                switch(Dance) {
-
-                    case DANCE_1:
-
-                        robot.robotDrive.driveStraightDistance(5);
-
-                        Dance = dance.DANCE_2;
-                        break;
-
-                    case DANCE_2:
-                        if (robot.robotDrive.equals(true)) {
-                        robot.robotDrive.equals(false);
-                    }
-
-                        robot.robotDrive.turnByDegrees(45);
-
-                        Dance = dance.DANCE_3;
-                        break;
-                    case DANCE_3:
-
-                        if (robot.robotDrive.equals(true)) {
-                        robot.robotDrive.equals(false);
-                    }
-
-                        robot.robotDrive.turnByDegrees(-90);
-
-                        Dance = dance.DANCE_1;
-                        break;
-
-                }
+            case STOP_NOW:
+                robot.rightRearMotor.setPower(0);
+                robot.rightFrontMotor.setPower(0);
+                robot.leftFrontMotor.setPower(0);
+                robot.leftRearMotor.setPower(0);
         }
+
+
     }
 
     /*
