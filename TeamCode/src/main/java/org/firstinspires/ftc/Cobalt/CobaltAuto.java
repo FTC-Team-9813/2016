@@ -1,12 +1,8 @@
 package org.firstinspires.ftc.Cobalt;
 
-import android.widget.Switch;
-
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DigitalChannelController;
-
 
 
 /**
@@ -20,7 +16,7 @@ public class CobaltAuto extends OpMode {
     HardwareCobalt robot = new HardwareCobalt(); // use the class created to define a Pushbot's hardware
 
     public enum controlState {
-        MOVE_FORWARD, TURN_RIGHT, DANCE_NOW, STOP_NOW
+        MOVE_FORWARD, TURN_RIGHT, DANCE_NOW, STOP_NOW, MOVE_TO_LINE
     }
 
     public enum dance {
@@ -175,8 +171,16 @@ public class CobaltAuto extends OpMode {
                 robot.leftFrontMotor.setPower(0);
                 robot.leftRearMotor.setPower(0);
         }*/
+
+
+
+
+
+
+
         switch(AutoOp){
             case MOVE_FORWARD:
+                telemetry.addData("Say", this.getRuntime());
                 //DRIVE_SPEED/TURN_SPEED
                 // Note: Reverse movement is obtained by setting a negative distance (not speed)
                 //robot.autoDrive.encoderDrive(speed, right distance, left distance, wait time)
@@ -188,6 +192,17 @@ if(!robot.rightFrontMotor.isBusy() && !robot.rightRearMotor.isBusy() && !robot.l
                 break;
             case TURN_RIGHT:
                 robot.autoDrive.encoderDrive(.7,12.0,-12.0,5.0);
+
+            case MOVE_TO_LINE:
+                telemetry.addData("Angle", HardwareCobalt.irSeeker.getAngle());
+                telemetry.addData("Strength", HardwareCobalt.irSeeker.getStrength());
+                telemetry.addData("Say",  "Angle Values" +HardwareCobalt.irSeeker.getAngle());
+                telemetry.addData("Say",  "Strength Values" +HardwareCobalt.irSeeker.getStrength());
+                updateTelemetry(telemetry);
+
+             break;
+
+
 
         }
 
