@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.Cobalt;
 
+import android.widget.Switch;
+
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
@@ -66,7 +68,7 @@ public class CobaltAuto extends OpMode {
      * Code to run REPEATEDLY after the driver hits PLAY but before they hit STOP
      */
     @Override
-    public void loop() {
+    public void loop()  {
 
        /* telemetry.addData("Say", "RGB Values " +HardwareCobalt.groundRGBSensor.red() * 255.0 / 65535.0 + //this gets 0.0... HELP US
                 " "+HardwareCobalt.groundRGBSensor.green() * 255.0 / 65535.0 +" "+HardwareCobalt.groundRGBSensor.blue() * 255.0 / 65535.0 +"\n");    //
@@ -134,7 +136,7 @@ public class CobaltAuto extends OpMode {
         //}
 
 
-        switch (AutoOp) {
+      /*  switch (AutoOp) {
             case MOVE_FORWARD:
                 robot.rightFrontMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 robot.rightRearMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -172,6 +174,21 @@ public class CobaltAuto extends OpMode {
                 robot.rightFrontMotor.setPower(0);
                 robot.leftFrontMotor.setPower(0);
                 robot.leftRearMotor.setPower(0);
+        }*/
+        switch(AutoOp){
+            case MOVE_FORWARD:
+                //DRIVE_SPEED/TURN_SPEED
+                // Note: Reverse movement is obtained by setting a negative distance (not speed)
+                //robot.autoDrive.encoderDrive(speed, right distance, left distance, wait time)
+        robot.autoDrive.encoderDrive(1.0, 102.0, 102.0,5.0);
+
+if(!robot.rightFrontMotor.isBusy() && !robot.rightRearMotor.isBusy() && !robot.leftFrontMotor.isBusy() && !robot.leftRearMotor.isBusy()){
+    AutoOp = controlState.TURN_RIGHT;
+}
+                break;
+            case TURN_RIGHT:
+                robot.autoDrive.encoderDrive(.7,12.0,-12.0,5.0);
+
         }
 
 

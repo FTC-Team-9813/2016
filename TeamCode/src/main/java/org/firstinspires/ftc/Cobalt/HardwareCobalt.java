@@ -48,6 +48,7 @@ public class HardwareCobalt
     public static DigitalChannelController bottomLedLight = null;//null
 //transmission
     public static CobaltTransmission robotDrive;
+    public static TheNewCobaltTransmission autoDrive;
     //NOT REALLY USING THESE RIGHT NOW BUT TOO LAZY TOO DELETE...     I NEED TO STOP DOING THIS ON CAPS
    // public static CatapultFireMech catapultFireMech = new CatapultFireMech(triggerMotor);
 
@@ -99,6 +100,7 @@ public class HardwareCobalt
      //   irSeeker = hwMap.irSeekerSensor.get("irseekersensor");
         //pitching motors
         robotDrive = new CobaltTransmission(leftFrontMotor, leftRearMotor, rightRearMotor, rightFrontMotor);
+        autoDrive = new TheNewCobaltTransmission();
 
         //frontAssemblyController = hwMap.servoController.get("frontAssemblyController");
         flipperController = hwMap.servo.get("flipperServo");
