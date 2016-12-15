@@ -75,13 +75,16 @@ public class TheNewCobaltTransmission extends LinearOpMode {
     HardwareCobalt robot   = new HardwareCobalt();
     private ElapsedTime     runtime = new ElapsedTime();
 
-    static final double     COUNTS_PER_MOTOR_REV    = 1440 ;    // eg: TETRIX Motor Encoder
-    static final double     DRIVE_GEAR_REDUCTION    = 2.0 ;     // This is < 1.0 if geared UP
+    static final double     COUNTS_PER_MOTOR_REV    = 2800;    // eg: Andymark Motor Encoder
+    static final double     DRIVE_GEAR_REDUCTION    = 2.0;     // This is < 1.0 if geared UP
     static final double     WHEEL_DIAMETER_INCHES   = 4.0 ;     // For figuring circumference
     static final double     COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
                                                       (WHEEL_DIAMETER_INCHES * 3.1415);
     static final double     DRIVE_SPEED             = 1;
     static final double     TURN_SPEED              = 0.5;
+public enum Refreshdistance{
+    REFRESH_TARGET, REFRESH_POSITION}
+
 
     @Override
     public void runOpMode() {
@@ -115,17 +118,6 @@ public class TheNewCobaltTransmission extends LinearOpMode {
                           robot.rightRearMotor.getCurrentPosition());
         telemetry.update();
 
-        // Wait for the game to start (driver presses PLAY)
-
-
-        // Step through each leg of the path,
-        // Note: Reverse movement is obtained by setting a negative distance (not speed)
-        //encoderDrive(DRIVE_SPEED,  102,  102, 5.0);  // S1: Forward 102 Inches with 5 Sec timeout
-        //encoderDrive(TURN_SPEED,   12, -12, 4.0);  // S2: Turn Right 12 Inches with 4 Sec timeout
-       // encoderDrive(DRIVE_SPEED, -24, -24, 4.0);  // S3: Reverse 24 Inches with 4 Sec timeout
-
-
-          // pause for servos to move
 
         telemetry.addData("Path", "Complete");
         telemetry.update();
@@ -142,11 +134,12 @@ public class TheNewCobaltTransmission extends LinearOpMode {
     public void encoderDrive(double speed,
                              double leftInches, double rightInches,
                              double timeoutS)  {
+
         int newLeftTarget;
         int newRightTarget;
 
         // Ensure that the opmode is still active
-        if (opModeIsActive()) {
+   if (opModeIsActive()) {
 
             // Determine new target position, and pass to motor controller
             newLeftTarget = robot.leftFrontMotor.getCurrentPosition() + (int)(leftInches * COUNTS_PER_INCH);
@@ -175,16 +168,16 @@ public class TheNewCobaltTransmission extends LinearOpMode {
                    (robot.leftFrontMotor.isBusy() && robot.leftRearMotor.isBusy() && robot.rightFrontMotor.isBusy() && robot.rightRearMotor.isBusy())) {
 
                 // Display it for the driver.
-                telemetry.addData("Path1",  "Running to %7d :%7d", newLeftTarget,  newRightTarget);
-                telemetry.addData("Path2",  "Running at %7d :%7d",
-                                            robot.leftFrontMotor.getCurrentPosition(),
-                                             robot.leftRearMotor.getCurrentPosition(),
-                                            robot.rightFrontMotor.getCurrentPosition());
+                telemetry.addData("Path1", "Running to %7d :%7d", newLeftTarget, newRightTarget);
+                telemetry.addData("Path2", "Running at %7d :%7d",
+                        robot.leftFrontMotor.getCurrentPosition(),
+                        robot.leftRearMotor.getCurrentPosition(),
+                        robot.rightFrontMotor.getCurrentPosition());
                 robot.rightRearMotor.getCurrentPosition();
                 telemetry.update();
 
                 // Allow time for other processes to run.
-
+            }
             }
 
             // Stop all motion;
@@ -202,4 +195,4 @@ public class TheNewCobaltTransmission extends LinearOpMode {
             //  sleep(250);   // optional pause after each move
         }
     }
-}
+

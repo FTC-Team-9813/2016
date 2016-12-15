@@ -163,18 +163,7 @@ public class CobaltTeleopTank_Iterative extends OpMode{
             robot.shooterController.setPosition(.5);
         }
         updateTelemetry(telemetry);
-//        if(gamepad2.dpad_right && gamepad2.dpad_right != testServoBool)
-//            robot.flipperController.setPosition(robot.flipperController.getPosition() + .05);
-//        else if(gamepad2.dpad_left&& gamepad2.dpad_left != testServoBool)
-//            robot.flipperController.setPosition(robot.flipperController.getPosition() - .05);
-//
-//        if(gamepad2.dpad_up&& gamepad2.dpad_up!= testServoBool)
-//            robot.shooterController.setPosition(robot.shooterController.getPosition() + .05);
-//        else if(gamepad2.dpad_down&& gamepad2.dpad_down != testServoBool)
-//            robot.shooterController.setPosition(robot.shooterController.getPosition() -.05);
-//        testServoBool = gamepad2.dpad_right || gamepad2.dpad_up || gamepad2.dpad_left || gamepad2.dpad_down;
-//        telemetry.addData("Servo Positions:", "Flipper: " + robot.flipperController.getPosition() + "\nShooter:" + robot.shooterController.getPosition());
-//        updateTelemetry(telemetry);
+
          }
         @Override
         public void stop(){

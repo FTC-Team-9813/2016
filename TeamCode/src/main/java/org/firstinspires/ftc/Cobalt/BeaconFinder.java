@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.Cobalt;
 
 import com.qualcomm.robotcore.hardware.ColorSensor;
-import com.qualcomm.robotcore.hardware.IrSeekerSensor;
 
 /**
  * Created by Kilroy on 12/13/2016.
@@ -11,7 +10,7 @@ public class BeaconFinder {
     static ColorSensor groundRGB;
 
  public enum ircontrol{
-       FING_WHITE, SIGNAL_DETECTED
+     FIND_WHITE, SIGNAL_DETECTED
     }
     public BeaconFinder(ColorSensor groundRGBSensor){
         this.groundRGB = groundRGBSensor;
@@ -19,9 +18,9 @@ public class BeaconFinder {
 
     }
     public boolean lineFollowing(){
-        ircontrol control = ircontrol.FING_WHITE;
+        ircontrol control = ircontrol.FIND_WHITE;
         switch(control){
-            case FING_WHITE: if(HardwareCobalt.groundRGBSensor.red() == 255&& HardwareCobalt.groundRGBSensor.green() == 255&& HardwareCobalt.groundRGBSensor.blue() == 255) {
+            case FIND_WHITE: if(HardwareCobalt.groundRGBSensor.red() == 255&& HardwareCobalt.groundRGBSensor.green() == 255&& HardwareCobalt.groundRGBSensor.blue() == 255) {
 
            if (HardwareCobalt.irSeeker.signalDetected() == true) ;
            {

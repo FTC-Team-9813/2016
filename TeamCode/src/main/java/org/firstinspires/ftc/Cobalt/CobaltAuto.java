@@ -18,11 +18,6 @@ public class CobaltAuto extends OpMode {
     public enum controlState {
         MOVE_FORWARD, TURN_RIGHT, DANCE_NOW, STOP_NOW, MOVE_TO_LINE
     }
-
-    public enum dance {
-        DANCE_1, DANCE_2, DANCE_3
-    }
-
     /*
      * Code to run ONCE when the driver hits INIT
      */
@@ -184,6 +179,7 @@ public class CobaltAuto extends OpMode {
                 //DRIVE_SPEED/TURN_SPEED
                 // Note: Reverse movement is obtained by setting a negative distance (not speed)
                 //robot.autoDrive.encoderDrive(speed, right distance, left distance, wait time)
+                // Note: Reverse movement is obtained by setting a negative distance (not speed)
         robot.autoDrive.encoderDrive(1.0, 102.0, 102.0,5.0);
 
 if(!robot.rightFrontMotor.isBusy() && !robot.rightRearMotor.isBusy() && !robot.leftFrontMotor.isBusy() && !robot.leftRearMotor.isBusy()){
@@ -191,8 +187,13 @@ if(!robot.rightFrontMotor.isBusy() && !robot.rightRearMotor.isBusy() && !robot.l
 }
                 break;
             case TURN_RIGHT:
+                telemetry.addData("Say","This has a chance of working. Not a perfect chance nor an impefect chance. Just a chance. What is a chance you amy ask. I dont know. Perhaps it is a possible state of existance in one dimension of the multiverse. Or not. How about I just say Sure");
                 robot.autoDrive.encoderDrive(.7,12.0,-12.0,5.0);
 
+                if(!robot.rightFrontMotor.isBusy() && !robot.rightRearMotor.isBusy() && !robot.leftFrontMotor.isBusy() && !robot.leftRearMotor.isBusy()){
+                    AutoOp = controlState.STOP_NOW;
+                }
+break;
             case MOVE_TO_LINE:
                 telemetry.addData("Angle", HardwareCobalt.irSeeker.getAngle());
                 telemetry.addData("Strength", HardwareCobalt.irSeeker.getStrength());
@@ -201,8 +202,13 @@ if(!robot.rightFrontMotor.isBusy() && !robot.rightRearMotor.isBusy() && !robot.l
                 updateTelemetry(telemetry);
 
              break;
+            case STOP_NOW:
+                robot.rightRearMotor.setPower(0);
+                robot.leftRearMotor.setPower(0);
+                robot.rightFrontMotor.setPower(0);
+                robot.leftFrontMotor.setPower(0);
 
-
+break;
 
         }
 
