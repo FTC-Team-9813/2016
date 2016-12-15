@@ -7,20 +7,21 @@ import com.qualcomm.robotcore.hardware.IrSeekerSensor;
  * Created by Kilroy on 12/13/2016.
  */
 
-public class GetToBeacon {
+public class BeaconFinder {
     static ColorSensor groundRGB;
 
  public enum ircontrol{
        FING_WHITE, SIGNAL_DETECTED
     }
-    public GetToBeacon(ColorSensor groundRGBSensor){
+    public BeaconFinder(ColorSensor groundRGBSensor){
         this.groundRGB = groundRGBSensor;
 
 
     }
     public boolean lineFollowing(){
-        switch(ircontrol){
-       if(HardwareCobalt.groundRGBSensor.red() == 255&& HardwareCobalt.groundRGBSensor.green() == 255&& HardwareCobalt.groundRGBSensor.blue() == 255) {
+        ircontrol control = ircontrol.FING_WHITE;
+        switch(control){
+            case FING_WHITE: if(HardwareCobalt.groundRGBSensor.red() == 255&& HardwareCobalt.groundRGBSensor.green() == 255&& HardwareCobalt.groundRGBSensor.blue() == 255) {
 
            if (HardwareCobalt.irSeeker.signalDetected() == true) ;
            {
@@ -48,7 +49,8 @@ public class GetToBeacon {
        }
 
 
-       }
+      break;
+        }
 
 
         return true;

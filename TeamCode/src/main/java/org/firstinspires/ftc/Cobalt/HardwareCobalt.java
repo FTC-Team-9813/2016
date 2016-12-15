@@ -61,7 +61,7 @@ public class HardwareCobalt
    // public static ColorSensor frontRGBSensor;
    public static IrSeekerSensor irSeeker;
 
-    public static GetToBeacon getToBeacon;
+    public static BeaconFinder beaconFinder;
 
 //duration!
 
@@ -102,7 +102,7 @@ public class HardwareCobalt
         //pitching motors
         robotDrive = new CobaltTransmission(leftFrontMotor, leftRearMotor, rightRearMotor, rightFrontMotor);
         autoDrive = new TheNewCobaltTransmission();
-        getToBeacon = new GetToBeacon(groundRGBSensor);
+        beaconFinder = new BeaconFinder(groundRGBSensor);
 
         //frontAssemblyController = hwMap.servoController.get("frontAssemblyController");
         flipperController = hwMap.servo.get("flipperServo");
