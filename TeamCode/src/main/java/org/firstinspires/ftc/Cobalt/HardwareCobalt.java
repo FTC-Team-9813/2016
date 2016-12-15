@@ -2,6 +2,8 @@ package org.firstinspires.ftc.Cobalt;
 
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.DeviceInterfaceModule;
 import com.qualcomm.robotcore.hardware.DigitalChannelController;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IrSeekerSensor;
@@ -40,8 +42,8 @@ public class HardwareCobalt
 //    public static DcMotor firingMotor = null;
 //    public static DcMotor loadingMotor = null;
     //color sensors (or related to color sensors)
-   // public static DeviceInterfaceModule cdim = null;//null
-    //public static DeviceInterfaceModule deviceInterface = null;
+    public static DeviceInterfaceModule cdim = null;//null
+    public static DeviceInterfaceModule deviceInterface = null;
     public static DigitalChannelController bottomLedLight = null;//null
 //transmission
     public static CobaltTransmission robotDrive;
@@ -62,6 +64,8 @@ public class HardwareCobalt
    public static IrSeekerSensor irSeeker;
 
     public static BeaconFinder beaconFinder;
+
+    public static ColorSensor beaconColor;
 
 //duration!
 
@@ -89,12 +93,12 @@ public class HardwareCobalt
      //   triggerMotor = hwMap.dcMotor.get("trigger_motor");
 
         //Color Sensors
-       // cdim = hwMap.deviceInterfaceModule.get("cdim");
-        //deviceInterface = hwMap.deviceInterfaceModule.get("core_device_interface");
+       cdim = hwMap.deviceInterfaceModule.get("beaconcolor");
+        deviceInterface = hwMap.deviceInterfaceModule.get("core_device_interface");
         //bottomLedLight = hwMap.deviceInterfaceModule.get("LED_light");
       //  triggerMotor = hwMap.dcMotor.get("trigger_fire_motor");
         groundRGBSensor = hwMap.colorSensor.get("colorsensor");
-      //  frontRGBSensor = hwMap.colorSensor.get("colorsensor");
+       // beaconFinder = hwMap.colorSensor.get("colorsensor");
         //duration!
 
         //the ir sensor

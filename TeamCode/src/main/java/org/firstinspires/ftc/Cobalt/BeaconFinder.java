@@ -18,41 +18,43 @@ public class BeaconFinder {
 
 
     }
-    public boolean lineFollowing(){
+    public boolean lineFollowing() {
         ircontrol control = ircontrol.FING_WHITE;
-        switch(control){
-            case FING_WHITE: if(HardwareCobalt.groundRGBSensor.red() == 255&& HardwareCobalt.groundRGBSensor.green() == 255&& HardwareCobalt.groundRGBSensor.blue() == 255) {
+        switch (control) {
+            case FING_WHITE:
+                if (HardwareCobalt.groundRGBSensor.red() == 255 && HardwareCobalt.groundRGBSensor.green() == 255 && HardwareCobalt.groundRGBSensor.blue() == 255) {
 
-           if (HardwareCobalt.irSeeker.signalDetected() == true) ;
-           {
-               HardwareCobalt.leftFrontMotor.setPower(1);
-               HardwareCobalt.leftRearMotor.setPower(1);
-               HardwareCobalt.rightFrontMotor.setPower(1);
-               HardwareCobalt.rightRearMotor.setPower(1);
-           }
-           if (HardwareCobalt.irSeeker.getAngle() < -5) ;
-           {
-               HardwareCobalt.leftFrontMotor.setPower(-1);
-               HardwareCobalt.leftRearMotor.setPower(-1);
-               HardwareCobalt.rightFrontMotor.setPower(1);
-               HardwareCobalt.rightRearMotor.setPower(1);
-           }
-           if (HardwareCobalt.irSeeker.getAngle() > 5) //five is just an example
-           {
-               HardwareCobalt.leftFrontMotor.setPower(1);
-               HardwareCobalt.leftRearMotor.setPower(1);
-               HardwareCobalt.rightFrontMotor.setPower(-1);
-               HardwareCobalt.rightRearMotor.setPower(-1);
-
-
-           }
-       }
+                    if (HardwareCobalt.irSeeker.signalDetected() == true) ;
+                    {
+                        HardwareCobalt.leftFrontMotor.setPower(1);
+                        HardwareCobalt.leftRearMotor.setPower(1);
+                        HardwareCobalt.rightFrontMotor.setPower(1);
+                        HardwareCobalt.rightRearMotor.setPower(1);
+                    }
+                    if (HardwareCobalt.irSeeker.getAngle() < -5) ;
+                    {
+                        HardwareCobalt.leftFrontMotor.setPower(-1);
+                        HardwareCobalt.leftRearMotor.setPower(-1);
+                        HardwareCobalt.rightFrontMotor.setPower(1);
+                        HardwareCobalt.rightRearMotor.setPower(1);
+                    }
+                    if (HardwareCobalt.irSeeker.getAngle() > 5) //five is just an example
+                    {
+                        HardwareCobalt.leftFrontMotor.setPower(1);
+                        HardwareCobalt.leftRearMotor.setPower(1);
+                        HardwareCobalt.rightFrontMotor.setPower(-1);
+                        HardwareCobalt.rightRearMotor.setPower(-1);
 
 
-      break;
+                    }
+                }
+
+
+                break;
         }
 
 
         return true;
     }
 }
+

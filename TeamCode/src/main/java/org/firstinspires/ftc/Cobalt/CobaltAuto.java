@@ -64,33 +64,26 @@ public class CobaltAuto extends OpMode {
      * Code to run REPEATEDLY after the driver hits PLAY but before they hit STOP
      */
     @Override
-    public void loop()  {
+    public void loop() {
 
-       /* telemetry.addData("Say", "RGB Values " +HardwareCobalt.groundRGBSensor.red() * 255.0 / 65535.0 + //this gets 0.0... HELP US
-                " "+HardwareCobalt.groundRGBSensor.green() * 255.0 / 65535.0 +" "+HardwareCobalt.groundRGBSensor.blue() * 255.0 / 65535.0 +"\n");    //
-        updateTelemetry(telemetry);
-        telemetry.addData("Angle", HardwareCobalt.irSeeker.getAngle());
-        telemetry.addData("Strength", HardwareCobalt.irSeeker.getStrength());
-        telemetry.addData("Say",  "Angle Values" +HardwareCobalt.irSeeker.getAngle());
-        telemetry.addData("Say",  "Strength Values" +HardwareCobalt.irSeeker.getStrength());
-        updateTelemetry(telemetry);
-        if (HardwareCobalt.groundRGBSensor.red() == 255&& HardwareCobalt.groundRGBSensor.green() == 255&& HardwareCobalt.groundRGBSensor.blue() == 255)
-        {
-             if (HardwareCobalt.irSeeker.getAngle() > 5);
-            {
-                  HardwareCobalt.leftFrontMotor.setPower(1);
-                 HardwareCobalt.leftRearMotor.setPower(1);
-                 HardwareCobalt.rightFrontMotor.setPower(-1);
-                 HardwareCobalt.rightRearMotor.setPower(-1);
-             }
-            if(HardwareCobalt.irSeeker.getAngle() < -5);
+        telemetry.addData("Say", "RGB Values " + HardwareCobalt.groundRGBSensor.red() * 255.0 / 65535.0 + //this gets 0.0... HELP US
+                " " + HardwareCobalt.groundRGBSensor.green() * 255.0 / 65535.0 + " " + HardwareCobalt.groundRGBSensor.blue() * 255.0 / 65535.0 + "\n");    //
+
+        if (HardwareCobalt.groundRGBSensor.red() == 255 && HardwareCobalt.groundRGBSensor.green() == 255 && HardwareCobalt.groundRGBSensor.blue() == 255) {
+            if (HardwareCobalt.irSeeker.getAngle() > 5) {
+                HardwareCobalt.leftFrontMotor.setPower(1);
+                HardwareCobalt.leftRearMotor.setPower(1);
+                HardwareCobalt.rightFrontMotor.setPower(-1);
+                HardwareCobalt.rightRearMotor.setPower(-1);
+            }
+            if (HardwareCobalt.irSeeker.getAngle() < -5) ;
             {
                 HardwareCobalt.leftFrontMotor.setPower(-1);
                 HardwareCobalt.leftRearMotor.setPower(-1);
                 HardwareCobalt.rightFrontMotor.setPower(1);
                 HardwareCobalt.rightRearMotor.setPower(1);
             }
-            if(HardwareCobalt.irSeeker.getStrength() > 5); //five is just an example
+            if (HardwareCobalt.irSeeker.getStrength() > 5) ; //five is just an example
             {
                 HardwareCobalt.leftFrontMotor.setPower(1);
                 HardwareCobalt.leftRearMotor.setPower(1);
@@ -98,7 +91,7 @@ public class CobaltAuto extends OpMode {
                 HardwareCobalt.rightRearMotor.setPower(1);
             }
             telemetry.addData("Say", "There is a white line!");
-            }*/
+        }
         //IMPORTANT!!!!!!!!!!
         //THURSDAY THE 1ST, MAKE A METHOD FOR STRENGTH TO DISTANCE, AND MAKE IT WORK.
         //This is for red team
@@ -173,50 +166,38 @@ public class CobaltAuto extends OpMode {
         }*/
 
 
-
-
-
-
-
-        switch(AutoOp){
+        switch (AutoOp) {
             case MOVE_FORWARD:
                 telemetry.addData("Say", this.getRuntime());
                 //DRIVE_SPEED/TURN_SPEED
                 // Note: Reverse movement is obtained by setting a negative distance (not speed)
                 //robot.autoDrive.encoderDrive(speed, right distance, left distance, wait time)
-        robot.autoDrive.encoderDrive(1.0, 102.0, 102.0,5.0);
+                robot.autoDrive.encoderDrive(1.0, 102.0, 102.0, 5.0);
 
-if(!robot.rightFrontMotor.isBusy() && !robot.rightRearMotor.isBusy() && !robot.leftFrontMotor.isBusy() && !robot.leftRearMotor.isBusy()){
-    AutoOp = controlState.TURN_RIGHT;
-}
+                if (!robot.rightFrontMotor.isBusy() && !robot.rightRearMotor.isBusy() && !robot.leftFrontMotor.isBusy() && !robot.leftRearMotor.isBusy()) {
+                    AutoOp = controlState.TURN_RIGHT;
+                }
                 break;
             case TURN_RIGHT:
-                robot.autoDrive.encoderDrive(.7,12.0,-12.0,5.0);
+                robot.autoDrive.encoderDrive(.7, 12.0, -12.0, 5.0);
 
             case MOVE_TO_LINE:
                 telemetry.addData("Angle", HardwareCobalt.irSeeker.getAngle());
                 telemetry.addData("Strength", HardwareCobalt.irSeeker.getStrength());
-                telemetry.addData("Say",  "Angle Values" +HardwareCobalt.irSeeker.getAngle());
-                telemetry.addData("Say",  "Strength Values" +HardwareCobalt.irSeeker.getStrength());
+                telemetry.addData("Say", "Angle Values" + HardwareCobalt.irSeeker.getAngle());
+                telemetry.addData("Say", "Strength Values" + HardwareCobalt.irSeeker.getStrength());
                 updateTelemetry(telemetry);
 
-             break;
-
-
+                break;
 
         }
-
-
     }
+
 
     /*
      * Code to run ONCE after the driver hits STOP
-     */
-    @Override
-    public void stop()
-    {
-        //HardwareCobalt.cdim.setDigitalChannelState(HardwareCobalt.GROUND_LED_PORT,false);
-    }
+    00000000000000   */
+   // @Override
+   // public void stop()
+    //HardwareCobalt.cdim.setDigitalChannelState(HardwareCobalt.GROUND_LED_PORT,false);
 }
-
-
