@@ -2,15 +2,12 @@ package org.firstinspires.ftc.Cobalt;
 
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DeviceInterfaceModule;
 import com.qualcomm.robotcore.hardware.DigitalChannelController;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.IrSeekerSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.hardware.ServoController;
 import com.qualcomm.robotcore.util.ElapsedTime;
-
-import static android.R.attr.duration;
 
 /**
  * This is NOT an opmode.
@@ -48,6 +45,7 @@ public class HardwareCobalt
     public static DigitalChannelController bottomLedLight = null;//null
 //transmission
     public static CobaltTransmission robotDrive;
+    public static TheNewCobaltTransmission autoDrive;
     //NOT REALLY USING THESE RIGHT NOW BUT TOO LAZY TOO DELETE...     I NEED TO STOP DOING THIS ON CAPS
    // public static CatapultFireMech catapultFireMech = new CatapultFireMech(triggerMotor);
 
@@ -56,10 +54,14 @@ public class HardwareCobalt
     public static Servo shooterController;
 
 
+
+
     public static final int GROUND_LED_PORT =5;
-   // public static ColorSensor groundRGBSensor;
+    public static ColorSensor groundRGBSensor;
    // public static ColorSensor frontRGBSensor;
-    public static IrSeekerSensor irSeeker;
+   public static IrSeekerSensor irSeeker;
+
+    public static BeaconFinder beaconFinder;
 
 //duration!
 
@@ -91,14 +93,16 @@ public class HardwareCobalt
         //deviceInterface = hwMap.deviceInterfaceModule.get("core_device_interface");
         //bottomLedLight = hwMap.deviceInterfaceModule.get("LED_light");
       //  triggerMotor = hwMap.dcMotor.get("trigger_fire_motor");
-       // groundRGBSensor = hwMap.colorSensor.get("colorsensor");
+        groundRGBSensor = hwMap.colorSensor.get("colorsensor");
       //  frontRGBSensor = hwMap.colorSensor.get("colorsensor");
         //duration!
 
         //the ir sensor
-     //   irSeeker = hwMap.irSeekerSensor.get("irseekersensor");
+        irSeeker = hwMap.irSeekerSensor.get("irseekersensor");
         //pitching motors
         robotDrive = new CobaltTransmission(leftFrontMotor, leftRearMotor, rightRearMotor, rightFrontMotor);
+        autoDrive = new TheNewCobaltTransmission();
+        beaconFinder = new BeaconFinder(groundRGBSensor);
 
         //frontAssemblyController = hwMap.servoController.get("frontAssemblyController");
         flipperController = hwMap.servo.get("flipperServo");
