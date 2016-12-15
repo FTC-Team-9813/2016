@@ -59,7 +59,7 @@ public class HardwareCobalt
     public static final int GROUND_LED_PORT =5;
    // public static ColorSensor groundRGBSensor;
    // public static ColorSensor frontRGBSensor;
-  //  public static IrSeekerSensor irSeeker;
+    public static IrSeekerSensor irSeeker;
 
 //duration!
 
