@@ -43,7 +43,7 @@ public class BeaconFinder {
                     //if true moves to ir
                     HardwareCobalt.autoDrive.encoderDrive(TheNewCobaltTransmission.DRIVE_SPEED, 10, 10,.1);
                     //after moving 10 inches, starts again to recheck ir
-                    
+
                     if(!HardwareCobalt.leftFrontMotor.isBusy() && !HardwareCobalt.leftRearMotor.isBusy() && !HardwareCobalt.rightRearMotor.isBusy() && !HardwareCobalt.rightFrontMotor.isBusy() ){
                          if(HardwareCobalt.irSeeker.getStrength()== 1){
                             control = ircontrol.STOP_BEFORE_KILL_IR;
@@ -85,5 +85,5 @@ public class BeaconFinder {
 
         return true;
     }
-}
+}//accidental commit fix
 
