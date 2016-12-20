@@ -16,7 +16,7 @@ public class CobaltAuto extends OpMode {
     HardwareCobalt robot = new HardwareCobalt(); // use the class created to define a Pushbot's hardware
 
     public enum controlState {
-        MOVE_FORWARD, TURN_RIGHT, DANCE_NOW, STOP_NOW, MOVE_TO_LINE
+        MOVE_FORWARD, TURN_LEFT, DANCE_NOW, STOP_NOW, IR_IS_MEAN
     }
     /*
      * Code to run ONCE when the driver hits INIT
@@ -127,7 +127,7 @@ public class CobaltAuto extends OpMode {
         //}
 
 
-      /*  switch (AutoOp) {
+       /*switch (AutoOp) {
             case MOVE_FORWARD:
                 robot.rightFrontMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 robot.rightRearMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -182,24 +182,25 @@ public class CobaltAuto extends OpMode {
                 // Note: Reverse movement is obtained by setting a negative distance (not speed)
         robot.autoDrive.encoderDrive(1.0, 102.0, 102.0,5.0);
 
-if(!robot.rightFrontMotor.isBusy() && !robot.rightRearMotor.isBusy() && !robot.leftFrontMotor.isBusy() && !robot.leftRearMotor.isBusy()){
-    AutoOp = controlState.TURN_RIGHT;
-}
+            if(!robot.rightFrontMotor.isBusy() && !robot.rightRearMotor.isBusy() && !robot.leftFrontMotor.isBusy() && !robot.leftRearMotor.isBusy()){
+                 AutoOp = controlState.TURN_LEFT;
+                }else{
+                   AutoOp = controlState.MOVE_FORWARD;
+                    }
                 break;
-            case TURN_RIGHT:
+            case TURN_LEFT:
                 telemetry.addData("Say","This has a chance of working. Not a perfect chance nor an impefect chance. Just a chance. What is a chance you amy ask. I dont know. Perhaps it is a possible state of existance in one dimension of the multiverse. Or not. How about I just say Sure");
-                robot.autoDrive.encoderDrive(.7,12.0,-12.0,5.0);
+                robot.autoDrive.encoderDrive(.7,-12.0,12.0,5.0);
 
                 if(!robot.rightFrontMotor.isBusy() && !robot.rightRearMotor.isBusy() && !robot.leftFrontMotor.isBusy() && !robot.leftRearMotor.isBusy()){
                     AutoOp = controlState.STOP_NOW;
+                }else{
+                    AutoOp = controlState.TURN_LEFT;
                 }
 break;
-            case MOVE_TO_LINE:
-                telemetry.addData("Angle", HardwareCobalt.irSeeker.getAngle());
-                telemetry.addData("Strength", HardwareCobalt.irSeeker.getStrength());
-                telemetry.addData("Say",  "Angle Values" +HardwareCobalt.irSeeker.getAngle());
-                telemetry.addData("Say",  "Strength Values" +HardwareCobalt.irSeeker.getStrength());
-                updateTelemetry(telemetry);
+            case IR_IS_MEAN:
+              robot.beaconFinder.moveToBeaconControl();
+
 
              break;
             case STOP_NOW:
