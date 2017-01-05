@@ -183,11 +183,11 @@ public class CobaltAuto extends OpMode {
                 // Note: Reverse movement is obtained by setting a negative distance (not speed)
         robot.autoDrive.encoderDrive(1.0, 102.0, 102.0,5.0);
 
-            if(!robot.rightFrontMotor.isBusy() && !robot.rightRearMotor.isBusy() && !robot.leftFrontMotor.isBusy() && !robot.leftRearMotor.isBusy()){
+           /* if(!robot.rightFrontMotor.isBusy() && !robot.rightRearMotor.isBusy() && !robot.leftFrontMotor.isBusy() && !robot.leftRearMotor.isBusy()){
                  AutoOp = controlState.TURN_LEFT;
                 }else{
                    AutoOp = controlState.MOVE_FORWARD;
-                    }
+                    }*/
                 break;
             case TURN_LEFT:
                 telemetry.addData("Say","This has a chance of working. Not a perfect chance nor an impefect chance. Just a chance. What is a chance you may ask. I dont know. Perhaps it is a possible state of existance in one dimension of the multiverse. Or not. Perhaps it is a definite existance in one dimension of the multiverse.");
