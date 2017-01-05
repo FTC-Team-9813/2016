@@ -200,7 +200,7 @@ public class CobaltAuto extends OpMode {
                 }
 break;
             case IR_IS_MEAN:
-             // robot.beaconFinder.moveToBeaconControl();
+            // robot.beaconFinder.moveToBeaconControl();
 
 
              break;

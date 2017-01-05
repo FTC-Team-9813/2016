@@ -42,9 +42,9 @@ public class HardwareCobalt
 //    public static DcMotor firingMotor = null;
 //    public static DcMotor loadingMotor = null;
     //color sensors (or related to color sensors)
-   // public static DeviceInterfaceModule cdim = null;//null
-   // public static DeviceInterfaceModule deviceInterface = null;
-  //  public static DigitalChannelController bottomLedLight = null;//null
+ public static DeviceInterfaceModule cdim = null;//null
+   public static DeviceInterfaceModule deviceInterface = null;
+  public static DigitalChannelController bottomLedLight = null;//null
 //transmission
     public static CobaltTransmission robotDrive;
     public static TheNewCobaltTransmission autoDrive;
@@ -58,14 +58,14 @@ public class HardwareCobalt
 
 
 
-   // public static final int GROUND_LED_PORT =5;
-   // public static ColorSensor groundRGBSensor;
-   // public static ColorSensor frontRGBSensor;
-//   public static IrSeekerSensor irSeeker;
+   public static final int GROUND_LED_PORT =5;
+   public static ColorSensor groundRGBSensor;
+   public static ColorSensor frontRGBSensor;
+    public static IrSeekerSensor irSeeker;
 
-    //public static BeaconFinder beaconFinder;
+    public static BeaconFinder beaconFinder;
 
-   // public static ColorSensor beaconColor;
+   public static ColorSensor beaconColor;
 
 //duration!
 
@@ -93,12 +93,12 @@ public class HardwareCobalt
      //   triggerMotor = hwMap.dcMotor.get("trigger_motor");
 
         //Color Sensors
-      // cdim = hwMap.deviceInterfaceModule.get("beaconcolor");
-       // deviceInterface = hwMap.deviceInterfaceModule.get("core_device_interface");
-        //bottomLedLight = hwMap.deviceInterfaceModule.get("LED_light");
+      cdim = hwMap.deviceInterfaceModule.get("beaconcolor");
+    deviceInterface = hwMap.deviceInterfaceModule.get("core_device_interface");
+        bottomLedLight = hwMap.deviceInterfaceModule.get("LED_light");
       //  triggerMotor = hwMap.dcMotor.get("trigger_fire_motor");
-      //  groundRGBSensor = hwMap.colorSensor.get("colorsensor");
-       // beaconFinder = hwMap.colorSensor.get("colorsensor");
+      groundRGBSensor = hwMap.colorSensor.get("colorsensor");
+      // beaconFinder = hwMap.colorSensor.get("colorsensor");
         //duration!
 
         //the ir sensor
