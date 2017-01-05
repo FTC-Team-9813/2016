@@ -67,8 +67,8 @@ import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
  * Remove or comment out the @Disabled line to add this opmode to the Driver Station OpMode list
  */
 
-@Autonomous(name="Pushbot: Auto Drive By Encoder", group="Pushbot")
-//@Disabled
+
+
 public class TheNewCobaltTransmission extends LinearOpMode {
 
     /* Declare OpMode members. */
@@ -134,9 +134,8 @@ public enum Refreshdistance{
      *  3) Driver stops the opmode running.
      */
     public void encoderDrive(double speed,
-                             double leftInches, double rightInches,
-                             double timeoutS)  {
-
+                             double leftInches, double rightInches)  {
+Refreshdistance refresh = Refreshdistance.REFRESH;
         int newLeftTarget;
         int newRightTarget;
 
@@ -164,10 +163,18 @@ public enum Refreshdistance{
             robot.rightFrontMotor.setPower(Math.abs(speed));
             robot.rightRearMotor.setPower(Math.abs(speed));
 
-            // keep looping while we are still active, and there is time left, and both motors are running.
-        switch()
+            // keep looping while we are still active, and there is time left, and both motors are running.telemetry.addData("Path1", "Running to %7d :%7d", newLeftTarget, newRightTarget);
+    /*    telemetry.addData("Path2", "Running at %7d :%7d",
+                robot.leftFrontMotor.getCurrentPosition(),
+                robot.leftRearMotor.getCurrentPosition(),
+                robot.rightFrontMotor.getCurrentPosition(),
+                robot.rightRearMotor.getCurrentPosition());
+        telemetry.update();*/
+        switch(refresh){
+            // Display it for the driver.
+
+        }
             while (opModeIsActive() &&
-                   (runtime.seconds() < timeoutS) &&
                    (robot.leftFrontMotor.isBusy() && robot.leftRearMotor.isBusy() && robot.rightFrontMotor.isBusy() && robot.rightRearMotor.isBusy())) {
 
                 // Display it for the driver.
