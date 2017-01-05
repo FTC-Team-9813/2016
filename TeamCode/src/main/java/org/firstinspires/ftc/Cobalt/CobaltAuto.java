@@ -51,7 +51,7 @@ public class CobaltAuto extends OpMode {
         robot.leftRearMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.rightFrontMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
         robot.rightRearMotor.setMode(DcMotor.RunMode.RUN_TO_POSITION);
-        //  HardwareCobalt.cdim.setDigitalChannelMode(HardwareCobalt.GROUND_LED_PORT,DigitalChannelController.Mode.OUTPUT);
+         // HardwareCobalt.cdim.setDigitalChannelMode(HardwareCobalt.GROUND_LED_PORT,DigitalChannelController.Mode.OUTPUT);
         // HardwareCobalt.cdim.setDigitalChannelState(HardwareCobalt.GROUND_LED_PORT,true);
     }
 
@@ -182,14 +182,14 @@ public class CobaltAuto extends OpMode {
                 // Note: Reverse movement is obtained by setting a negative distance (not speed)
         robot.autoDrive.encoderDrive(1.0, 102.0, 102.0,5.0);
 
-            if(!robot.rightFrontMotor.isBusy() && !robot.rightRearMotor.isBusy() && !robot.leftFrontMotor.isBusy() && !robot.leftRearMotor.isBusy()){
+           /* if(!robot.rightFrontMotor.isBusy() && !robot.rightRearMotor.isBusy() && !robot.leftFrontMotor.isBusy() && !robot.leftRearMotor.isBusy()){
                  AutoOp = controlState.TURN_LEFT;
                 }else{
                    AutoOp = controlState.MOVE_FORWARD;
-                    }
+                    }*/
                 break;
             case TURN_LEFT:
-                telemetry.addData("Say","This has a chance of working. Not a perfect chance nor an impefect chance. Just a chance. What is a chance you amy ask. I dont know. Perhaps it is a possible state of existance in one dimension of the multiverse. Or not. How about I just say Sure");
+                telemetry.addData("Say","This has a chance of working. Not a perfect chance nor an impefect chance. Just a chance. What is a chance you may ask. I dont know. Perhaps it is a possible state of existance in one dimension of the multiverse. Or not. Perhaps it is a definite existance in one dimension of the multiverse.");
                 robot.autoDrive.encoderDrive(.7,-12.0,12.0,5.0);
 
                 if(!robot.rightFrontMotor.isBusy() && !robot.rightRearMotor.isBusy() && !robot.leftFrontMotor.isBusy() && !robot.leftRearMotor.isBusy()){
@@ -199,14 +199,14 @@ public class CobaltAuto extends OpMode {
                 }
 break;
             case IR_IS_MEAN:
-              robot.beaconFinder.moveToBeaconControl();
+             // robot.beaconFinder.moveToBeaconControl();
 
 
              break;
             case STOP_NOW:
                 robot.rightRearMotor.setPower(0);
                 robot.leftRearMotor.setPower(0);
-                robot.rightFrontMotor.setPower(0);
+               robot.rightFrontMotor.setPower(0);
                 robot.leftFrontMotor.setPower(0);
 
 break;

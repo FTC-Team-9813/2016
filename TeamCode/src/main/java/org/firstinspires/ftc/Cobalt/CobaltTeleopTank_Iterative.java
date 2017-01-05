@@ -69,8 +69,8 @@ public class CobaltTeleopTank_Iterative extends OpMode{
          * The init() method of the hardware class does all the work here
          */
         robot.init(hardwareMap);
-        robot.shooterController.setPosition(1); //1 is down, .5 is up
-        robot.flipperController.setPosition(0); // 0 is open, .3 is closed.
+     //   robot.shooterController.setPosition(1); //1 is down, .5 is up
+       // robot.flipperController.setPosition(0); // 0 is open, .3 is closed.
 
         // Send telemetry message to signify robot waiting;
         telemetry.addData("Say", "If you are losing win better and if you are winning win better");
@@ -114,18 +114,17 @@ public class CobaltTeleopTank_Iterative extends OpMode{
 
        // telemetry.addData("ColorValues", robot.groundRGBSensor.red() * (255.0 / 65535.0) + " " + robot.groundRGBSensor.green() * (255.0 / 65535.0) + " " + robot.groundRGBSensor.blue() * (255.0 / 65535.0));
        // telemetry.update();
-
-        robot.leftFrontMotor.setPower(-gamepad1.left_stick_y);
-        robot.leftRearMotor.setPower(-gamepad1.left_stick_y);
-        robot.rightFrontMotor.setPower(-gamepad1.right_stick_y);
-        robot.rightRearMotor.setPower(-gamepad1.right_stick_y);
+        robot.leftFrontMotor.setPower(-gamepad1.right_stick_y);
+        robot.leftRearMotor.setPower(-gamepad1.right_stick_y);
+       robot.rightFrontMotor.setPower(-gamepad1.left_stick_y);
+        robot.rightRearMotor.setPower(-gamepad1.left_stick_y);
 
 //        robot.flipperController.setPosition(.3);
 //        robot.shooterController.setPosition(1);
 
 
         //capture ball
-        if (gamepad2.left_bumper == true && gamepad2.left_bumper != previous_state)
+    /*    if (gamepad2.left_bumper == true && gamepad2.left_bumper != previous_state)
         {
             flippersOpen = !flippersOpen;
         }
@@ -142,10 +141,10 @@ public class CobaltTeleopTank_Iterative extends OpMode{
             robot.flipperController.setPosition(0);
             telemetry.addData("Flipper Status","capturing flippers are is open");
         }
-
+*/
 //shoot the ball
 
-       if (gamepad2.right_bumper == true && gamepad2.right_bumper != previousShooter_state)
+    /*   if (gamepad2.right_bumper == true && gamepad2.right_bumper != previousShooter_state)
         {
             shooterOpen = !shooterOpen;
         }
@@ -161,7 +160,7 @@ public class CobaltTeleopTank_Iterative extends OpMode{
             //#Thuglife
             telemetry.addData("Say", "shooter flipper is up");
             robot.shooterController.setPosition(.5);
-        }
+        }*/
         updateTelemetry(telemetry);
 
          }

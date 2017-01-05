@@ -76,7 +76,7 @@ public class TheNewCobaltTransmission extends LinearOpMode {
     private ElapsedTime     runtime = new ElapsedTime();
 
     static final double     COUNTS_PER_MOTOR_REV    = 2800;    // eg: Andymark Motor Encoder
-    static final double     DRIVE_GEAR_REDUCTION    = 2.0;     // This is < 1.0 if geared UP
+    static final double     DRIVE_GEAR_REDUCTION    = 1.5;     // This is < 1.0 if geared UP
     static final double     WHEEL_DIAMETER_INCHES   = 4.0 ;     // For figuring circumference
     static final double     COUNTS_PER_INCH         = (COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
                                                       (WHEEL_DIAMETER_INCHES * 3.1415);
@@ -84,7 +84,8 @@ public class TheNewCobaltTransmission extends LinearOpMode {
     static final double     TURN_SPEED              = 0.5;
 
 public enum Refreshdistance{
-    REFRESH_TARGET, REFRESH_POSITION}
+    REFRESH_TARGET, REFRESH_POSITION
+}
 
 
     @Override
@@ -173,8 +174,8 @@ public enum Refreshdistance{
                 telemetry.addData("Path2", "Running at %7d :%7d",
                         robot.leftFrontMotor.getCurrentPosition(),
                         robot.leftRearMotor.getCurrentPosition(),
-                        robot.rightFrontMotor.getCurrentPosition());
-                robot.rightRearMotor.getCurrentPosition();
+                        robot.rightFrontMotor.getCurrentPosition(),
+                         robot.rightRearMotor.getCurrentPosition());
                 telemetry.update();
 
                 // Allow time for other processes to run.

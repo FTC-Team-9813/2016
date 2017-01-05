@@ -28,7 +28,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 public class HardwareCobalt
 {
     //motors
-    public static DcMotor leftFrontMotor;
+   public static DcMotor leftFrontMotor;
     public static DcMotor rightFrontMotor;
     public static DcMotor rightRearMotor;
     public static DcMotor leftRearMotor;
@@ -42,30 +42,30 @@ public class HardwareCobalt
 //    public static DcMotor firingMotor = null;
 //    public static DcMotor loadingMotor = null;
     //color sensors (or related to color sensors)
-    public static DeviceInterfaceModule cdim = null;//null
-    public static DeviceInterfaceModule deviceInterface = null;
-    public static DigitalChannelController bottomLedLight = null;//null
+   // public static DeviceInterfaceModule cdim = null;//null
+   // public static DeviceInterfaceModule deviceInterface = null;
+  //  public static DigitalChannelController bottomLedLight = null;//null
 //transmission
     public static CobaltTransmission robotDrive;
     public static TheNewCobaltTransmission autoDrive;
     //NOT REALLY USING THESE RIGHT NOW BUT TOO LAZY TOO DELETE...     I NEED TO STOP DOING THIS ON CAPS
    // public static CatapultFireMech catapultFireMech = new CatapultFireMech(triggerMotor);
 
-    public static ServoController frontAssemblyController;
-    public static Servo flipperController;
-    public static Servo shooterController;
+    //public static ServoController frontAssemblyController;
+  //  public static Servo flipperController;
+  //  public static Servo shooterController;
 
 
 
 
-    public static final int GROUND_LED_PORT =5;
-    public static ColorSensor groundRGBSensor;
+   // public static final int GROUND_LED_PORT =5;
+   // public static ColorSensor groundRGBSensor;
    // public static ColorSensor frontRGBSensor;
-   public static IrSeekerSensor irSeeker;
+//   public static IrSeekerSensor irSeeker;
 
-    public static BeaconFinder beaconFinder;
+    //public static BeaconFinder beaconFinder;
 
-    public static ColorSensor beaconColor;
+   // public static ColorSensor beaconColor;
 
 //duration!
 
@@ -87,38 +87,38 @@ public class HardwareCobalt
         // Define and Initialize Motors
         leftFrontMotor = hwMap.dcMotor.get("left_front_drive");
         leftRearMotor = hwMap.dcMotor.get("left_rear_drive");
-        rightFrontMotor = hwMap.dcMotor.get("right_front_drive");
+       rightFrontMotor = hwMap.dcMotor.get("right_front_drive");
         rightRearMotor = hwMap.dcMotor.get("right_rear_drive");
 
      //   triggerMotor = hwMap.dcMotor.get("trigger_motor");
 
         //Color Sensors
-       cdim = hwMap.deviceInterfaceModule.get("beaconcolor");
-        deviceInterface = hwMap.deviceInterfaceModule.get("core_device_interface");
+      // cdim = hwMap.deviceInterfaceModule.get("beaconcolor");
+       // deviceInterface = hwMap.deviceInterfaceModule.get("core_device_interface");
         //bottomLedLight = hwMap.deviceInterfaceModule.get("LED_light");
       //  triggerMotor = hwMap.dcMotor.get("trigger_fire_motor");
-        groundRGBSensor = hwMap.colorSensor.get("colorsensor");
+      //  groundRGBSensor = hwMap.colorSensor.get("colorsensor");
        // beaconFinder = hwMap.colorSensor.get("colorsensor");
         //duration!
 
         //the ir sensor
-        irSeeker = hwMap.irSeekerSensor.get("irseekersensor");
+        //irSeeker = hwMap.irSeekerSensor.get("irseekersensor");
         //pitching motors
-        robotDrive = new CobaltTransmission(leftFrontMotor, leftRearMotor, rightRearMotor, rightFrontMotor);
+        //robotDrive = new CobaltTransmission(leftFrontMotor, leftRearMotor, rightRearMotor, rightFrontMotor);
         autoDrive = new TheNewCobaltTransmission();
-        beaconFinder = new BeaconFinder(groundRGBSensor);
+       // beaconFinder = new BeaconFinder(groundRGBSensor);
 
         //frontAssemblyController = hwMap.servoController.get("frontAssemblyController");
-        flipperController = hwMap.servo.get("flipperServo");
-        shooterController = hwMap.servo.get("shooterServo");
+        //flipperController = hwMap.servo.get("flipperServo");
+       // shooterController = hwMap.servo.get("shooterServo");
 
-        flipperController.setPosition(0.0);
-        shooterController.setPosition(1);
+       // flipperController.setPosition(0.0);
+       // shooterController.setPosition(1);
 
-        leftFrontMotor.setDirection(DcMotor.Direction.FORWARD);
-        leftRearMotor.setDirection(DcMotor.Direction.FORWARD);
-        rightFrontMotor.setDirection(DcMotor.Direction.REVERSE);
-        rightRearMotor.setDirection(DcMotor.Direction.REVERSE);
+        leftFrontMotor.setDirection(DcMotor.Direction.REVERSE);
+        leftRearMotor.setDirection(DcMotor.Direction.REVERSE);
+        rightFrontMotor.setDirection(DcMotor.Direction.FORWARD);
+        rightRearMotor.setDirection(DcMotor.Direction.FORWARD);
 // catapult motor
        // triggerMotor.setDirection(DcMotor.Direction.FORWARD);
 
@@ -132,8 +132,8 @@ public class HardwareCobalt
       //  triggerMotor.setPower(0);
 
         //motors use encoders!
-        leftFrontMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         leftRearMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
+        leftFrontMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightFrontMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         rightRearMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         //trigger motor use encoder
