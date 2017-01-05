@@ -166,14 +166,13 @@ public enum Refreshdistance{
 
             // keep looping while we are still active, and there is time left, and both motors are running.
         switch()
-            while (opModeIsActive() &&
-                   (runtime.seconds() < timeoutS) &&
-                   (robot.leftFrontMotor.isBusy() && robot.leftRearMotor.isBusy() && robot.rightFrontMotor.isBusy() && robot.rightRearMotor.isBusy())) {
+        {
+            while ((runtime.seconds() < timeoutS) && opModeIsActive() && (robot.leftFrontMotor.isBusy() && robot.leftRearMotor.isBusy() && robot.rightFrontMotor.isBusy() && robot.rightRearMotor.isBusy())) {
 
                 // Display it for the driver.
                 telemetry.addData("Path1", "Running to %7d :%7d", newLeftTarget, newRightTarget);
                 telemetry.addData("Path2", "Running at %7d :%7d",
-                        robot.leftFrontMotor.getCurrentPosition(),
+                                robot.leftFrontMotor.getCurrentPosition(),
                         robot.leftRearMotor.getCurrentPosition(),
                         robot.rightFrontMotor.getCurrentPosition(),
                          robot.rightRearMotor.getCurrentPosition());
