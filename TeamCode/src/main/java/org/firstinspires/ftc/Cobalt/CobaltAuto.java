@@ -118,7 +118,7 @@ public class CobaltAuto extends OpMode {
         //If motor, when 1, turns to right
         //*255/800 If not work, try (*255/4095)
         //WHAT DOES THIS MEAN
-        telemetry.addData("Say", "Prepare for the sketch. That sketchy program or the sketchy life you may ask. The answer is both. #Thuglife");
+        telemetry.addData("Say", "Prepare for the sketch. That sketchy program or the sketchy life you may ask. The answer is both. #Thuglife. Thugs are cool. so are hats. so is the robot. but I digress...  The robot should do something...    I think.");
         controlState AutoOp = controlState.MOVE_FORWARD;
 
         //  if(robot.robotDrive.equals(false)){
@@ -225,5 +225,4 @@ break;
         //HardwareCobalt.cdim.setDigitalChannelState(HardwareCobalt.GROUND_LED_PORT,false);
     }
 }
-
 
