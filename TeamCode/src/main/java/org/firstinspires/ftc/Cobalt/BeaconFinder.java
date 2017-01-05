@@ -32,7 +32,7 @@ public class BeaconFinder {
                 break;
             case FIND_IR2:
                 HardwareCobalt.autoDrive.encoderDrive(TheNewCobaltTransmission.TURN_SPEED, -.5, .5);
-                if(/*!HardwareCobalt.leftFrontMotor.isBusy() && */!HardwareCobalt.leftRearMotor.isBusy() && !HardwareCobalt.rightRearMotor.isBusy() /*&& !HardwareCobalt.rightFrontMotor.isBusy()*/){
+                if(!HardwareCobalt.leftFrontMotor.isBusy() && !HardwareCobalt.leftRearMotor.isBusy() && !HardwareCobalt.rightRearMotor.isBusy() && !HardwareCobalt.rightFrontMotor.isBusy()){
                     control = ircontrol.FIND_IR;
                 }
                 break;
@@ -52,14 +52,14 @@ public class BeaconFinder {
                         }
                     }
                 }else{
-                    //if no ir detected rotate robot right
+                    //if no ir dected rotate robot right
                     HardwareCobalt.autoDrive.encoderDrive(TheNewCobaltTransmission.TURN_SPEED,5,-5);
                     //if still not detected turn left
                     if(!HardwareCobalt.irSeeker.signalDetected() == true || HardwareCobalt.irSeeker.getAngle()<= .2){
 
                         HardwareCobalt.autoDrive.encoderDrive(TheNewCobaltTransmission.TURN_SPEED,-10,10);
 
-                        if(/*!HardwareCobalt.leftFrontMotor.isBusy() &&*/ !HardwareCobalt.leftRearMotor.isBusy() && !HardwareCobalt.rightRearMotor.isBusy() /*&& !HardwareCobalt.rightFrontMotor.isBusy()*/) {
+                        if(!HardwareCobalt.leftFrontMotor.isBusy() && !HardwareCobalt.leftRearMotor.isBusy() && !HardwareCobalt.rightRearMotor.isBusy() && !HardwareCobalt.rightFrontMotor.isBusy()) {
 
 
                             //once deected starts again

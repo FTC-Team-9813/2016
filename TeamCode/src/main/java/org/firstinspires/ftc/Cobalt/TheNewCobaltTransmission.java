@@ -69,7 +69,7 @@ import org.firstinspires.ftc.robotcontroller.external.samples.HardwarePushbot;
 
 
 
-public class TheNewCobaltTransmission extends LinearOpMode {
+public class TheNewCobaltTransmission {
 
     /* Declare OpMode members. */
     HardwareCobalt robot   = new HardwareCobalt();
@@ -83,23 +83,18 @@ public class TheNewCobaltTransmission extends LinearOpMode {
     static final double     DRIVE_SPEED             = 1;
     static final double     TURN_SPEED              = 0.5;
 
-public enum Refreshdistance{
-   REFRESH
-}
 
 
-    @Override
-    public void runOpMode() {
+
+
+    public void setup() {
 
         /*
          * Initialize the drive system variables.
          * The init() method of the hardware class does all the work here
          */
-        robot.init(hardwareMap);
 
         // Send telemetry message to signify robot waiting;
-        telemetry.addData("Status", "Resetting Encoders");    //
-        telemetry.update();
 
         robot.leftFrontMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
         robot.leftRearMotor.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -112,17 +107,8 @@ public enum Refreshdistance{
         robot.rightFrontMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
         robot.rightRearMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
 
-        // Send telemetry message to indicate successful Encoder reset
-        telemetry.addData("Path0",  "Starting at %7d :%7d",
-                          robot.leftFrontMotor.getCurrentPosition(),
-                          robot.leftRearMotor.getCurrentPosition(),
-                          robot.rightFrontMotor.getCurrentPosition(),
-                          robot.rightRearMotor.getCurrentPosition());
-        telemetry.update();
 
 
-        telemetry.addData("Path", "Complete");
-        telemetry.update();
     }
 
     /*
@@ -135,7 +121,8 @@ public enum Refreshdistance{
      */
     public void encoderDrive(double speed,
                              double leftInches, double rightInches)  {
-Refreshdistance refresh = Refreshdistance.REFRESH;
+
+
         int newLeftTarget;
         int newRightTarget;
 
@@ -170,25 +157,8 @@ Refreshdistance refresh = Refreshdistance.REFRESH;
                 robot.rightFrontMotor.getCurrentPosition(),
                 robot.rightRearMotor.getCurrentPosition());
         telemetry.update();*/
-        switch(refresh){
-            // Display it for the driver.
-
-        }
-            while (opModeIsActive() &&
-                   (robot.leftFrontMotor.isBusy() && robot.leftRearMotor.isBusy() && robot.rightFrontMotor.isBusy() && robot.rightRearMotor.isBusy())) {
-
-                // Display it for the driver.
-                telemetry.addData("Path1", "Running to %7d :%7d", newLeftTarget, newRightTarget);
-                telemetry.addData("Path2", "Running at %7d :%7d",
-                        robot.leftFrontMotor.getCurrentPosition(),
-                        robot.leftRearMotor.getCurrentPosition(),
-                        robot.rightFrontMotor.getCurrentPosition(),
-                         robot.rightRearMotor.getCurrentPosition());
-                telemetry.update();
 
                 // Allow time for other processes to run.
-            }
-
 
             // Stop all motion;
             robot.leftFrontMotor.setPower(0);
