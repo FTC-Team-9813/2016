@@ -115,17 +115,17 @@ public class HardwareCobalt
        // flipperController.setPosition(0.0);
        // shooterController.setPosition(1);
 
-        leftFrontMotor.setDirection(DcMotor.Direction.FORWARD);
-        leftRearMotor.setDirection(DcMotor.Direction.FORWARD);
-        rightFrontMotor.setDirection(DcMotor.Direction.REVERSE);
-        rightRearMotor.setDirection(DcMotor.Direction.REVERSE);
+        leftFrontMotor.setDirection(DcMotor.Direction.REVERSE);
+        leftRearMotor.setDirection(DcMotor.Direction.REVERSE);
+        rightFrontMotor.setDirection(DcMotor.Direction.FORWARD);
+        rightRearMotor.setDirection(DcMotor.Direction.FORWARD);
 // catapult motor
        // triggerMotor.setDirection(DcMotor.Direction.FORWARD);
 
         // Set all motors to zero power
-     //   leftFrontMotor.setPower(0);
+        leftFrontMotor.setPower(0);
         leftRearMotor.setPower(0);
-      //  rightFrontMotor.setPower(0);
+        rightFrontMotor.setPower(0);
         rightRearMotor.setPower(0);
 
         //catapult trigger motor
