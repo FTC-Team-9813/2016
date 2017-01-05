@@ -84,7 +84,7 @@ public class TheNewCobaltTransmission extends LinearOpMode {
     static final double     TURN_SPEED              = 0.5;
 
 public enum Refreshdistance{
-    REFRESH_TARGET, REFRESH_POSITION
+   REFRESH
 }
 
 
@@ -141,7 +141,7 @@ public enum Refreshdistance{
         int newRightTarget;
 
         // Ensure that the opmode is still active
-   if (opModeIsActive()) {
+
 
             // Determine new target position, and pass to motor controller
             newLeftTarget = robot.leftFrontMotor.getCurrentPosition() + (int)(leftInches * COUNTS_PER_INCH);
@@ -165,6 +165,7 @@ public enum Refreshdistance{
             robot.rightRearMotor.setPower(Math.abs(speed));
 
             // keep looping while we are still active, and there is time left, and both motors are running.
+        switch()
             while (opModeIsActive() &&
                    (runtime.seconds() < timeoutS) &&
                    (robot.leftFrontMotor.isBusy() && robot.leftRearMotor.isBusy() && robot.rightFrontMotor.isBusy() && robot.rightRearMotor.isBusy())) {
@@ -180,7 +181,7 @@ public enum Refreshdistance{
 
                 // Allow time for other processes to run.
             }
-            }
+
 
             // Stop all motion;
             robot.leftFrontMotor.setPower(0);
