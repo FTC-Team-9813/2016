@@ -33,8 +33,14 @@ public class HardwareCobalt
     public static DcMotor rightRearMotor;
     public static DcMotor leftRearMotor;
 
+    public static DcMotor leftShootMotor;
+    public static DcMotor rightShootMotor;
+    public static DcMotor loadLoader;
+
+    public static Servo loadShooter;
 
 
+public static FlyWheelShooter shooter;
 
 
 
@@ -62,7 +68,7 @@ public class HardwareCobalt
 
     public static BeaconFinder beaconFinder;
 
-    public static ColorSensor beaconColor;
+
 
 //duration!
 
@@ -87,15 +93,29 @@ public class HardwareCobalt
        rightFrontMotor = hwMap.dcMotor.get("right_front_drive");
         rightRearMotor = hwMap.dcMotor.get("right_rear_drive");
 
+        leftShootMotor = hwMap.dcMotor.get("left_shoot_motor");
+        rightShootMotor = hwMap.dcMotor.get("right_shoot_motor");
+
+        loadLoader = hwMap.dcMotor.get("load_loader");
+
+        loadShooter = hwMap.servo.get("load_shooter");
+
+     shooter = new FlyWheelShooter();
+
+
+
+
      //   triggerMotor = hwMap.dcMotor.get("trigger_motor");
 
         //Color Sensors
       cdim = hwMap.deviceInterfaceModule.get("beaconcolor");
         deviceInterface = hwMap.deviceInterfaceModule.get("core_device_interface");
+
         bottomLedLight = hwMap.deviceInterfaceModule.get("LED_light");
+
       //  triggerMotor = hwMap.dcMotor.get("trigger_fire_motor");
         groundRGBSensor = hwMap.colorSensor.get("colorsensor");
-        beaconColor = hwMap.colorSensor.get("gcolorsensor");
+
 frontRGBSensor = hwMap.colorSensor.get("fcolorsensor");
         //duration!
 
@@ -104,7 +124,7 @@ frontRGBSensor = hwMap.colorSensor.get("fcolorsensor");
 
 
         autoDrive = new TheNewCobaltTransmission();
-        beaconFinder = new BeaconFinder(groundRGBSensor);
+        beaconFinder = new BeaconFinder();
 
         //frontAssemblyController = hwMap.servoController.get("frontAssemblyController");
         //flipperController = hwMap.servo.get("flipperServo");

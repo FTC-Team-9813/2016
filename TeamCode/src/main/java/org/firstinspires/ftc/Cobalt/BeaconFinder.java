@@ -13,11 +13,7 @@ public class BeaconFinder {
     public enum ircontrol{
         SIGNAL_DETECTED, FIND_IR, FIND_IR2, MOVE_TO_IR, STOP_BEFORE_KILL_IR
     }
-    public BeaconFinder(ColorSensor groundRGBSensor){
-        this.groundRGB = groundRGBSensor;
 
-
-    }
     public boolean moveToBeaconControl() {
         ircontrol control = ircontrol.FIND_IR;
         switch (control) {
