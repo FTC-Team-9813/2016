@@ -181,27 +181,26 @@ public class CobaltAuto extends OpMode {
                 // Note: Reverse movement is obtained by setting a negative distance (not speed)
                 //robot.autoDrive.encoderDrive(speed, right distance, left distance, wait time)
                 // Note: Reverse movement is obtained by setting a negative distance (not speed)
-        robot.autoDrive.encoderDrive(1.0, 102.0, 102.0);
+                robot.autoDrive.encoderDrive(1.0, 102.0, 102.0);
 
-           /* if(!robot.rightFrontMotor.isBusy() && !robot.rightRearMotor.isBusy() && !robot.leftFrontMotor.isBusy() && !robot.leftRearMotor.isBusy()){
-                 AutoOp = controlState.TURN_LEFT;
-                }else{
-                   AutoOp = controlState.MOVE_FORWARD;
-                    }*/
+                //geting telemety on one line was
+                telemetry.addData("Say", robot.rightFrontMotor.getCurrentPosition());
+                telemetry.addData("Say", robot.rightFrontMotor.getTargetPosition());
+                telemetry.addData("Say", robot.rightRearMotor.getCurrentPosition());
+                telemetry.addData("Say", robot.rightRearMotor.getTargetPosition());
+                telemetry.addData("Say", robot.leftFrontMotor.getCurrentPosition());
+                telemetry.addData("Say", robot.leftFrontMotor.getTargetPosition());
+                telemetry.addData("Say", robot.leftRearMotor.getCurrentPosition());
+                telemetry.addData("Say", robot.leftRearMotor.getTargetPosition());
                 break;
+
             case TURN_LEFT:
-                telemetry.addData("Say","This has a chance of working. Not a perfect chance nor an impefect chance. Just a chance. What is a chance you may ask. I dont know. Perhaps it is a possible state of existance in one dimension of the multiverse. Or not. Perhaps it is a definite existance in one dimension of the multiverse.");
+
                 robot.autoDrive.encoderDrive(.7,-12.0,12.0);
+                break;
 
-                if(!robot.rightFrontMotor.isBusy() && !robot.rightRearMotor.isBusy() && !robot.leftFrontMotor.isBusy() && !robot.leftRearMotor.isBusy()){
-                    AutoOp = controlState.STOP_NOW;
-                }else{
-                    AutoOp = controlState.TURN_LEFT;
-                }
-break;
             case IR_IS_MEAN:
-            // robot.beaconFinder.moveToBeaconControl();
-
+              robot.beaconFinder.moveToBeaconControl();
 
              break;
             case STOP_NOW:
