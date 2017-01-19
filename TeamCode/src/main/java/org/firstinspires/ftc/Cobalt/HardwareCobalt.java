@@ -38,6 +38,7 @@ public class HardwareCobalt
     public static DcMotor loadLoader;
 
     public static Servo loadShooter;
+    
 
 public static FlyWheelShooter shooter;
 
