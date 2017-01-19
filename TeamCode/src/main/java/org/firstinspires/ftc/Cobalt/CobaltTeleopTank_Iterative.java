@@ -59,7 +59,8 @@ public class CobaltTeleopTank_Iterative extends OpMode{
 
     /* Declare OpMode members. */
     HardwareCobalt robot       = new HardwareCobalt(); // use the class created to define a Pushbot's hardware
-                                                 // could also use HardwarePushbotMatrix class.
+                                                // could also use HardwarePushbotMatrix class.
+
     /*
      * Code to run ONCE when the driver hits INIT
      */
@@ -68,6 +69,7 @@ public class CobaltTeleopTank_Iterative extends OpMode{
         /* Initialize the hardware variables.
          * The init() method of the hardware class does all the work here
          */
+        this.resetStartTime();
         robot.init(hardwareMap);
      //   robot.shooterController.setPosition(1); //1 is down, .5 is up
        // robot.flipperController.setPosition(0); // 0 is open, .3 is closed.
@@ -95,7 +97,7 @@ public class CobaltTeleopTank_Iterative extends OpMode{
     }
     boolean previous_state = false;
 
-    boolean flippersOpen = true;
+
 
     boolean shooterOpen = false;
     boolean previousShooter_state = false;
@@ -118,6 +120,17 @@ public class CobaltTeleopTank_Iterative extends OpMode{
         robot.leftRearMotor.setPower(-gamepad1.right_stick_y);
        robot.rightFrontMotor.setPower(-gamepad1.left_stick_y);
         robot.rightRearMotor.setPower(-gamepad1.left_stick_y);
+
+        if(gamepad2.left_bumper==true && gamepad2.left_bumper != previous_state){
+
+            robot.shooter.getBalls(true);
+        }
+
+        if(gamepad2.right_bumper==true && gamepad2.right_bumper != previous_state){
+            this.resetStartTime();
+
+            robot.shooter.shootStuff(true);
+        }
 
 //        robot.flipperController.setPosition(.3);
 //        robot.shooterController.setPosition(1);
