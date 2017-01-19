@@ -38,12 +38,12 @@ public class HardwareCobalt
     public static DcMotor loadLoader;
 
     public static Servo loadShooter;
-    
+
 
 public static FlyWheelShooter shooter;
 
 
-
+//RANDOM COMMENT
     //color sensors (or related to color sensors)
     public static DeviceInterfaceModule cdim = null;//null
     public static DeviceInterfaceModule deviceInterface = null;
