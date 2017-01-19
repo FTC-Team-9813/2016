@@ -205,7 +205,7 @@ public class CobaltAuto extends OpMode {
             case STOP_NOW:
                 robot.rightRearMotor.setPower(0);
                 robot.leftRearMotor.setPower(0);
-               robot.rightFrontMotor.setPower(0);
+                robot.rightFrontMotor.setPower(0);
                 robot.leftFrontMotor.setPower(0);
 
 break;
