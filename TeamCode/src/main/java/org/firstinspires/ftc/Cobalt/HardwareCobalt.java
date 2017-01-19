@@ -39,7 +39,6 @@ public class HardwareCobalt
 
     public static Servo loadShooter;
 
-
 public static FlyWheelShooter shooter;
 
 
@@ -49,7 +48,6 @@ public static FlyWheelShooter shooter;
     public static DeviceInterfaceModule deviceInterface = null;
     public static DigitalChannelController bottomLedLight = null;//null
 //transmission
-    public static CobaltTransmission robotDrive;
     public static TheNewCobaltTransmission autoDrive;
     //NOT REALLY USING THESE RIGHT NOW BUT TOO LAZY TOO DELETE...     I NEED TO STOP DOING THIS ON CAPS
 
@@ -67,6 +65,7 @@ public static FlyWheelShooter shooter;
     public static IrSeekerSensor irSeeker;
 
     public static BeaconFinder beaconFinder;
+    public static DelayClass delayclass;
 
 
 
@@ -101,6 +100,7 @@ public static FlyWheelShooter shooter;
         loadShooter = hwMap.servo.get("load_shooter");
 
      shooter = new FlyWheelShooter();
+        delayclass = new DelayClass();
 
 
 

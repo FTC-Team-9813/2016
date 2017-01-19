@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.Servo;
+import java.util.concurrent.TimeUnit;
 
 /**
  * Created by Kilroy on 1/12/2017.
@@ -12,7 +13,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class FlyWheelShooter {
 
 public boolean getBalls(boolean doLoadingStuff){
-    if(doLoadingStuff==true) {
+    if(doLoadingStuff) {
         HardwareCobalt.loadLoader.setPower(1);
     }
 
@@ -23,20 +24,19 @@ public boolean shootStuff(boolean doShootingStuff){
 
 
 
-    if(doShootingStuff==true){
-        HardwareCobalt.loadShooter.setPosition(1); //don't know value yet
+
+    if(doShootingStuff){
+        HardwareCobalt.loadShooter.setPosition(1);//dont know value yet
+        // in milliseconds
+        HardwareCobalt.delayclass.delayClass(1000);
 
            HardwareCobalt.rightShootMotor.setPower(1);
            HardwareCobalt.leftShootMotor.setPower(1);
 
     }
 
-
-
-
     return true;
 }
-
 
 
 
