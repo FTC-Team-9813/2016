@@ -10,7 +10,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
  */
 @Autonomous(name="CobaltAuto", group="Cobalt")
 public class CobaltAuto extends OpMode {
-    CobaltTransmission cobaltTransmission = HardwareCobalt.robotDrive;
+
 
     /* Declare OpMode members. */
     HardwareCobalt robot = new HardwareCobalt(); // use the class created to define a Pushbot's hardware

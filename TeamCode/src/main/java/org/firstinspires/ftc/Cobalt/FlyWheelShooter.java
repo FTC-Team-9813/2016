@@ -12,7 +12,7 @@ import com.qualcomm.robotcore.hardware.Servo;
 public class FlyWheelShooter {
 
 public boolean getBalls(boolean doLoadingStuff){
-    if(doLoadingStuff==true) {
+    if(doLoadingStuff) {
         HardwareCobalt.loadLoader.setPower(1);
     }
 
@@ -21,18 +21,15 @@ public boolean getBalls(boolean doLoadingStuff){
 
 public boolean shootStuff(boolean doShootingStuff){
 
-;
 
-    if(doShootingStuff==true){
+
+    if(doShootingStuff){
         HardwareCobalt.loadShooter.setPosition(1);//dont know value yet
 
            HardwareCobalt.rightShootMotor.setPower(1);
            HardwareCobalt.leftShootMotor.setPower(1);
 
     }
-
-
-
 
     return true;
 }

@@ -49,7 +49,6 @@ public static FlyWheelShooter shooter;
     public static DeviceInterfaceModule deviceInterface = null;
     public static DigitalChannelController bottomLedLight = null;//null
 //transmission
-    public static CobaltTransmission robotDrive;
     public static TheNewCobaltTransmission autoDrive;
     //NOT REALLY USING THESE RIGHT NOW BUT TOO LAZY TOO DELETE...     I NEED TO STOP DOING THIS ON CAPS
 
