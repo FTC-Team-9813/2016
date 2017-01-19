@@ -39,7 +39,6 @@ public class HardwareCobalt
 
     public static Servo loadShooter;
 
-
 public static FlyWheelShooter shooter;
 
 
@@ -66,6 +65,7 @@ public static FlyWheelShooter shooter;
   public static IrSeekerSensor irSeeker;
 
     public static BeaconFinder beaconFinder;
+    public static DelayClass delayclass;
 
 
 
@@ -100,6 +100,7 @@ public static FlyWheelShooter shooter;
         loadShooter = hwMap.servo.get("load_shooter");
 
      shooter = new FlyWheelShooter();
+        delayclass = new DelayClass();
 
 
 
