@@ -28,7 +28,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 public class HardwareCobalt
 {
     //motors
-   public static DcMotor leftFrontMotor;
+    public static DcMotor leftFrontMotor;
     public static DcMotor rightFrontMotor;
     public static DcMotor rightRearMotor;
     public static DcMotor leftRearMotor;
@@ -43,7 +43,7 @@ public class HardwareCobalt
 public static FlyWheelShooter shooter;
 
 
-//RANDOM COMMENT
+
     //color sensors (or related to color sensors)
     public static DeviceInterfaceModule cdim = null;//null
     public static DeviceInterfaceModule deviceInterface = null;
@@ -64,7 +64,7 @@ public static FlyWheelShooter shooter;
    // public static final int GROUND_LED_PORT =5;
     public static ColorSensor groundRGBSensor;
     public static ColorSensor frontRGBSensor;
-  public static IrSeekerSensor irSeeker;
+    public static IrSeekerSensor irSeeker;
 
     public static BeaconFinder beaconFinder;
 

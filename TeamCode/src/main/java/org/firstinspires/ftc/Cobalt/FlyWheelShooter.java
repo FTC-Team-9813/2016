@@ -21,10 +21,10 @@ public boolean getBalls(boolean doLoadingStuff){
 
 public boolean shootStuff(boolean doShootingStuff){
 
-;
+
 
     if(doShootingStuff==true){
-        HardwareCobalt.loadShooter.setPosition(1);//dont know value yet
+        HardwareCobalt.loadShooter.setPosition(1); //don't know value yet
 
            HardwareCobalt.rightShootMotor.setPower(1);
            HardwareCobalt.leftShootMotor.setPower(1);
