@@ -128,53 +128,12 @@ public class CobaltTeleopTank_Iterative extends OpMode{
 
         if(gamepad2.right_bumper==true && gamepad2.right_bumper != previous_state){
             this.resetStartTime();
-
+        //telemetry.addData("Say", "There have been many wars between people in human history. There has only been one interspecial war though, The Great Emu War of 1932. From this bloody conflict there was only one victor, the emus. With their overwhelming numbers they survived all that we could throw at them. There were massive casualties on both side. ");
             robot.shooter.shootStuff(true);
 
         }
 
-//        robot.flipperController.setPosition(.3);
-//        robot.shooterController.setPosition(1);
 
-
-        //capture ball
-    /*    if (gamepad2.left_bumper == true && gamepad2.left_bumper != previous_state)
-        {
-            flippersOpen = !flippersOpen;
-        }
-        previous_state = gamepad2.left_bumper;
-
-        if (flippersOpen == false)
-        {
-            robot.flipperController.setPosition(.3); // 0 or 1, we don't know
-            telemetry.addData("Flipper Status","capturing flippers are is closed");
-        }
-        else
-        {
-            //#Thuglife
-            robot.flipperController.setPosition(0);
-            telemetry.addData("Flipper Status","capturing flippers are is open");
-        }
-*/
-//shoot the ball
-
-    /*   if (gamepad2.right_bumper == true && gamepad2.right_bumper != previousShooter_state)
-        {
-            shooterOpen = !shooterOpen;
-        }
-        previousShooter_state = gamepad2.right_bumper;
-
-        if (shooterOpen == false)
-        {
-            robot.shooterController.setPosition(1);//1 is down, .5 is up
-            telemetry.addData("Say","shooter flipper is down");
-        }
-        else
-        {
-            //#Thuglife
-            telemetry.addData("Say", "shooter flipper is up");
-            robot.shooterController.setPosition(.5);
-        }*/
         updateTelemetry(telemetry);
 
          }
