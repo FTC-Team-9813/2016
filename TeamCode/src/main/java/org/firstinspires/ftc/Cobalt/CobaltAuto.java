@@ -18,6 +18,9 @@ public class CobaltAuto extends OpMode {
     public enum controlState {
         MOVE_FORWARD, TURN_LEFT, DANCE_NOW, STOP_NOW, IR_IS_MEAN
     }
+    public enum danceControl{
+        Initiate_DANCE, Boogey, Shake, Spasm, Circular_Motion
+    }
     /*
      * Code to run ONCE when the driver hits INIT
      */
@@ -33,12 +36,12 @@ public class CobaltAuto extends OpMode {
         updateTelemetry(telemetry);
         this.resetStartTime();
     }
-
     /*
      * Code to run REPEATEDLY after the driver hits INIT, but before they hit PLAY
      */
     @Override
-    public void init_loop() {
+    public void init_loop()
+    {
 
     }
 
@@ -54,89 +57,100 @@ public class CobaltAuto extends OpMode {
          // HardwareCobalt.cdim.setDigitalChannelMode(HardwareCobalt.GROUND_LED_PORT,DigitalChannelController.Mode.OUTPUT);
         // HardwareCobalt.cdim.setDigitalChannelState(HardwareCobalt.GROUND_LED_PORT,true);
     }
-
     /*
      * Code to run REPEATEDLY after the driver hits PLAY but before they hit STOP
      */
     @Override
     public void loop()  {
-
-       /* telemetry.addData("Say", "RGB Values " +HardwareCobalt.groundRGBSensor.red() * 255.0 / 65535.0 + //this gets 0.0... HELP US
-                " "+HardwareCobalt.groundRGBSensor.green() * 255.0 / 65535.0 +" "+HardwareCobalt.groundRGBSensor.blue() * 255.0 / 65535.0 +"\n");    //
-        updateTelemetry(telemetry);
-        telemetry.addData("Angle", HardwareCobalt.irSeeker.getAngle());
-        telemetry.addData("Strength", HardwareCobalt.irSeeker.getStrength());
-        telemetry.addData("Say",  "Angle Values" +HardwareCobalt.irSeeker.getAngle());
-        telemetry.addData("Say",  "Strength Values" +HardwareCobalt.irSeeker.getStrength());
-        updateTelemetry(telemetry);
-        if (HardwareCobalt.groundRGBSensor.red() == 255&& HardwareCobalt.groundRGBSensor.green() == 255&& HardwareCobalt.groundRGBSensor.blue() == 255)
-        {
-             if (HardwareCobalt.irSeeker.getAngle() > 5);
-            {
-                  HardwareCobalt.leftFrontMotor.setPower(1);
-                 HardwareCobalt.leftRearMotor.setPower(1);
-                 HardwareCobalt.rightFrontMotor.setPower(-1);
-                 HardwareCobalt.rightRearMotor.setPower(-1);
-             }
-            if(HardwareCobalt.irSeeker.getAngle() < -5);
-            {
-                HardwareCobalt.leftFrontMotor.setPower(-1);
-                HardwareCobalt.leftRearMotor.setPower(-1);
-                HardwareCobalt.rightFrontMotor.setPower(1);
-                HardwareCobalt.rightRearMotor.setPower(1);
-            }
-            if(HardwareCobalt.irSeeker.getStrength() > 5); //five is just an example
-            {
-                HardwareCobalt.leftFrontMotor.setPower(1);
-                HardwareCobalt.leftRearMotor.setPower(1);
-                HardwareCobalt.rightFrontMotor.setPower(1);
-                HardwareCobalt.rightRearMotor.setPower(1);
-            }
-            telemetry.addData("Say", "There is a white line!");
-            }*/
-        //IMPORTANT!!!!!!!!!!
-        //THURSDAY THE 1ST, MAKE A METHOD FOR STRENGTH TO DISTANCE, AND MAKE IT WORK.
-        //This is for red team
-        // if(HardwareCobalt.irSeeker.getStrength() > 5)
-        //{
-        // HardwareCobalt.triggerMotor.setPower(1);//move right
-        // if (HardwareCobalt.frontRGBSensor.red() == 255 && HardwareCobalt.frontRGBSensor.green() == 0 && HardwareCobalt.frontRGBSensor.blue() == 0)
-        // {
-
-        // }
-        // if(HardwareCobalt.triggerMotor == /*Degrees turned 15?*/)
-        //  HardwareCobalt.triggerMotor.setPower(-1); // Move left
-        //}
-        //HardwareCobalt
-        //This is some code for pushing the button on the beacon!
-        // telemetry.addData("Say", " Front RGB Values " + HardwareCobalt.frontRGBSensor.red() +
-        // " " + HardwareCobalt.frontRGBSensor.green() + " " + HardwareCobalt.frontRGBSensor.blue() + "\n");
-        //telemetry.addData("Say", " Front RGB Values " + HardwareCobalt.frontRGBSensor.red() +
-        //      " " + HardwareCobalt.frontRGBSensor.green() + " " + HardwareCobalt.frontRGBSensor.blue() + "\n");
-
-
-        //If motor, when 1, turns to right
-        //*255/800 If not work, try (*255/4095)
-        //WHAT DOES THIS MEAN
-        //WHYYYYYYYYYYY DO WE HAVE THIS.
         telemetry.addData("Say", "Prepare for the sketch. That sketchy program or the sketchy life you may ask. The answer is both. #Thuglife");
-        controlState AutoOp = controlState.MOVE_FORWARD;
+        telemetry.addData("Say", robot.rightFrontMotor.getCurrentPosition());
+        telemetry.addData("Say", robot.rightFrontMotor.getTargetPosition());
+        telemetry.addData("Say", robot.rightRearMotor.getCurrentPosition());
+        telemetry.addData("Say", robot.rightRearMotor.getTargetPosition());
+        telemetry.addData("Say", robot.leftFrontMotor.getCurrentPosition());
+        telemetry.addData("Say", robot.leftFrontMotor.getTargetPosition());
+        telemetry.addData("Say", robot.leftRearMotor.getCurrentPosition());
+        telemetry.addData("Say", robot.leftRearMotor.getTargetPosition());
+        updateTelemetry(telemetry);
+
+        //controlState AutoOp = controlState.MOVE_FORWARD;
+        danceControl DanceMove = danceControl.Initiate_DANCE;
+        int repeat =0;
+        int yes = 0;
+
+        switch(DanceMove)
+        {
+            case Initiate_DANCE:
+                yes++;
+                repeat = 0;
+                robot.rightFrontMotor.setPower(0);
+                robot.rightRearMotor.setPower(0);
+                robot.leftFrontMotor.setPower(0);
+                robot.leftRearMotor.setPower(0);
+                robot.rightFrontMotor.setTargetPosition(0);
+                robot.rightRearMotor.setTargetPosition(0);
+                robot.leftFrontMotor.setTargetPosition(0);
+                robot.leftRearMotor.setTargetPosition(0);
+                switch (yes){
+                    case 1:
+                        this.resetStartTime();
+                        DanceMove = danceControl.Spasm;
+                        break;
+                    case 2:
+                        DanceMove = danceControl.Shake;
+                        break;
+                    case 3:
+                        DanceMove = danceControl.Boogey;
+                        break;
+                    case 4:
+                        DanceMove = danceControl.Circular_Motion;
+                        break;
+                }
+
+                break;
+            case Spasm:
+              repeat++;
+                if(repeat<20) {
+                    robot.autoDrive.encoderDrive(1, .5, -.5);
+                    robot.autoDrive.encoderDrive(1, -.5, .5);
+                       }else{
+                    DanceMove = danceControl.Initiate_DANCE;
+                }
+                break;
+            case Shake:
+                repeat++;
+                if(repeat<20){
+                    robot.autoDrive.encoderDrive(.6,5,-5);
+                    robot.autoDrive.encoderDrive(.6, -5,5);
+                }else{
+                    DanceMove = danceControl.Initiate_DANCE;
+                }
+                break;
+            case Boogey:
+                break;
+            case Circular_Motion:
+                if(!robot.rightFrontMotor.isBusy() && !robot.leftFrontMotor.isBusy() && !robot.rightRearMotor.isBusy() && !robot.leftRearMotor.isBusy()){
+                    robot.autoDrive.encoderDrive(.8,360,-360);
+
+                     if(!robot.rightFrontMotor.isBusy() && !robot.leftFrontMotor.isBusy() && !robot.rightRearMotor.isBusy() && !robot.leftRearMotor.isBusy()){
+                        DanceMove = danceControl.Initiate_DANCE;
+                    }
+                }else{
+
+                }
+                break;
+        }
 
         //  if(robot.robotDrive.equals(false)){
         //      Dance = dance.DANCE_1;
-
         //}
-
-
-       /*switch (AutoOp) {
+      /* switch (AutoOp) {
             case MOVE_FORWARD:
                 robot.rightFrontMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 robot.rightRearMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 robot.leftFrontMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
                 robot.leftRearMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
-
                 telemetry.addData("Say", "now we play the waiting game");
-
                 telemetry.addData("Say", this.getRuntime());
                 if(this.getRuntime()>=11 && this.getRuntime()< 16.5){
                     robot.rightRearMotor.setPower(1);
@@ -149,17 +163,9 @@ public class CobaltAuto extends OpMode {
                 robot.rightFrontMotor.setPower(0);
                 robot.leftFrontMotor.setPower(0);
                 robot.leftRearMotor.setPower(0);}
-
-
-
-
-
                 // robot.robotDrive.driveStraightDistance(102);
                //telemetry.addData("Say", robot.robotDrive.driveStraightStatus);
                 telemetry.addData("Say", "driving straight distance");
-
-
-
                 break;
             case STOP_NOW:
                 robot.rightRearMotor.setPower(0);
@@ -168,13 +174,7 @@ public class CobaltAuto extends OpMode {
                 robot.leftRearMotor.setPower(0);
         }*/
 
-
-
-
-
-
-
-        switch(AutoOp){
+       /* switch(AutoOp){
             case MOVE_FORWARD:
                 telemetry.addData("Say", this.getRuntime());
                 //DRIVE_SPEED/TURN_SPEED
@@ -211,7 +211,7 @@ public class CobaltAuto extends OpMode {
 
 break;
 
-        }
+        }*/
 
 
     }

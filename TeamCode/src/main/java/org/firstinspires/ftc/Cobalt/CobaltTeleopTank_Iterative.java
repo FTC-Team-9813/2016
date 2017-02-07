@@ -130,6 +130,7 @@ public class CobaltTeleopTank_Iterative extends OpMode{
             this.resetStartTime();
 
             robot.shooter.shootStuff(true);
+
         }
 
 //        robot.flipperController.setPosition(.3);
