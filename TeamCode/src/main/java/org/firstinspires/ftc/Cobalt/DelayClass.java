@@ -6,7 +6,7 @@ package org.firstinspires.ftc.Cobalt;
 
 public class DelayClass {
     public boolean delayClass(int delay){
-
+//creates delay wow!!!!!!!
         try{
             Thread.sleep(delay);
         }catch(InterruptedException ex){

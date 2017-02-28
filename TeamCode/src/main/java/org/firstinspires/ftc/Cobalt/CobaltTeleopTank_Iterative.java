@@ -116,6 +116,7 @@ public class CobaltTeleopTank_Iterative extends OpMode{
 
        // telemetry.addData("ColorValues", robot.groundRGBSensor.red() * (255.0 / 65535.0) + " " + robot.groundRGBSensor.green() * (255.0 / 65535.0) + " " + robot.groundRGBSensor.blue() * (255.0 / 65535.0));
        // telemetry.update();
+        //moves robot
         robot.leftFrontMotor.setPower(-gamepad1.right_stick_y);
         robot.leftRearMotor.setPower(-gamepad1.right_stick_y);
        robot.rightFrontMotor.setPower(-gamepad1.left_stick_y);

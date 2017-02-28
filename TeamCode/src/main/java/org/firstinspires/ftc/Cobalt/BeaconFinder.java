@@ -9,7 +9,7 @@ import com.qualcomm.robotcore.hardware.ColorSensor;
 public class BeaconFinder {
     static ColorSensor groundRGB;
 
-
+//for switch statement
     public enum ircontrol{
         SIGNAL_DETECTED, FIND_IR, FIND_IR2, MOVE_TO_IR, STOP_BEFORE_KILL_IR
     }

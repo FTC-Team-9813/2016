@@ -80,6 +80,7 @@ public class CobaltAuto extends OpMode {
 
         switch(DanceMove)
         {
+            //make dance
             case Initiate_DANCE:
                 yes++;
                 repeat = 0;
@@ -109,8 +110,10 @@ public class CobaltAuto extends OpMode {
 
                 break;
             case Spasm:
+                //makes spasm
               repeat++;
                 if(repeat<20) {
+                    telemetry.addData("Say", "Now spasming");
                     robot.autoDrive.encoderDrive(1, .5, -.5);
                     robot.autoDrive.encoderDrive(1, -.5, .5);
                        }else{
@@ -118,7 +121,9 @@ public class CobaltAuto extends OpMode {
                 }
                 break;
             case Shake:
+                //makes shake
                 repeat++;
+                telemetry.addData("Say","Now shaking");
                 if(repeat<20){
                     robot.autoDrive.encoderDrive(.6,5,-5);
                     robot.autoDrive.encoderDrive(.6, -5,5);
@@ -127,8 +132,11 @@ public class CobaltAuto extends OpMode {
                 }
                 break;
             case Boogey:
+                //makes boogey
                 break;
             case Circular_Motion:
+                //makes circular motion occur
+                telemetry.addData("Say","currently making circular motion occur in space-time");
                 if(!robot.rightFrontMotor.isBusy() && !robot.leftFrontMotor.isBusy() && !robot.rightRearMotor.isBusy() && !robot.leftRearMotor.isBusy()){
                     robot.autoDrive.encoderDrive(.8,360,-360);
 
@@ -144,6 +152,7 @@ public class CobaltAuto extends OpMode {
         //  if(robot.robotDrive.equals(false)){
         //      Dance = dance.DANCE_1;
         //}
+
       /* switch (AutoOp) {
             case MOVE_FORWARD:
                 robot.rightFrontMotor.setMode(DcMotor.RunMode.RUN_USING_ENCODER);
@@ -220,6 +229,7 @@ break;
      * Code to run ONCE after the driver hits STOP
      */
     @Override
+    //makes it stop
     public void stop()
     {
         //HardwareCobalt.cdim.setDigitalChannelState(HardwareCobalt.GROUND_LED_PORT,false);
