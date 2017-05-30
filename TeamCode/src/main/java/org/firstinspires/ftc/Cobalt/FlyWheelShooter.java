@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 
 public class FlyWheelShooter {
 //gets balls
-public boolean getBalls(boolean doLoadingStuff){
+/*public boolean getBalls(boolean doLoadingStuff){
     if(doLoadingStuff) {
         HardwareCobalt.loadLoader.setPower(1);
     }
@@ -23,9 +23,9 @@ public boolean getBalls(boolean doLoadingStuff){
 public boolean shootStuff(boolean doShootingStuff){
 
 
-
+*/
 //shoots
-    if(doShootingStuff){
+  /*  if(doShootingStuff){
         HardwareCobalt.loadShooter.setPosition(1);//dont know value yet
         // in milliseconds
         HardwareCobalt.delayclass.delayClass(1000);
@@ -38,6 +38,6 @@ public boolean shootStuff(boolean doShootingStuff){
     return true;
 }
 
-
+*/
 
 }

@@ -33,22 +33,23 @@ public class HardwareCobalt
     public static DcMotor rightRearMotor;
     public static DcMotor leftRearMotor;
 
-    public static DcMotor leftShootMotor;
-    public static DcMotor rightShootMotor;
-    public static DcMotor loadLoader;
+    //public static DcMotor leftShootMotor;
+   // public static DcMotor rightShootMotor;
+    //public static DcMotor loadLoader;
 
-    public static Servo loadShooter;
+   // public static Servo loadShooter;
 
-public static FlyWheelShooter shooter;
+//public static FlyWheelShooter shooter;
 
 
 
     //color sensors (or related to color sensors)
-    public static DeviceInterfaceModule cdim = null;//null
-    public static DeviceInterfaceModule deviceInterface = null;
-    public static DigitalChannelController bottomLedLight = null;//null
+    //public static DeviceInterfaceModule cdim = null;//null
+    //public static DeviceInterfaceModule deviceInterface = null;
+    //public static DigitalChannelController bottomLedLight = null;//null
 //transmission
     public static TheNewCobaltTransmission autoDrive;
+    public static TheNewerNewCobaltTransmission transmission;
     //NOT REALLY USING THESE RIGHT NOW BUT TOO LAZY TOO DELETE...     I NEED TO STOP DOING THIS ON CAPS
 
 
@@ -60,11 +61,11 @@ public static FlyWheelShooter shooter;
 
 
    // public static final int GROUND_LED_PORT =5;
-    public static ColorSensor groundRGBSensor;
-    public static ColorSensor frontRGBSensor;
-    public static IrSeekerSensor irSeeker;
+   // public static ColorSensor groundRGBSensor;
+   // public static ColorSensor frontRGBSensor;
+   // public static IrSeekerSensor irSeeker;
 
-    public static BeaconFinder beaconFinder;
+   // public static BeaconFinder beaconFinder;
     public static DelayClass delayclass;
 
 
@@ -92,14 +93,14 @@ public static FlyWheelShooter shooter;
        rightFrontMotor = hwMap.dcMotor.get("right_front_drive");
         rightRearMotor = hwMap.dcMotor.get("right_rear_drive");
 
-        leftShootMotor = hwMap.dcMotor.get("left_shoot_motor");
-        rightShootMotor = hwMap.dcMotor.get("right_shoot_motor");
+       // leftShootMotor = hwMap.dcMotor.get("left_shoot_motor");
+       // rightShootMotor = hwMap.dcMotor.get("right_shoot_motor");
 
-        loadLoader = hwMap.dcMotor.get("load_loader");
+        //loadLoader = hwMap.dcMotor.get("load_loader");
 
-        loadShooter = hwMap.servo.get("load_shooter");
+        //loadShooter = hwMap.servo.get("load_shooter");
 
-     shooter = new FlyWheelShooter();
+    // shooter = new FlyWheelShooter();
         delayclass = new DelayClass();
 
 
@@ -108,23 +109,24 @@ public static FlyWheelShooter shooter;
      //   triggerMotor = hwMap.dcMotor.get("trigger_motor");
 
         //Color Sensors
-      cdim = hwMap.deviceInterfaceModule.get("beaconcolor");
-        deviceInterface = hwMap.deviceInterfaceModule.get("core_device_interface");
+    //  cdim = hwMap.deviceInterfaceModule.get("beaconcolor");
+       // deviceInterface = hwMap.deviceInterfaceModule.get("core_device_interface");
 
-        bottomLedLight = hwMap.deviceInterfaceModule.get("LED_light");
+      //  bottomLedLight = hwMap.deviceInterfaceModule.get("LED_light");
 
       //  triggerMotor = hwMap.dcMotor.get("trigger_fire_motor");
-        groundRGBSensor = hwMap.colorSensor.get("colorsensor");
+      //  groundRGBSensor = hwMap.colorSensor.get("colorsensor");
 
-frontRGBSensor = hwMap.colorSensor.get("fcolorsensor");
+//frontRGBSensor = hwMap.colorSensor.get("fcolorsensor");
         //duration!
 
         //the ir sensor
-        irSeeker = hwMap.irSeekerSensor.get("irseekersensor");
+       // irSeeker = hwMap.irSeekerSensor.get("irseekersensor");
 
 
         autoDrive = new TheNewCobaltTransmission();
-        beaconFinder = new BeaconFinder();
+        transmission = new TheNewerNewCobaltTransmission();
+       // beaconFinder = new BeaconFinder();
 
         //frontAssemblyController = hwMap.servoController.get("frontAssemblyController");
         //flipperController = hwMap.servo.get("flipperServo");

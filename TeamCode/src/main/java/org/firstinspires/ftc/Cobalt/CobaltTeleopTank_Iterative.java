@@ -117,12 +117,47 @@ public class CobaltTeleopTank_Iterative extends OpMode{
        // telemetry.addData("ColorValues", robot.groundRGBSensor.red() * (255.0 / 65535.0) + " " + robot.groundRGBSensor.green() * (255.0 / 65535.0) + " " + robot.groundRGBSensor.blue() * (255.0 / 65535.0));
        // telemetry.update();
         //moves robot
-        robot.leftFrontMotor.setPower(-gamepad1.right_stick_y);
-        robot.leftRearMotor.setPower(-gamepad1.right_stick_y);
-       robot.rightFrontMotor.setPower(-gamepad1.left_stick_y);
-        robot.rightRearMotor.setPower(-gamepad1.left_stick_y);
+        while(gamepad1.a == true){
+            robot.leftFrontMotor.setPower(-1);
+            robot.leftRearMotor.setPower(-1);
+            robot.rightFrontMotor.setPower(1);
+            robot.rightRearMotor.setPower(1);
+            gamepad1.a = true;
+            if(this.getRuntime()==6){
+                robot.leftFrontMotor.setPower(1);
+                robot.leftRearMotor.setPower(1);
+                robot.rightFrontMotor.setPower(-1);
+                robot.rightRearMotor.setPower(-1);
 
-        if(gamepad2.left_bumper==true && gamepad2.left_bumper != previous_state){
+            }
+        }
+
+
+        robot.rightFrontMotor.setPower(-gamepad1.left_stick_y);
+        robot.rightRearMotor.setPower(-gamepad1.left_stick_y);
+       robot.leftFrontMotor.setPower(-gamepad1.right_stick_y);
+        robot.leftRearMotor.setPower(-gamepad1.right_stick_y);
+
+        while(gamepad1.right_bumper == true){
+            robot.leftFrontMotor.setPower(-turnSpeed);
+            robot.leftRearMotor.setPower(-turnSpeed);
+            robot.rightFrontMotor.setPower(turnSpeed);
+            robot.rightRearMotor.setPower(turnSpeed);
+            telemetry.addData("Say", gamepad1.right_bumper);
+        }
+
+        while(gamepad1.left_bumper== true){
+            robot.leftFrontMotor.setPower(turnSpeed);
+            robot.leftRearMotor.setPower(turnSpeed);
+            robot.rightFrontMotor.setPower(-turnSpeed);
+            robot.rightRearMotor.setPower(-turnSpeed);
+            telemetry.addData("Say", gamepad1.left_bumper);
+        }
+
+
+
+        updateTelemetry(telemetry);
+      /*  if(gamepad2.left_bumper==true && gamepad2.left_bumper != previous_state){
 
             robot.shooter.getBalls(true);
         }
@@ -134,7 +169,7 @@ public class CobaltTeleopTank_Iterative extends OpMode{
 
         }
 
-
+*/
         updateTelemetry(telemetry);
 
          }
@@ -143,4 +178,5 @@ public class CobaltTeleopTank_Iterative extends OpMode{
 
         }
 
+    public double turnSpeed = .8;
    }
